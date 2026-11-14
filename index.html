@@ -64,7 +64,7 @@ button.ghost{background:none;color:var(--ink);border-color:var(--line)}
 <div class="panel">
 <div class="row"><label for="L"><b style="color:var(--lav)">L</b>ljubav</label><input id="L" type="range" min="0" max="4" step="0.01" value="1.2" style="--c:var(--lav)"><output id="Lo"></output></div>
 <div class="row"><label for="a"><b style="color:var(--pink)">a</b>ona</label><input id="a" type="range" min="0.3" max="2" step="0.05" value="1" style="--c:var(--pink)"><output id="ao"></output></div>
-<div class="row"><label for="c"><b style="color:var(--blue)">c</b>on</label><input id="c" type="range" min="0.3" max="2" step="0.05" value="1" style="--c:var(--blue)"><output id="co"></output></div>
+<div class="row"><label for="c"><b style="color:var(--blue)">c</b>on</label><input id="c" type="range" min="-2" max="2" step="0.05" value="1" style="--c:var(--blue)"><output id="co"></output></div>
 <div class="btns"><button id="wed" type="button">Postavi D = 0</button><button id="reset" class="ghost" type="button">Kreni ispočetka</button></div>
 </div>
 <div class="panel" aria-live="polite">
@@ -90,17 +90,17 @@ function draw(){
   const L=+$('L').value,a=+$('a').value,c=+$('c').value;
   $('Lo').textContent=f(L);$('ao').textContent=f(a);$('co').textContent=f(c);
   const D=L*L-4*a*c,zero=Math.abs(D)<0.045;
-  $('eq').innerHTML=`<b style="color:${S.pink}">${f(a)}</b>·x² − <b style="color:#C3A8FF">${f(L)}</b>·x + <b style="color:${S.blue}">${f(c)}</b> = 0`;
+  $('eq').innerHTML=`<b style="color:${S.pink}">${f(a)}</b>·x² − <b style="color:#C3A8FF">${f(L)}</b>·x ${c<0?'−':'+'} <b style="color:${S.blue}">${f(Math.abs(c))}</b> = 0`;
   $('D').textContent=zero?'0':f(D);
   const st=$('st'),ds=$('ds');
   if(zero){st.textContent='Brak';st.style.color=S.pink;$('D').style.color=S.pink;
     ds.textContent='Jedno, dvostruko rešenje: x = √(c/a) = '+f(Math.sqrt(c/a))+'. Brak je potpun kvadrat.';}
   else if(D>0){st.textContent='Dva paralelna života';st.style.color=S.blue;$('D').style.color=S.ink;
-    ds.textContent='D > 0: dva različita rešenja. Vole se, ali svako živi svoj život.';}
+    ds.textContent=c<0?'D > 0 za svako L: kad je c < 0, parabola seče y-osu ispod nule, a koreni su suprotnog znaka. Brak nije moguć.':'D > 0: dva različita rešenja. Vole se, ali svako živi svoj život.';}
   else{st.textContent='Imaginarna veza';st.style.color=S.mute;$('D').style.color=S.ink;
     ds.textContent='D < 0: kompleksna rešenja. Veza postoji samo u mašti. Treba više ljubavi.';}
   const W=fig.clientWidth,H=fig.clientHeight,narrow=W<520;
-  const xr=[-0.6,3.4],yr=[-1.6,2.6];
+  const xr=[-1.6,3.6],yr=[-2.4,2.6];
   const X=x=>(x-xr[0])/(xr[1]-xr[0])*W,Y=y=>H-(y-yr[0])/(yr[1]-yr[0])*H;
   const col=zero?S.pink:(D>0?S.blue:S.mute);
   let p='';
@@ -110,12 +110,13 @@ function draw(){
   g+=`<text x="${W-16}" y="${Y(0)-10}" fill="${S.mute}" font-family="Lora" font-style="italic" font-size="16" text-anchor="end">x</text>`;
   g+=`<path d="${p}" fill="none" stroke="${col}" stroke-width="${zero?6:4}" stroke-linecap="round" ${D<0&&!zero?'stroke-dasharray="10 10"':''}/>`;
   const fs=narrow?18:24;
+  if(c>yr[0]&&c<yr[1]){g+=`<circle cx="${X(0)}" cy="${Y(c)}" r="7" fill="none" stroke="${S.blue}" stroke-width="3"/><text x="${X(0)-14}" y="${Y(c)+6}" fill="${S.blue}" font-family="Lora" font-style="italic" font-size="${narrow?15:18}" text-anchor="end">(0, c)</text>`;}
   if(zero){const x=L/(2*a);g+=`<circle cx="${X(x)}" cy="${Y(0)}" r="22" fill="${S.pink}" fill-opacity=".2"/><circle cx="${X(x)}" cy="${Y(0)}" r="11" fill="${S.pink}"/><text x="${X(x)}" y="${Y(0)-34}" fill="${S.pink}" font-family="Lora" font-style="italic" font-size="${fs+12}" text-anchor="middle">mi</text>`;}
   else if(D>0){const s=Math.sqrt(D);[[(L-s)/(2*a),'ona'],[(L+s)/(2*a),'on']].forEach(([x,t])=>{if(x>xr[0]&&x<xr[1])g+=`<circle cx="${X(x)}" cy="${Y(0)}" r="9" fill="${S.blue}"/><text x="${X(x)}" y="${Y(0)+38}" fill="${S.blue}" font-family="Lora" font-style="italic" font-size="${fs}" text-anchor="middle">${t}</text>`;});}
   svg.setAttribute('viewBox',`0 0 ${W} ${H}`);svg.innerHTML=g;
 }
 ['L','a','c'].forEach(id=>$(id).addEventListener('input',draw));
-$('wed').addEventListener('click',()=>{const a=+$('a').value,c=+$('c').value;$('L').value=(2*Math.sqrt(a*c)).toFixed(2);draw();});
+$('wed').addEventListener('click',()=>{const a=+$('a').value,c=+$('c').value;if(c<=0){draw();$('ds').textContent='Za c ≤ 0 ne postoji ljubav koja daje D = 0: pomeri c iznad nule.';return;}$('L').value=(2*Math.sqrt(a*c)).toFixed(2);draw();});
 $('reset').addEventListener('click',()=>{$('L').value=1.2;$('a').value=1;$('c').value=1;draw();});
 new ResizeObserver(draw).observe(fig);
 draw();
