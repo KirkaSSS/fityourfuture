@@ -4,6 +4,8 @@ Interaktivna aplikacija koja prikazuje brak kao rešenje kvadratne jednačine: d
 
 **Aplikacija:** https://kirkasss.github.io/fityourfuture/
 
+**Materijal za nastavu i prijemni (PDF):** [Kvadratna_jednacina_brak_materijal.pdf](Kvadratna_jednacina_brak_materijal.pdf)
+
 ## Ideja
 
 Jednačina zajedničkog života:
