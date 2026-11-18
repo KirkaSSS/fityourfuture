@@ -21,7 +21,7 @@ Integral kroz priču o poštaru i njivi deda Mileta. Iz katastra stiže pismo: �
 ## Instagram
 
 - Karusel, 10 kartica (naslovna, uvodna priča, sedam tema, završna sa dva QR koda): [media/karusel](media/karusel)
-- Rils, oko 1,5 min: priča od uvodnog pitanja, zatim snimak aplikacije sa istaknutim klizačem, na kraju dva QR koda: [media/postar_i_njiva_reel.mp4](media/postar_i_njiva_reel.mp4)
+- Rils, oko 2,5 min: priča od uvodnog pitanja, zatim snimak aplikacije sa istaknutim klizačem, na kraju dva QR koda: [media/postar_i_njiva_reel.mp4](media/postar_i_njiva_reel.mp4)
 - Tekstovi objava: [media/instagram_tekstovi.md](media/instagram_tekstovi.md)
 - Izvorni fajlovi (HTML za ponovno renderovanje): [media/src](media/src)
 

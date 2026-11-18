@@ -24,7 +24,7 @@ Pa onda: komšija meri do najdalje tačke kad prodaje, a do najbliže kad plaća
 
 ---
 
-## Objava 2: rils (oko 1,5 min, 1080 × 1920)
+## Objava 2: rils (oko 2,5 min, 1080 × 1920)
 
 Fajl: `postar_i_njiva_reel.mp4`. Tok: uvodno pitanje „Kako izmeriti njivu koja nije pravougaona? Redovima kukuruza.”, pismo iz katastra i njiva između puta i reke, tri tačke, pa snimak aplikacije (klizač koji se pomera je istaknut): redovi kukuruza, prodaja i porez, kilometar-sat, poštar bez adrese, koliko je kiše palo. Na kraju stoje dva QR koda. Video je bez zvuka, muziku dodaj u Instagramu.
 

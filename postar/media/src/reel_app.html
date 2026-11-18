@@ -52,13 +52,13 @@ const SC=[
    [5.6,'Računa se površina','Pljusak ili rominjanje?','Kratak jak pljusak i dugo rominjanje mogu dati <b>isti integral</b>.']],
   f(u){tab('kisa');if(u<5.6){setv('A',(lerp(6,18,seg(u,1,4.6))*2|0)/2);setv('w',lerp(2,0.8,seg(u,1,4.6)).toFixed(1));}else{setv('A',(lerp(18,1.5,seg(u,6,10))*2|0)/2);setv('w',lerp(0.8,6,seg(u,6,10)).toFixed(1));}}},
 ];
-window.SC=SC;
+const SLOW=1.45;SC.forEach(q=>{q.d0=q.d;q.d=+(q.d*SLOW).toFixed(2);});window.SC=SC;
 window.ready=new Promise(r=>{document.getElementById('app').addEventListener('load',()=>{
   D=document.getElementById('app').contentDocument;W=document.getElementById('app').contentWindow;
   const st=D.createElement('style');st.textContent=`.wrap{padding:6px 14px 0!important}h1,.sub,.qm,.foot,.legend{display:none!important}
-  .tabs{margin:0 0 8px!important;justify-content:center}.tabs button[aria-selected=false]{display:none}
+  .tabs{margin:0 0 8px!important;display:flex!important;justify-content:center!important}.tabs button{min-width:260px}.tabs button[aria-selected=false]{display:none}
   .fig{height:432px!important}.btns{display:none!important}.row{border-radius:12px;padding:0 8px;transition:none}.row.live{background:rgba(255,210,63,.16);box-shadow:inset 0 0 0 1.5px rgba(255,210,63,.6)}.eq{margin:12px 0 0!important;font-size:24px!important}.grid{margin-top:10px!important;gap:10px!important}
   .grid>.panel:nth-child(2){display:none}.panel{padding:10px 16px!important}.row{min-height:46px!important}`;
   D.head.appendChild(st);W.dispatchEvent(new Event('resize'));setTimeout(r,300);});});
-window.renderApp=(si,u)=>{const s=SC[si];const fh=[560,560,560,470,470][si];const fg=D.querySelector('.fig');if(fg.style.height!==fh+'px'){fg.style.setProperty('height',fh+'px','important');W.dispatchEvent(new Event('resize'));}if(si!==CURS){for(const k in LAST)delete LAST[k];CURS=si;}CUR=u;s.f(u);if(u<0.05)for(const k in LAST)delete LAST[k];D.querySelectorAll('.row').forEach(r=>{const i=r.querySelector('input');r.classList.toggle('live',!!i&&LAST[i.id]!==undefined&&u-LAST[i.id]<1.2);});cap(s.cap,u);document.getElementById('fade').style.opacity=Math.max(1-cl(u/.4),1-cl((s.d-u)/.4));};
+window.renderApp=(si,ur)=>{const s=SC[si];const u=ur/SLOW;const fh=[560,560,560,470,470][si];const fg=D.querySelector('.fig');if(fg.style.height!==fh+'px'){fg.style.setProperty('height',fh+'px','important');W.dispatchEvent(new Event('resize'));}if(si!==CURS){for(const k in LAST)delete LAST[k];CURS=si;}CUR=u;s.f(u);if(u<0.05)for(const k in LAST)delete LAST[k];D.querySelectorAll('.row').forEach(r=>{const i=r.querySelector('input');r.classList.toggle('live',!!i&&LAST[i.id]!==undefined&&u-LAST[i.id]<1.2);});cap(s.cap,u);document.getElementById('fade').style.opacity=Math.max(1-cl(ur/.4),1-cl((s.d-ur)/.4));};
 </script></body></html>
