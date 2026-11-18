@@ -3,176 +3,211 @@
 <style>
 :root{--bg:#08160F;--card:#10261B;--ink:#F4F1E4;--mute:#A9BCA9;--gold:#E9C25B;--re:#58D68D;--im:#C79BFF;--line:#24452F}
 body{margin:0;background:#000}
-.s{width:1080px;height:1350px;background:var(--bg);color:var(--ink);font-family:Inter,sans-serif;position:relative;overflow:hidden;box-sizing:border-box;padding:110px 88px 120px;display:flex;flex-direction:column;justify-content:center}
-.s .no{position:absolute;top:56px;right:72px;font:500 26px Inter;color:var(--mute);letter-spacing:.04em}
-.s .tag{position:absolute;bottom:52px;left:88px;font:400 26px Inter;color:var(--mute)}
-.s .sw{position:absolute;bottom:52px;right:72px;font:500 26px Inter;color:var(--gold)}
-.k{font:500 28px Inter;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin:0 0 22px}
-h1{font:500 112px/1.02 Lora,serif;color:var(--gold);margin:0 0 28px}
-h2{font:500 72px/1.08 Lora,serif;margin:0 0 26px}
-p{font:400 36px/1.42 Inter;color:var(--mute);margin:0 0 20px;max-width:880px}
+.s{width:1080px;height:1350px;background:var(--bg);color:var(--ink);font-family:Inter,sans-serif;position:relative;overflow:hidden;box-sizing:border-box;padding:96px 84px 80px;display:flex;flex-direction:column;justify-content:center}
+.s .no{position:absolute;top:44px;right:64px;font:500 26px Inter;color:var(--mute);letter-spacing:.04em}
+.s .sw{position:absolute;bottom:48px;right:64px;font:500 28px Inter;color:var(--gold)}
+.k{font:500 27px Inter;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin:0 0 16px}
+h1{font:500 124px/1.0 Lora,serif;color:var(--gold);margin:0 0 26px}
+h2{font:500 64px/1.1 Lora,serif;margin:0 0 18px}
+p{font:400 33px/1.45 Inter;color:var(--mute);margin:0 0 16px}
 p b{color:var(--ink);font-weight:500}
-.f{font:italic 400 58px/1.3 Lora,serif;color:var(--ink);margin:10px 0 18px}
-.f.big{font-size:96px;text-align:center;margin-top:40px}
-svg{display:block}
+p:last-child{margin-bottom:0}
+.lead{font-size:40px;line-height:1.4;color:var(--ink)}
+.f{font:italic 400 50px/1.25 Lora,serif;color:var(--ink);margin:6px 0 18px}
+.f.c{text-align:center}
+svg{display:block;margin:0 auto 10px}
 .g{color:var(--gold)}.r{color:var(--re)}.i{color:var(--im)}
-table{border-collapse:collapse;font:400 40px Inter;margin:8px 0 26px}
-td{padding:10px 34px 10px 0;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}
+ul{list-style:none;padding:0;margin:6px 0 22px}
+ul li{font:400 34px/1.4 Inter;color:var(--ink);padding:10px 0 10px 44px;position:relative;border-bottom:1px solid var(--line)}
+ul li::before{content:"";position:absolute;left:0;top:24px;width:22px;height:22px;border-radius:50%;background:var(--c)}
+table{border-collapse:collapse;font:400 36px Inter;margin:6px 0 20px;width:100%}
+td{padding:12px 0;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}
 td:last-child{text-align:right}
-.qr2{display:flex;justify-content:center;gap:72px}.qr2 figure{margin:0;text-align:center}.qr2 img{width:320px;height:320px;border-radius:20px;display:block}.qr2 figcaption{margin-top:20px;font:400 30px Inter;color:var(--mute)}.qr2 figcaption b{display:block;font:500 40px Inter;color:var(--ink);margin-bottom:6px}.qr2 figcaption span{display:block}
-.qr{display:flex;gap:44px;align-items:center;margin-top:40px}
-.qr img{width:300px;height:300px;border-radius:18px}
+.qr2{display:flex;justify-content:center;gap:72px}.qr2 figure{margin:0;text-align:center}
+.qr2 img{width:330px;height:330px;border-radius:20px;display:block}
+.qr2 figcaption{margin-top:18px;font:400 30px Inter;color:var(--mute)}
+.qr2 figcaption b{display:block;font:500 40px Inter;color:var(--ink);margin-bottom:4px}
 </style></head><body>
 
 <!-- 1 naslov -->
 <section class="s" id="s1">
  <div class="k">Matematika za odrasle</div>
  <h1>O<span style="margin-left:-.07em">jler</span><br>za tajkune</h1>
- <p>Kompleksni brojevi, objašnjeni jezikom koji svaki tajkun razume: <b>kamata, crna kasa i ofšor</b>.</p>
- <svg id="g1" width="904" height="640"></svg>
+ <p class="lead">Kompleksni brojevi i Ojlerova formula, objašnjeni jezikom koji svaki tajkun razume: <span class="g">kamata, crna kasa i ofšor.</span></p>
+ <svg id="g1" width="912" height="660"></svg>
  <div class="sw">prevuci →</div>
 </section>
 
-<!-- 2 e iz kamate -->
-<section class="s" id="s2"><div class="no">2/9</div>
+<!-- 2 uvod -->
+<section class="s" id="s2"><div class="no">2/10</div>
+ <div class="k">Uvod</div>
+ <h2>Znaš li ko je izmislio broj <span class="g" style="font-style:italic">e</span>? Kamata.</h2>
+ <p>Jakob Bernuli je 1683. postavio jednostavno pitanje: koliko vredi <b>1 €</b> posle godinu dana uz kamatu od <b>100 %</b>, ako se kamata pripisuje sve češće? Odgovor nije beskonačno. Odgovor je <b>e ≈ 2,718</b>. Više od toga ne može ni najbolji bankar.</p>
+ <p>Zato su kompleksni brojevi zapravo tajkunska matematika:</p>
+ <ul>
+  <li style="--c:var(--re)"><span class="r">Realni deo</span> ide poreskoj.</li>
+  <li style="--c:var(--im)"><span class="i">Imaginarni deo</span> ide u crnu kasu.</li>
+  <li style="--c:var(--gold)"><span class="g">Modul |z|</span> je ono što tajkun stvarno ima.</li>
+ </ul>
+ <p>A Ojlerova formula <b>e<sup>iφ</sup> = cos φ + i sin φ</b>? To je pranje novca: novac se vrti u krug, iznos ostaje isti, menja se samo faza.</p>
+ <p>Prevuci do kraja i saznaj zašto je <b>zbir svih ofšor firmi uvek nula</b>. To je teorema, ne šala.</p>
+</section>
+
+<!-- 3 e iz kamate -->
+<section class="s" id="s3"><div class="no">3/10</div>
  <div class="k">Odakle broj e</div>
- <h2>Broj <span class="g" style="font-style:italic">e</span> je izmislila kamata</h2>
- <p>Jakob Bernuli, 1683: uloži <b>1 €</b> uz kamatu od <b>100 %</b>. Koliko imaš za godinu dana ako se kamata pripisuje sve češće?</p>
+ <h2>Kamata ima plafon</h2>
+ <p>Uloži 1 € uz 100 % godišnje kamate. Što češće banka pripisuje kamatu, to više imaš na kraju godine:</p>
  <table>
  <tr><td>jednom godišnje</td><td>2,0000 €</td></tr>
+ <tr><td>polugodišnje</td><td>2,2500 €</td></tr>
  <tr><td>mesečno</td><td>2,6130 €</td></tr>
  <tr><td>dnevno</td><td>2,7146 €</td></tr>
- <tr><td class="g">neprekidno</td><td class="g">e ≈ 2,7183 €</td></tr>
+ <tr><td class="g">neprekidno, svakog trenutka</td><td class="g">e ≈ 2,7183 €</td></tr>
  </table>
- <div class="f">e = lim (1 + 1/n)<sup>n</sup></div>
- <p>Više od e ne može ni najbolji bankar.</p>
+ <div class="f c">e = lim<sub style="font-size:.5em">n→∞</sub> (1 + 1/n)<sup>n</sup></div>
+ <p>Rast se usporava i nikad ne prelazi <b>2,71828… €</b>. Taj plafon je broj e, osnova prirodnog logaritma. Uz stopu r i vreme t, neprekidna kamata daje <b>e<sup>rt</sup></b>. Ovo je formula poštene štednje.</p>
 </section>
 
-<!-- 3 Re/Im/|z| -->
-<section class="s" id="s3"><div class="no">3/9</div>
+<!-- 4 Re/Im/|z| -->
+<section class="s" id="s4"><div class="no">4/10</div>
  <div class="k">z = a + bi</div>
- <h2><span class="r">Realni deo</span> ide poreskoj. <span class="i">Imaginarni</span> u crnu kasu.</h2>
- <svg id="g3" width="904" height="560"></svg>
- <div class="f">|z| = √(<span class="r">3</span>² + <span class="i">4</span>²) = <span class="g">5</span></div>
- <p>Inspektor vidi 3. Tajkun ima 5. <b>Pitagora ne laže.</b></p>
+ <h2><span class="r">Realni deo</span> ide poreskoj, <span class="i">imaginarni</span> u crnu kasu</h2>
+ <svg id="g4" width="912" height="520"></svg>
+ <div class="f c">|z| = √(<span class="r">3</span>² + <span class="i">4</span>²) = <span class="g">5</span></div>
+ <p>Svaki kompleksan broj ima dva dela. <span class="r">a</span> je ono što stoji u papirima. <span class="i">b</span> je ono čega u papirima nema. Stvarna vrednost je <b>modul |z|</b>, rastojanje tačke od nule.</p>
+ <p>Inspektor vidi 3. Tajkun ima 5. Po Pitagori je <b>|z| ≥ Re z</b> uvek, a jednako je samo kod poštenog tajkuna, kada je b = 0.</p>
 </section>
 
-<!-- 4 konjugovane firme -->
-<section class="s" id="s4"><div class="no">4/9</div>
+<!-- 5 konjugovane firme -->
+<section class="s" id="s5"><div class="no">5/10</div>
  <div class="k">Dvojno knjigovodstvo</div>
  <h2>Dve konjugovane firme</h2>
- <svg id="g4" width="904" height="520"></svg>
- <div class="f">z + z̄ = 2a, &nbsp; z · z̄ = |z|²</div>
- <p>Svaka firma je za sebe „nerealna”. Zajedno daju <b>čisto realan bilans</b>: imaginarno se poništi.</p>
+ <svg id="g5" width="912" height="520"></svg>
+ <div class="f c">z + z̄ = 2a, &nbsp; z · z̄ = a² + b² = |z|²</div>
+ <p>Konjugovani broj <b>z̄ = a − bi</b> je slika broja z u ogledalu realne ose: isto prijavljeno, crna kasa sa suprotnim znakom. Svaka firma je za sebe „nerealna”.</p>
+ <p>Ali zbir i proizvod su <b>čisto realni</b>: u konsolidovanom bilansu imaginarno nestaje. Isti trik se koristi pri deljenju: imenilac se „pere” množenjem konjugovanim brojem.</p>
 </section>
 
-<!-- 5 pranje -->
-<section class="s" id="s5"><div class="no">5/9</div>
- <div class="k">Imaginarna kamata</div>
- <h2>Pranje novca: e<sup class="i" style="font-style:italic">iωt</sup></h2>
- <svg id="g5" width="904" height="600"></svg>
- <div class="f">|e<sup>iωt</sup>| = 1, &nbsp; e<sup>2πi</sup> = 1</div>
- <p>Pun krug preko Kipra, Kajmana i Delavera. Isti evro, <b>samo opran</b>.</p>
+<!-- 6 pranje -->
+<section class="s" id="s6"><div class="no">6/10</div>
+ <div class="k">Ojlerova formula</div>
+ <h2>Pranje novca: e<sup class="i" style="font-style:italic;font-size:.6em">iωt</sup></h2>
+ <svg id="g6" width="912" height="560"></svg>
+ <div class="f c">e<sup>iφ</sup> = cos φ + i sin φ, &nbsp; |e<sup>iωt</sup>| = 1</div>
+ <p>Ojler je 1748. pokazao šta se desi kad je kamatna stopa <b>imaginarna</b>. Novac ne raste, nego se vrti po jediničnom krugu. Iznos ostaje 1 €, menja se samo ugao.</p>
+ <p>Posle punog kruga vraća se tačno na početak: <b>e<sup>2πi</sup> = 1</b>. Pun krug preko Kipra, Kajmana i Delavera. Isti evro, samo opran.</p>
 </section>
 
-<!-- 6 spirala -->
-<section class="s" id="s6"><div class="no">6/9</div>
+<!-- 7 spirala -->
+<section class="s" id="s7"><div class="no">7/10</div>
  <div class="k">Kompleksna kamata</div>
  <h2>Tajkunska spirala</h2>
- <svg id="g6" width="904" height="640"></svg>
- <div class="f">e<sup>(<span class="r">r</span> + <span class="i">iω</span>)t</sup> = <span class="r">e<sup>rt</sup></span> · <span class="i">e<sup>iωt</sup></span></div>
- <p><span class="r">Realni deo</span> stope pravi rast, <span class="i">imaginarni</span> pravi kruženje. <b>Raste dok obilazi svet.</b></p>
+ <svg id="g7" width="912" height="560"></svg>
+ <div class="f c">e<sup>(r + iω)t</sup> = <span class="r">e<sup>rt</sup></span> · <span class="i">e<sup>iωt</sup></span></div>
+ <p>Pravi tajkun ne bira između štednje i pranja. Sa kompleksnom stopom <span class="r">r</span> + <span class="i">iω</span> realni deo pravi rast, a imaginarni kruženje: modul raste kao <b>e<sup>rt</sup></b>, ugao kao <b>ωt</b>.</p>
+ <p>Rezultat je spirala: <b>novac raste dok obilazi svet</b>. Ako je r &lt; 0, spirala se uvija ka nuli. To je stečaj.</p>
 </section>
 
-<!-- 7 zaokret -->
-<section class="s" id="s7"><div class="no">7/9</div>
+<!-- 8 zaokret -->
+<section class="s" id="s8"><div class="no">8/10</div>
  <div class="k">Množenje je rotacija</div>
  <h2>Zaokret posle izbora</h2>
- <svg id="g7" width="904" height="520"></svg>
- <div class="f">z · e<sup>iπ</sup> = −z</div>
- <p>Bogatstvo isto, stav suprotan. A <b>i² = −1</b>: kad se „i” ponovi dvaput, dobije se minus. Preletanje u dva koraka.</p>
+ <svg id="g8" width="912" height="500"></svg>
+ <div class="f c">z · e<sup>iπ</sup> = −z, &nbsp; i² = −1</div>
+ <p>Kad se kompleksni brojevi množe, <b>moduli se množe, a uglovi sabiraju</b>. Množenje sa e<sup>iθ</sup> samo okreće za ugao θ, a bogatstvo ne dira.</p>
+ <p>Zaokret posle izbora je množenje sa <b>e<sup>iπ</sup> = −1</b>: bogatstvo isto, stav suprotan. A i = e<sup>iπ/2</sup> je okret za 90°. Dva puta „i” i dobije se −1: <b>preletanje u dva koraka</b>.</p>
 </section>
 
-<!-- 8 koreni -->
-<section class="s" id="s8"><div class="no">8/9</div>
+<!-- 9 koreni -->
+<section class="s" id="s9"><div class="no">9/10</div>
  <div class="k">z⁵ = 1</div>
  <h2>Zbir svih ofšor firmi je <span class="g">nula</span></h2>
- <svg id="g8" width="904" height="600"></svg>
- <div class="f">1 + ω + ω² + ω³ + ω⁴ = 0</div>
- <p>Jedan evro na pet firmi oko sveta. Svaka ima nešto, a <b>zbirni izveštaj nema ništa</b>. Teorema, ne šala.</p>
+ <svg id="g9" width="912" height="560"></svg>
+ <div class="f c">1 + ω + ω² + ω³ + ω⁴ = 0</div>
+ <p>Jednačina z⁵ = 1 ima pet rešenja, raspoređenih kao temena pravilnog petougla: jedan evro na pet firmi ravnomerno oko sveta. Saberi ih redom, strelicu na strelicu, i <b>vratiš se u nulu</b>.</p>
+ <p>Dokaz je jedan red: (ω⁵ − 1)/(ω − 1) = 0. Svaka firma ima nešto, a zbirni izveštaj nema ništa. <b>Teorema, ne šala.</b></p>
 </section>
 
-<!-- 9 CTA -->
-<section class="s" id="s9"><div class="no">9/9</div>
+<!-- 10 CTA -->
+<section class="s" id="s10"><div class="no">10/10</div>
  <div class="k" style="text-align:center">Najlepša jednačina</div>
- <div class="f big" style="margin-top:0">e<sup class="i">iπ</sup> + 1 = 0</div>
- <p style="text-align:center;max-width:none;margin-bottom:56px">Pet konstanti u jednoj vezi. <b>Bez ostatka.</b></p>
- <h2 style="text-align:center;color:var(--gold);margin-bottom:36px">Preuzmi sadržaj</h2>
+ <div class="f c" style="font-size:104px;margin:0 0 10px">e<sup class="i">iπ</sup> + 1 = 0</div>
+ <p style="text-align:center;margin-bottom:50px">Pet osnovnih konstanti u jednoj vezi. <b>Bez ostatka.</b></p>
+ <h2 style="text-align:center;color:var(--gold);margin-bottom:34px">Preuzmi sadržaj</h2>
  <div class="qr2">
-  <figure><img src="../qr_ojler_za_tajkune.png" alt="QR kod za aplikaciju"><figcaption><b>Aplikacija</b><span>pusti novac da kruži</span></figcaption></figure>
-  <figure><img src="../qr_materijal_pdf.png" alt="QR kod za materijal"><figcaption><b>Materijal (PDF)</b><span>teorija i zadaci za prijemni</span></figcaption></figure>
+  <figure><img src="../qr_ojler_za_tajkune.png" alt="QR kod za aplikaciju"><figcaption><b>Aplikacija</b>pusti novac da kruži</figcaption></figure>
+  <figure><img src="../qr_materijal_pdf.png" alt="QR kod za materijal"><figcaption><b>Materijal (PDF)</b>teorija i zadaci za prijemni</figcaption></figure>
  </div>
- <p style="font-size:26px;margin:44px auto 0;text-align:center">Satira je uopštena: svaka sličnost sa stvarnim tajkunima je čisto imaginarna.</p>
+ <p style="font-size:26px;margin-top:46px;text-align:center">Satira je uopštena: svaka sličnost sa stvarnim tajkunima je čisto imaginarna.</p>
 </section>
 
 <script>
 const C={gold:'#E9C25B',re:'#58D68D',im:'#C79BFF',mute:'#A9BCA9',ink:'#F4F1E4',line:'#24452F'};
-function ax(W,H,cx,cy,k){return `<line x1="0" y1="${cy}" x2="${W}" y2="${cy}" stroke="${C.re}" stroke-opacity=".4" stroke-width="2"/><line x1="${cx}" y1="0" x2="${cx}" y2="${H}" stroke="${C.im}" stroke-opacity=".4" stroke-width="2"/><text x="${W-8}" y="${cy-14}" fill="${C.re}" font-family="Lora" font-style="italic" font-size="30" text-anchor="end">Re</text><text x="${cx+14}" y="34" fill="${C.im}" font-family="Lora" font-style="italic" font-size="30">Im</text>`;}
+// ose: oznake Re (desno, ISPOD ose) i Im (gore, LEVO od ose), da nikad ne dodiruju grafik
+function ax(W,H,cx,cy,lab=true){let g=`<line x1="10" y1="${cy}" x2="${W-10}" y2="${cy}" stroke="${C.re}" stroke-opacity=".4" stroke-width="2"/><line x1="${cx}" y1="10" x2="${cx}" y2="${H-10}" stroke="${C.im}" stroke-opacity=".4" stroke-width="2"/>`;
+ if(lab)g+=`<text x="${W-10}" y="${cy+40}" fill="${C.re}" font-family="Lora" font-style="italic" font-size="30" text-anchor="end">Re</text><text x="${cx-14}" y="40" fill="${C.im}" font-family="Lora" font-style="italic" font-size="30" text-anchor="end">Im</text>`;return g;}
 const T=(x,y,s,c,fs,a='middle')=>`<text x="${x}" y="${y}" fill="${c}" font-family="Lora" font-style="italic" font-size="${fs}" text-anchor="${a}">${s}</text>`;
 const L=(a,b,c,d,col,w,dash)=>`<line x1="${a}" y1="${b}" x2="${c}" y2="${d}" stroke="${col}" stroke-width="${w}" stroke-linecap="round" ${dash?`stroke-dasharray="${dash}"`:''}/>`;
 const D=(x,y,r,c,o=1)=>`<circle cx="${x}" cy="${y}" r="${r}" fill="${c}" fill-opacity="${o}"/>`;
-function arrow(x1,y1,x2,y2,c,w=6){const a=Math.atan2(y2-y1,x2-x1),h=24;return L(x1,y1,x2-h*.6*Math.cos(a),y2-h*.6*Math.sin(a),c,w)+`<path d="M${x2},${y2}L${x2-h*Math.cos(a-.4)},${y2-h*Math.sin(a-.4)}L${x2-h*Math.cos(a+.4)},${y2-h*Math.sin(a+.4)}Z" fill="${c}"/>`;}
-function spiral(cx,cy,k,r,w,t,N=400){let p='';for(let i=0;i<=N;i++){const s=t*i/N,m=Math.exp(r*s);p+=(i?'L':'M')+(cx+k*m*Math.cos(w*s)).toFixed(1)+','+(cy-k*m*Math.sin(w*s)).toFixed(1);}return p;}
-// 1
-{const W=904,H=640,cx=452,cy=330,k=58;let g=ax(W,H,cx,cy,k);
- g+=`<circle cx="${cx}" cy="${cy}" r="${k}" fill="none" stroke="${C.mute}" stroke-opacity=".4" stroke-dasharray="8 10"/>`;
- g+=`<path d="${spiral(cx,cy,k,0.13,1,13.6)}" fill="none" stroke="${C.gold}" stroke-width="7" stroke-linecap="round"/>`;
- const t=13.6,m=Math.exp(.13*t);g+=D(cx+k*m*Math.cos(t),cy-k*m*Math.sin(t),26,C.gold,.25)+D(cx+k*m*Math.cos(t),cy-k*m*Math.sin(t),14,C.gold);
- g+=D(cx+k,cy,9,C.re)+T(cx+k+8,cy+42,'1 €',C.re,30,'start');
- document.getElementById('g1').innerHTML=g;}
-// 3
-{const W=904,H=560,cx=150,cy=480,k=100;let g=ax(W,H,cx,cy,k);
+const halo=(x,y)=>D(x,y,28,C.gold,.25)+D(x,y,15,C.gold);
+function arrow(x1,y1,x2,y2,c,w=6){const a=Math.atan2(y2-y1,x2-x1),h=26;return L(x1,y1,x2-h*.6*Math.cos(a),y2-h*.6*Math.sin(a),c,w)+`<path d="M${x2},${y2}L${x2-h*Math.cos(a-.4)},${y2-h*Math.sin(a-.4)}L${x2-h*Math.cos(a+.4)},${y2-h*Math.sin(a+.4)}Z" fill="${c}"/>`;}
+function spiral(cx,cy,k,r,w,t,N=500){let p='';for(let i=0;i<=N;i++){const s=t*i/N,m=Math.exp(r*s);p+=(i?'L':'M')+(cx+k*m*Math.cos(w*s)).toFixed(1)+','+(cy-k*m*Math.sin(w*s)).toFixed(1);}return p;}
+const put=(id,g)=>document.getElementById(id).innerHTML=g;
+// 1 naslovna spirala
+{const W=912,H=660,cx=440,cy=330,k=56,r=.14,t=13.2;let g=ax(W,H,cx,cy,false);
+ g+=`<path d="${spiral(cx,cy,k,r,1,t)}" fill="none" stroke="${C.gold}" stroke-width="8" stroke-linecap="round"/>`;
+ const m=Math.exp(r*t);g+=halo(cx+k*m*Math.cos(t),cy-k*m*Math.sin(t));
+ g+=D(cx+k,cy,10,C.re)+T(cx+k+18,cy+46,'1 €',C.re,32,'start');put('g1',g);}
+// 4 trougao 3-4-5
+{const W=912,H=520,cx=200,cy=440,k=96;let g=ax(W,H,cx,cy);
  const X=cx+3*k,Y=cy-4*k;
- g+=L(cx,cy,X,cy,C.re,12)+L(X,cy,X,Y,C.im,10)+L(cx,cy,X,Y,C.gold,10);
+ g+=L(cx,cy,X,cy,C.re,14)+L(X,cy,X,Y,C.im,12)+L(cx,cy,X,Y,C.gold,12);
  g+=`<path d="M${X-30},${cy}L${X-30},${cy-30}L${X},${cy-30}" fill="none" stroke="${C.mute}" stroke-width="2"/>`;
- g+=D(X,Y,18,C.gold);
- g+=T((cx+X)/2,cy+56,'prijavljeno 3',C.re,40)+T(X+26,(cy+Y)/2+12,'crna kasa 4',C.im,40,'start')+T((cx+X)/2-40,(cy+Y)/2-14,'stvarno 5',C.gold,44,'end');
- document.getElementById('g3').innerHTML=g;}
-// 4
-{const W=904,H=520,cx=200,cy=260,k=95;let g=ax(W,H,cx,cy,k);
- const X=cx+4*k,Y1=cy-2.2*k,Y2=cy+2.2*k;
- g+=L(cx,cy,X,Y1,C.gold,7)+L(cx,cy,X,Y2,C.gold,4,'12 12')+L(X,Y1,X,Y2,C.im,4,'4 10')+L(cx,cy,X,cy,C.re,12);
- g+=D(X,Y1,16,C.gold)+D(X,Y2,14,C.mute);
- g+=T(X+28,Y1+10,'z = a + bi',C.gold,42,'start')+T(X+28,Y2+12,'z̄ = a − bi',C.mute,42,'start')+T(X+28,cy+12,'2a',C.re,42,'start');
- document.getElementById('g4').innerHTML=g;}
-// 5
-{const W=904,H=600,cx=452,cy=300,k=220;let g=ax(W,H,cx,cy,k);
- g+=`<circle cx="${cx}" cy="${cy}" r="${k}" fill="none" stroke="${C.gold}" stroke-width="7"/>`;
- [['Kipar',0],['Kajmani',2.1],['Delaver',4.2]].forEach(([n,a])=>{const x=cx+k*Math.cos(a),y=cy-k*Math.sin(a);g+=D(x,y,12,C.im)+T(cx+(k+56)*Math.cos(a),cy-(k+56)*Math.sin(a)+12,n,C.ink,34);});
- g+=D(cx+k,cy,22,C.gold,.3)+D(cx+k,cy,13,C.gold)+T(cx+k-24,cy+48,'1 €',C.gold,36,'end');
- const a=1.05;g+=`<path d="M${cx+k*0.55},${cy} A${k*.55},${k*.55} 0 0 0 ${cx+k*.55*Math.cos(a)},${cy-k*.55*Math.sin(a)}" fill="none" stroke="${C.im}" stroke-width="5"/>`+T(cx+k*.3,cy-k*.14,'ωt',C.im,36);
- document.getElementById('g5').innerHTML=g;}
-// 6
-{const W=904,H=640,cx=452,cy=330,k=46;let g=ax(W,H,cx,cy,k);
- g+=`<path d="${spiral(cx,cy,k,0.16,1,12.4)}" fill="none" stroke="${C.gold}" stroke-width="7" stroke-linecap="round"/>`;
- const t=12.4,m=Math.exp(.16*t);g+=D(cx+k*m*Math.cos(t),cy-k*m*Math.sin(t),26,C.gold,.25)+D(cx+k*m*Math.cos(t),cy-k*m*Math.sin(t),14,C.gold)+D(cx+k,cy,9,C.re)+T(cx+k+6,cy+40,'1 €',C.re,30,'start');
- document.getElementById('g6').innerHTML=g;}
-// 7
-{const W=904,H=520,cx=452,cy=290,k=200;let g=ax(W,H,cx,cy,k);
- const a=0.5;const x0=cx+k*Math.cos(a),y0=cy-k*Math.sin(a),x1=cx-k*Math.cos(a),y1=cy+k*Math.sin(a);
- const r=90;g+=`<path d="M${cx+r*Math.cos(a)},${cy-r*Math.sin(a)} A${r},${r} 0 0 0 ${cx-r*Math.cos(a)},${cy+r*Math.sin(a)}" fill="none" stroke="${C.im}" stroke-width="6"/>`;
+ g+=halo(X,Y)+T(X+30,Y+10,'z = 3 + 4i',C.gold,36,'start');
+ g+=T((cx+X)/2,cy+56,'prijavljeno: 3',C.re,38);
+ g+=T(X+30,(cy+Y)/2+14,'crna kasa: 4',C.im,38,'start');
+ g+=T(cx+1.5*k-52,cy-2*k-6,'stvarno: 5',C.gold,40,'end');
+ put('g4',g);}
+// 5 konjugovane
+{const W=912,H=520,cx=150,cy=260,k=92;let g=ax(W,H,cx,cy);
+ const X=cx+4*k,Y1=cy-2.3*k,Y2=cy+2.3*k;
+ g+=L(cx,cy,X,Y2,C.gold,4,'12 12')+L(X,Y1,X,Y2,C.im,4,'4 10')+L(cx,cy,X,Y1,C.gold,8)+L(cx,cy,X,cy,C.re,12);
+ g+=halo(X,Y1)+D(X,Y2,14,C.mute);
+ g+=T(X+34,Y1+12,'z = a + bi',C.gold,40,'start')+T(X+34,Y2+12,'z̄ = a − bi',C.mute,40,'start');
+ g+=T(X+34,cy-16,'b',C.im,34,'start')+T(X+34,cy+44,'−b',C.im,34,'start');
+ g+=T((cx+X)/2+40,cy+52,'a',C.re,38);
+ put('g5',g);}
+// 6 jedinični krug
+{const W=912,H=560,cx=456,cy=280,k=210;let g=ax(W,H,cx,cy);
+ g+=`<circle cx="${cx}" cy="${cy}" r="${k}" fill="none" stroke="${C.gold}" stroke-width="8"/>`;
+ [['Kajmani',2.45],['Delaver',3.75],['Kipar',5.35]].forEach(([n,a])=>{const x=cx+k*Math.cos(a),y=cy-k*Math.sin(a);g+=D(x,y,12,C.im)+T(cx+(k+64)*Math.cos(a),cy-(k+64)*Math.sin(a)+12,n,C.ink,34);});
+ g+=halo(cx+k,cy)+T(cx+k+24,cy-30,'1 €',C.gold,36,'start');
+ const a=1.0,r0=.42*k;g+=`<path d="M${cx+r0},${cy} A${r0},${r0} 0 0 0 ${cx+r0*Math.cos(a)},${cy-r0*Math.sin(a)}" fill="none" stroke="${C.im}" stroke-width="5"/>`+L(cx,cy,cx+k*Math.cos(a),cy-k*Math.sin(a),C.mute,2,'6 8')+T(cx+r0+30,cy-r0*.42,'φ',C.im,38,'start');
+ put('g6',g);}
+// 7 spirala
+{const W=912,H=560,cx=430,cy=290,k=44,r=.16,t=12.4;let g=ax(W,H,cx,cy);
+ g+=`<path d="${spiral(cx,cy,k,r,1,t)}" fill="none" stroke="${C.gold}" stroke-width="8" stroke-linecap="round"/>`;
+ const m=Math.exp(r*t),ex=cx+k*m*Math.cos(t),ey=cy-k*m*Math.sin(t);g+=halo(ex,ey);
+ g+=D(cx+k,cy,10,C.re);
+ put('g7',g);}
+// 8 rotacija
+{const W=912,H=500,cx=456,cy=270,k=210;let g=ax(W,H,cx,cy);
+ g+=`<circle cx="${cx}" cy="${cy}" r="${k}" fill="none" stroke="${C.gold}" stroke-opacity=".3" stroke-dasharray="8 10" stroke-width="2"/>`;
+ const a=.5,x0=cx+k*Math.cos(a),y0=cy-k*Math.sin(a),x1=cx-k*Math.cos(a),y1=cy+k*Math.sin(a);
+ const r=80;g+=`<path d="M${cx+r*Math.cos(a)},${cy-r*Math.sin(a)} A${r},${r} 0 0 0 ${cx-r*Math.cos(a)},${cy+r*Math.sin(a)}" fill="none" stroke="${C.im}" stroke-width="6"/>`;
  g+=arrow(cx,cy,x0,y0,C.mute,6)+arrow(cx,cy,x1,y1,C.gold,9);
- g+=T(x0+16,y0-14,'pre izbora',C.mute,38,'start')+T(x1-16,y1+48,'posle',C.gold,40,'end')+T(cx-70,cy-104,'180°',C.im,38,'end');
- document.getElementById('g7').innerHTML=g;}
-// 8
-{const W=904,H=600,cx=452,cy=300,k=200;let g=ax(W,H,cx,cy,k);
- g+=`<circle cx="${cx}" cy="${cy}" r="${k}" fill="none" stroke="${C.mute}" stroke-opacity=".35" stroke-dasharray="8 10"/>`;
- const N=['Kipar','Delaver','Kajmani','Panama','Malta'];let poly='';
+ g+=T(x0+20,y0-16,'pre izbora',C.mute,36,'start')+T(x1-20,y1+44,'posle',C.gold,38,'end')+T(cx-110,cy-70,'180°',C.im,36,'end');
+ put('g8',g);}
+// 9 koreni jedinice
+{const W=912,H=560,cx=456,cy=280,k=200;let g=ax(W,H,cx,cy,false);
+ const N=[['Kipar',30,52],['Delaver',0,-34],['Kajmani',-30,0],['Panama',-30,30],['Malta',0,64]];let poly='';
  for(let j=0;j<5;j++){const a=2*Math.PI*j/5;poly+=(j?'L':'M')+(cx+k*Math.cos(a))+','+(cy-k*Math.sin(a));}
  g+=`<path d="${poly}Z" fill="${C.gold}" fill-opacity=".08" stroke="${C.gold}" stroke-opacity=".6" stroke-width="3"/>`;
- for(let j=0;j<5;j++){const a=2*Math.PI*j/5;g+=D(cx+k*Math.cos(a),cy-k*Math.sin(a),13,C.gold)+T(cx+(k+60)*Math.cos(a),cy-(k+60)*Math.sin(a)+12,N[j],C.ink,34);}
+ for(let j=0;j<5;j++){const a=2*Math.PI*j/5,x=cx+k*Math.cos(a),y=cy-k*Math.sin(a),[n,dx,dy]=N[j];
+  const anc=j===0?'start':(j===2||j===3?'end':'middle');g+=D(x,y,13,C.gold)+T(x+dx,y+dy+12,n,C.ink,34,anc);}
  let sx=cx,sy=cy;const s=.42*k;for(let j=0;j<5;j++){const a=2*Math.PI*j/5,nx=sx+s*Math.cos(a),ny=sy-s*Math.sin(a);g+=arrow(sx,sy,nx,ny,C.im,6);sx=nx;sy=ny;}
  g+=D(cx,cy,10,C.re);
- document.getElementById('g8').innerHTML=g;}
+ put('g9',g);}
 </script>
 </body></html>

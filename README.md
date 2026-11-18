@@ -1,3 +1,16 @@
+# fityourfuture: matematika kroz priču
+
+Srednjoškolska matematika ispričana kroz priče koje se pamte, za nastavu, pripremu za prijemni ispit i Instagram. Svaka celina ima interaktivnu aplikaciju, PDF nastavnu jedinicu sa zadacima i rešenjima i QR kod za brz pristup.
+
+| Celina | Tema | Aplikacija | Materijal |
+|---|---|---|---|
+| **Brak kao kvadratna jednačina** | diskriminanta, dvostruki koren, Vijetove formule (II razred) | [otvori](https://kirkasss.github.io/fityourfuture/) | [PDF](Kvadratna_jednacina_diskriminanta_i_priroda_resenja.pdf) |
+| **Ojler za tajkune** (novo) | kompleksni brojevi, Ojlerova formula, Moavr, koreni jedinice (III i IV razred) | [otvori](https://kirkasss.github.io/fityourfuture/tajkuni/) | [PDF](tajkuni/Kompleksni_brojevi_i_Ojlerova_formula.pdf) · [opis, QR kodovi, Instagram](tajkuni/) |
+
+Druga celina počinje tamo gde se prva završava: kod `D < 0` i kompleksnih korena („imaginarna veza”).
+
+---
+
 # Brak kao kvadratna jednačina
 
 Interaktivna aplikacija koja prikazuje brak kao rešenje kvadratne jednačine: dvoje ljudi su dva korena, a brak je trenutak kada postanu **dvostruki koren**, jedina tačka u kojoj se njihove krive dodirnu i ostanu.
@@ -5,8 +18,6 @@ Interaktivna aplikacija koja prikazuje brak kao rešenje kvadratne jednačine: d
 **Aplikacija:** https://kirkasss.github.io/fityourfuture/
 
 **Nastavna jedinica (PDF):** [Kvadratna jednačina: diskriminanta, priroda rešenja i Vijetove formule](Kvadratna_jednacina_diskriminanta_i_priroda_resenja.pdf), materijal za II razred srednje škole i pripremu za prijemni ispit
-
-**Nastavak: Ojler za tajkune.** Kompleksni brojevi i Ojlerova formula kroz satiričnu priču o tajkunu: https://kirkasss.github.io/fityourfuture/tajkuni/ · [materijal i opis](tajkuni/)
 
 ## Ideja
 

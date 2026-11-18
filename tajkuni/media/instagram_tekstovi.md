@@ -1,8 +1,8 @@
 # Instagram objave: Ojler za tajkune
 
-## Objava 1: karusel (9 slajdova)
+## Objava 1: karusel (10 slajdova)
 
-Fajlovi: `karusel/ojler_za_tajkune_01.png` … `09.png` (1080 × 1350, redom). Na poslednjem slajdu su dva QR koda: aplikacija i materijal (PDF).
+Fajlovi: `karusel/ojler_za_tajkune_01.png` … `10.png` (1080 × 1350, redom). Slajd 2 je uvodni tekst, a na poslednjem slajdu su dva QR koda: aplikacija i materijal (PDF).
 
 **Opis:**
 

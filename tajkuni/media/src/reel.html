@@ -75,22 +75,21 @@ const S=[
  {d:6,k:1.7,f(u){ // pranje
    kicker('Imaginarna kamata');
    rich([['Pranje novca: e',{it:false}],['iωt',{sup:true,col:C.im}]],W/2,430,80);
-   const cx=W/2,cy=1000,R=330;axes(cx,cy,450,1,false);
+   const cx=W/2,cy=1000,R=330;axes(cx,cy,375,1,false);
    x.save();x.strokeStyle='rgba(169,188,169,.35)';x.setLineDash([10,12]);x.lineWidth=3;x.beginPath();x.arc(cx,cy,R,0,7);x.stroke();x.restore();
    const ph=2*Math.PI*seg(u,.6,4.6);
    x.save();x.strokeStyle=C.gold;x.lineWidth=10;x.lineCap='round';x.beginPath();x.arc(cx,cy,R,0,-ph,true);x.stroke();x.restore();
-   HAV.forEach((n,j)=>{const a=2*Math.PI*j/5;const lit=ph>=a-0.01;const X=cx+R*Math.cos(a),Y=cy-R*Math.sin(a);dot(X,Y,13,lit?C.im:C.line);text(n,cx+(R+90)*Math.cos(a),cy-(R+90)*Math.sin(a)+16,44,lit?C.ink:C.mute,{serif:true,it:true,a:lit?1:.5});});
+   [['Kajmani',2.45],['Delaver',3.75],['Kipar',5.35]].forEach(([n,a])=>{const lit=ph>=a-0.01;const X=cx+R*Math.cos(a),Y=cy-R*Math.sin(a);dot(X,Y,13,lit?C.im:C.line);text(n,cx+(R+95)*Math.cos(a),cy-(R+95)*Math.sin(a)+16,44,lit?C.ink:C.mute,{serif:true,it:true,a:lit?1:.5});});
    const X=cx+R*Math.cos(ph),Y=cy-R*Math.sin(ph);dot(X,Y,36,C.gold,.25);dot(X,Y,20,C.gold);
-   rich([['|z| = ',{}],['1,00 €',{col:C.gold,it:false,serif:false,w:500}]],cx,cy+20,64);
-   text('krug '+fmt(ph/(2*Math.PI),2),cx,cy+100,40,C.mute);
+   rich([['|z| = ',{}],['1,00 €',{col:C.gold,it:false,serif:false,w:500}],['   ·   krug '+fmt(ph/(2*Math.PI),2),{it:false,serif:false,col:C.mute}]],cx,1430,50);
    const e=seg(u,4.7,5.2);
-   rich([['e'],['2πi',{sup:true,col:C.im}],[' = 1']],W/2,1500,76,{a:e});
-   wrap('Pun krug. Isti evro, samo opran.',W/2,1590,46,C.ink,900,58,{a:e});
+   rich([['e'],['2πi',{sup:true,col:C.im}],[' = 1']],W/2,1540,76,{a:e});
+   wrap('Pun krug. Isti evro, samo opran.',W/2,1625,46,C.ink,900,58,{a:e});
  }},
  {d:5,k:1.7,f(u){ // spirala
    kicker('Kompleksna kamata');
    wrap('Tajkunska spirala',W/2,430,84,C.ink,900,96,{serif:true,w:500});
-   const cx=W/2,cy=980,k=52;axes(cx,cy,450);
+   const cx=W/2,cy=980,k=52;axes(cx,cy,350,1,false);
    const t=12.4*seg(u,.3,4.2);
    x.save();x.strokeStyle=C.gold;x.lineWidth=9;x.lineCap='round';spiralPath(cx,cy,k,.16,1,t);x.stroke();x.restore();
    const m=Math.exp(.16*t);dot(cx+k*m*Math.cos(t),cy-k*m*Math.sin(t),34,C.gold,.25);dot(cx+k*m*Math.cos(t),cy-k*m*Math.sin(t),18,C.gold);
@@ -105,7 +104,7 @@ const S=[
    const ap=seg(u,.2,1);
    x.save();x.globalAlpha=ap;x.strokeStyle='rgba(233,194,91,.6)';x.fillStyle='rgba(233,194,91,.08)';x.lineWidth=4;x.beginPath();for(let j=0;j<5;j++){const a=2*Math.PI*j/5;j?x.lineTo(cx+R*Math.cos(a),cy-R*Math.sin(a)):x.moveTo(cx+R*Math.cos(a),cy-R*Math.sin(a));}x.closePath();x.fill();x.stroke();x.restore();
    const N=['Kipar','Delaver','Kajmani','Panama','Malta'];
-   for(let j=0;j<5;j++){const a=2*Math.PI*j/5;dot(cx+R*Math.cos(a),cy-R*Math.sin(a),16,C.gold,ap);text(N[j],cx+(R+86)*Math.cos(a),cy-(R+86)*Math.sin(a)+16,44,C.ink,{serif:true,it:true,a:ap});}
+   const OF=[[30,62,'left'],[0,-40,'center'],[-34,0,'right'],[-34,34,'right'],[0,74,'center']];for(let j=0;j<5;j++){const a=2*Math.PI*j/5,X=cx+R*Math.cos(a),Y=cy-R*Math.sin(a);dot(X,Y,16,C.gold,ap);text(N[j],X+OF[j][0],Y+OF[j][1]+14,44,C.ink,{serif:true,it:true,a:ap,al:OF[j][2]});}
    let sx=cx,sy=cy;const s=.42*R;
    for(let j=0;j<5;j++){const p=seg(u,1+j*.55,1.5+j*.55);if(p<=0)break;const a=2*Math.PI*j/5,nx=sx+s*Math.cos(a)*p,ny=sy-s*Math.sin(a)*p;arrow(sx,sy,nx,ny,C.im,8);sx+=s*Math.cos(a);sy-=s*Math.sin(a);if(p<1)break;}
    dot(cx,cy,12,C.re);

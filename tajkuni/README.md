@@ -27,8 +27,8 @@ z₁,₂ = √(c/a) · e^(±iφ),   cos φ = L / (2√(ac))
 
 ## Instagram
 
-- Karusel, 9 slajdova: [media/karusel](media/karusel)
-- Rils, oko 65 s: [media/ojler_za_tajkune_reel.mp4](media/ojler_za_tajkune_reel.mp4)
+- Karusel, 10 slajdova (naslovna, uvod „Znaš li ko je izmislio broj e?”, sedam tema, završna sa dva QR koda): [media/karusel](media/karusel)
+- Rils, oko 65 s, završava se kadrom „Preuzmi sadržaj” sa dva QR koda: [media/ojler_za_tajkune_reel.mp4](media/ojler_za_tajkune_reel.mp4)
 - Tekstovi objava: [media/instagram_tekstovi.md](media/instagram_tekstovi.md)
 - Izvorni fajlovi (HTML za ponovno renderovanje): [media/src](media/src)
 
