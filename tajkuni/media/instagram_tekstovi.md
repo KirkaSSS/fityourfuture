@@ -27,25 +27,26 @@ Satira je uopštena: svaka sličnost sa stvarnim tajkunima je čisto imaginarna.
 
 ---
 
-## Objava 2: rils (oko 65 s, 1080 × 1920)
+## Objava 2: rils (oko 1,5 min, 1080 × 1920)
 
-Fajl: `ojler_za_tajkune_reel.mp4`. Video je bez zvuka: u Instagramu dodaj muziku po izboru (nešto mirno i ritmično). Za naslovnu sliku rilsa izaberi prvi kadar ili slajd 1 iz karusela. Poslednjih 9 sekundi stoje dva QR koda.
+Fajl: `ojler_za_tajkune_reel.mp4`. Tok: uvodno pitanje „Znaš li ko je izmislio broj e? Kamata.”, Bernulijev kamatni račun, tri tačke (realni deo, imaginarni deo, modul), pa snimak aplikacije: klizači a, b, r i φ pomeraju tačku u Re–Im ravni, pranje novca e^(iωt), spirala, konjugovane firme, ofšor koreni i zaokret. Klizač koji se upravo pomera je istaknut. Na kraju stoje dva QR koda. Video je bez zvuka, muziku dodaj u Instagramu.
 
 **Opis:**
 
-Matematika koju svaki tajkun razume bez objašnjenja. 😏
+Znaš li ko je izmislio broj e? Kamata. 💶
 
-✔️ e je nastao iz kamate
-✔️ realni deo ide poreskoj, imaginarni u crnu kasu
-✔️ e^(iωt): novac kruži preko Kipra i Delavera i vraća se isti, samo opran
-✔️ zbir svih ofšor firmi je nula
-✔️ zaokret posle izbora je samo množenje sa e^(iπ) = −1
+Bernuli je 1683. uložio 1 € uz 100 % kamate i pitao: šta ako se kamata pripisuje sve češće? Odgovor nije beskonačno, nego e ≈ 2,718.
 
-I na kraju, najlepša jednačina na svetu: e^(iπ) + 1 = 0. Pet konstanti u jednoj vezi, bez ostatka.
+Odatle počinje tajkunska matematika:
+🟢 realni deo ide poreskoj
+🟣 imaginarni deo ide u crnu kasu
+🟡 modul |z| je ono što tajkun stvarno ima
 
-📲 Za đake, maturante i sve koji se spremaju za prijemni: zaustavi video na kraju i skeniraj QR kod za aplikaciju ili za materijal (PDF).
+U videu vidiš aplikaciju u radu: pomeraš a i b, i tačka putuje kroz Re–Im ravan. Pomeraš r i φ, i ista tačka kruži oko nule. Zatim e^(iωt) pere novac u krug, spirala raste dok obilazi svet, a zbir svih ofšor firmi ispadne nula.
 
-Koju jednačinu da sledeću objasnim jezikom biznisa? Napiši u komentarima. 👇
+📲 Zaustavi video na kraju i skeniraj QR kod: aplikacija ili materijal sa zadacima za prijemni.
+
+Satira je uopštena: svaka sličnost sa stvarnim tajkunima je čisto imaginarna. 😉
 
 #matematika #Ojler #kompleksnibrojevi #reels #MINT #STEM #prijemni #edukacija #nauka #tajkuni
 

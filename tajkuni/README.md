@@ -8,10 +8,11 @@ Kompleksni brojevi i Ojlerova formula kroz satiričnu priču o tajkunu: realni d
 
 **QR kodovi:** aplikacija ([PNG](media/qr_ojler_za_tajkune.png) · [SVG](media/qr_ojler_za_tajkune.svg)) · materijal PDF ([PNG](media/qr_materijal_pdf.png) · [SVG](media/qr_materijal_pdf.svg))
 
-## Četiri lekcije u aplikaciji
+## Pet lekcija u aplikaciji
 
 | Lekcija | Formula | U priči |
 |---|---|---|
+| 0 · Kompleksan broj | `z = a + bi = r·e^(iφ)` | klizači `a`, `b` pomeraju tačku vodoravno i uspravno, `r` i `φ` po krugu; `a` prijavljeno, `b` crna kasa, `r` stvarno ima, `φ` stav |
 | 1 · Kamatna spirala | `z(t) = e^((r + iω)t)` | `r` pravi rast, `ω` kruženje; `r = 0` je pranje novca, `e^(2πi) = 1` |
 | 2 · Dvojno knjigovodstvo | `\|z\| = √(a² + b²)`, `z + z̄ = 2a`, `z·z̄ = \|z\|²` | inspektor vidi `Re z`, tajkun ima `\|z\|` |
 | 3 · Ofšor koreni | `zⁿ = 1`, `Σ z_k = 0` | zbir svih ofšor firmi je nula |
@@ -28,7 +29,7 @@ z₁,₂ = √(c/a) · e^(±iφ),   cos φ = L / (2√(ac))
 ## Instagram
 
 - Karusel, 10 slajdova (naslovna, uvod „Znaš li ko je izmislio broj e?”, sedam tema, završna sa dva QR koda): [media/karusel](media/karusel)
-- Rils, oko 65 s, završava se kadrom „Preuzmi sadržaj” sa dva QR koda: [media/ojler_za_tajkune_reel.mp4](media/ojler_za_tajkune_reel.mp4)
+- Rils, oko 1,5 min: priča od uvodnog pitanja „Znaš li ko je izmislio broj e?”, zatim snimak aplikacije u kojem se vidi koji se klizač pomera, na kraju „Preuzmi sadržaj” sa dva QR koda: [media/ojler_za_tajkune_reel.mp4](media/ojler_za_tajkune_reel.mp4)
 - Tekstovi objava: [media/instagram_tekstovi.md](media/instagram_tekstovi.md)
 - Izvorni fajlovi (HTML za ponovno renderovanje): [media/src](media/src)
 

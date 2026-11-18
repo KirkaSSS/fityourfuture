@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="sr"><head><meta charset="utf-8">
+<style>
+:root{--bg:#08160F;--ink:#F4F1E4;--mute:#A9BCA9;--gold:#E9C25B;--re:#58D68D;--im:#C79BFF}
+html,body{margin:0;width:540px;height:960px;background:var(--bg);overflow:hidden}
+#cap{position:absolute;left:0;top:0;width:540px;height:240px;box-sizing:border-box;padding:40px 30px 0;text-align:center;color:var(--ink)}
+#k{font:500 15px Inter,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+#m{font:500 31px/1.18 Lora,serif;margin-bottom:12px}
+#s{font:400 19px/1.42 Inter,sans-serif;color:var(--mute)}
+#s b{color:var(--ink);font-weight:500}
+.g{color:var(--gold)}.r{color:var(--re)}.i{color:var(--im)}
+#app{position:absolute;left:0;top:236px;width:540px;height:724px;border:0}
+#fade{position:absolute;inset:0;background:var(--bg);pointer-events:none;opacity:0}
+</style></head><body>
+<div id="cap"><div id="k"></div><div id="m"></div><div id="s"></div></div>
+<iframe id="app" src="../../index.html"></iframe>
+<div id="fade"></div>
+<script>
+const cl=(v,a=0,b=1)=>Math.max(a,Math.min(b,v));
+const ease=t=>{t=cl(t);return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;};
+const seg=(u,a,b)=>ease((u-a)/(b-a));
+const lerp=(a,b,t)=>a+(b-a)*t;
+let D,W;
+const LIVE=new Set();
+function setv(id,v){const e=D.getElementById(id);const old=+e.value;e.value=v;if(Math.abs(+e.value-old)>1e-9)LIVE.add(id);e.dispatchEvent(new Event('input'));}
+function tab(t){const b=D.querySelector(`[data-t=${t}]`);if(b.getAttribute('aria-selected')!=='true')b.click();}
+function cap(list,u){let c=list[0];for(const q of list)if(u>=q[0])c=q;
+  const a=list.indexOf(c)===0?1:seg(u,c[0],c[0]+.5);
+  document.getElementById('k').innerHTML=c[1];document.getElementById('m').innerHTML=c[2];document.getElementById('s').innerHTML=c[3];
+  document.getElementById('cap').style.opacity=a;}
+const SC=[
+ {d:17,cap:[
+   [0,'Re–Im ravan','Tajkun je jedna tačka: <span class="g">z = a + bi</span>','Pomeraj klizače i gledaj gde je tačka.'],
+   [1.2,'Realni deo','<span class="r">a</span> = prijavljeno','Ono što vidi poreska: tačka se pomera <b>vodoravno</b>.'],
+   [4.4,'Imaginarni deo','<span class="i">b</span> = crna kasa','Ono čega u papirima nema: tačka se pomera <b>uspravno</b>.'],
+   [7.6,'Modul','<span class="g">r = |z| = 5</span>: stvarno ima','Inspektor vidi 3. Tajkun ima 5. <b>Pitagora ne laže.</b>'],
+   [11,'Argument','<span>φ</span> = stav','Klizači r i φ pomeraju <b>istu tačku</b> po krugu: z = a + bi = r·e<sup>iφ</sup>.']],
+  f(u){tab('cb');
+   if(u<7.6){setv('ca',(3*seg(u,1.4,3.9)).toFixed(1));setv('cbb',(4*seg(u,4.6,7.1)).toFixed(1));}
+   else if(u<11){setv('ca',3);setv('cbb',4);}
+   else{const p=u<14?lerp(53,145,seg(u,11.3,13.6)):lerp(145,53,seg(u,14,16.3));setv('cf',Math.round(p));}
+  }},
+ {d:12,cap:[
+   [0,'Ojlerova formula','e<sup>iφ</sup> = cos φ + i sin φ','Šta ako je kamatna stopa <b>imaginarna</b>?'],
+   [2.2,'Pranje novca','e<sup class="i">iωt</sup>: r = 0','Novac ne raste, samo se <b>vrti u krug</b>. Iznos ostaje 1 €.'],
+   [8.8,'Pun krug','e<sup>2πi</sup> = 1','Preko Kipra, Kajmana i Delavera. <b>Isti evro, samo opran.</b>']],
+  f(u){tab('spir');setv('r',0);setv('w',1);setv('t',(6.28*seg(u,2.4,8.6)).toFixed(2));}},
+ {d:11,cap:[
+   [0,'Kompleksna kamata','Tajkunska spirala','e<sup>(<span class="r">r</span> + <span class="i">iω</span>)t</sup>: <span class="r">r</span> pravi rast, <span class="i">ω</span> pravi kruženje.'],
+   [6.5,'Kompleksna kamata','Raste dok obilazi svet','Modul raste kao e<sup>rt</sup>, ugao kao ωt. Ako je r &lt; 0, to je stečaj.']],
+  f(u){tab('spir');setv('r',0.08);setv('w',1);setv('t',(12.57*seg(u,1,9.6)).toFixed(2));}},
+ {d:10,cap:[
+   [0,'Dvojno knjigovodstvo','Dve konjugovane firme','z = a + bi i z̄ = a − bi: isto prijavljeno, crna kasa sa suprotnim znakom.'],
+   [5,'Konsolidovani bilans','z + z̄ = 2a, &nbsp;z · z̄ = |z|²','Zbir i proizvod su <b>čisto realni</b>: imaginarno nestaje.']],
+  f(u){tab('knj');setv('x',3);setv('y',(4*seg(u,.8,4)).toFixed(1));}},
+ {d:11,cap:[
+   [0,'z⁵ = 1','Pet ofšor firmi','Jedan evro, pet firmi ravnomerno oko sveta.'],
+   [2.5,'Konsolidacija','Saberi ih redom…','Strelica na strelicu, svaka okrenuta za 72°.'],
+   [7.6,'Teorema, ne šala','Zbir je <span class="g">nula</span>','Svaka firma ima nešto, a <b>zbirni izveštaj nema ništa</b>.']],
+  f(u){tab('ofs');setv('n',5);setv('k',Math.min(5,Math.max(0,Math.floor((u-2.6)/1)+1))*(u>2.6?1:0));}},
+ {d:10,cap:[
+   [0,'Množenje je rotacija','Zaokret posle izbora','Množenje sa e<sup>iθ</sup> okreće za ugao θ. Bogatstvo ne dira.'],
+   [5.2,'z · e<sup>iπ</sup> = −z','Bogatstvo isto, stav suprotan','A i² = −1: dva puta „i” i dobije se minus. <b>Preletanje u dva koraka.</b>']],
+  f(u){tab('zao');setv('m',2.5);setv('th',Math.round(180*seg(u,1.2,4.6)));}},
+];
+window.SC=SC;
+window.ready=new Promise(r=>{document.getElementById('app').addEventListener('load',()=>{
+  D=document.getElementById('app').contentDocument;W=document.getElementById('app').contentWindow;
+  const st=D.createElement('style');st.textContent=`.wrap{padding:6px 14px 0!important}h1,.sub,.qm,.foot,.legend{display:none!important}
+  .tabs{margin:0 0 8px!important;justify-content:center}.tabs button[aria-selected=false]{display:none}
+  .fig{height:370px!important}.btns{display:none!important}.row{border-radius:12px;padding:0 8px;transition:none}.row.live{background:rgba(233,194,91,.16);box-shadow:inset 0 0 0 1.5px rgba(233,194,91,.6)}.eq{margin:12px 0 0!important;font-size:22px!important}.grid{margin-top:10px!important;gap:10px!important}
+  .grid>.panel:nth-child(2){display:none}.panel{padding:10px 16px!important}.row{min-height:42px!important}`;
+  D.head.appendChild(st);W.dispatchEvent(new Event('resize'));setTimeout(r,300);});});
+window.renderApp=(si,u)=>{const s=SC[si];LIVE.clear();s.f(u);D.querySelectorAll('.row').forEach(r=>{const i=r.querySelector('input');r.classList.toggle('live',!!i&&LIVE.has(i.id));});cap(s.cap,u);document.getElementById('fade').style.opacity=Math.max(1-cl(u/.4),1-cl((s.d-u)/.4));};
+</script></body></html>

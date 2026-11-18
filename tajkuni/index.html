@@ -65,7 +65,8 @@ button.ghost{background:none;color:var(--ink);border-color:var(--line)}
 <p class="sub">Broj <i>e</i> je otkriven u kamatnom računu, pa je red da ga konačno shvate i oni koji od kamate žive. Realni deo ide poreskoj, imaginarni u crnu kasu, a <i>e<sup>iφ</sup></i> vrti novac u krug.</p>
 
 <div class="tabs" role="tablist" aria-label="Lekcije">
-<button role="tab" aria-selected="true" data-t="spir" type="button">1 · Kamatna spirala</button>
+<button role="tab" aria-selected="true" data-t="cb" type="button">0 · Kompleksan broj</button>
+<button role="tab" aria-selected="false" data-t="spir" type="button">1 · Kamatna spirala</button>
 <button role="tab" aria-selected="false" data-t="knj" type="button">2 · Dvojno knjigovodstvo</button>
 <button role="tab" aria-selected="false" data-t="ofs" type="button">3 · Ofšor koreni</button>
 <button role="tab" aria-selected="false" data-t="zao" type="button">4 · Zaokret posle izbora</button>
@@ -76,7 +77,14 @@ button.ghost{background:none;color:var(--ink);border-color:var(--line)}
 
 <div class="grid">
 <div class="panel">
- <div data-p="spir">
+ <div data-p="cb">
+  <div class="row"><label for="ca"><b style="color:var(--re)">a</b>prijavljeno</label><input id="ca" type="range" min="-4" max="4" step="0.1" value="3" style="--c:var(--re)"><output id="cao"></output></div>
+  <div class="row"><label for="cbb"><b style="color:var(--im)">b</b>crna kasa</label><input id="cbb" type="range" min="-4" max="4" step="0.1" value="4" style="--c:var(--im)"><output id="cbo"></output></div>
+  <div class="row"><label for="cr"><b style="color:var(--gold)">r</b>stvarno ima</label><input id="cr" type="range" min="0" max="5.6" step="0.05" value="5" style="--c:var(--gold)"><output id="cro"></output></div>
+  <div class="row"><label for="cf"><b style="color:var(--ink)">φ</b>stav</label><input id="cf" type="range" min="-180" max="180" step="1" value="53" style="--c:var(--ink)"><output id="cfo"></output></div>
+  <div class="btns"><button id="c34" type="button">Tajkun 3 + 4i</button><button id="cpos" class="ghost" type="button">Pošten (b = 0)</button><button id="crot" class="ghost" type="button">Puta i (okret 90°)</button></div>
+ </div>
+ <div data-p="spir" hidden>
   <div class="row"><label for="r"><b style="color:var(--re)">r</b>realna stopa</label><input id="r" type="range" min="-0.25" max="0.25" step="0.01" value="0.08" style="--c:var(--re)"><output id="ro"></output></div>
   <div class="row"><label for="w"><b style="color:var(--im)">ω</b>imaginarna</label><input id="w" type="range" min="0" max="2" step="0.01" value="1" style="--c:var(--im)"><output id="wo"></output></div>
   <div class="row"><label for="t"><b style="color:var(--gold)">t</b>vreme</label><input id="t" type="range" min="0" max="12.57" step="0.01" value="6.28" style="--c:var(--gold)"><output id="to"></output></div>
@@ -118,7 +126,7 @@ const svg=$('svg'),fig=$('fig');
 const C={gold:'#E9C25B',re:'#58D68D',im:'#C79BFF',mute:'#A9BCA9',ink:'#F4F1E4',line:'#24452F'};
 const f=(n,d=2)=>(Math.abs(n)<5e-10?0:n).toFixed(d).replace('.',',').replace('-','−');
 const deg=a=>{let d=a*180/Math.PI%360;if(d<0)d+=360;return d;};
-let tab='spir',anim=null;
+let tab='cb',anim=null;
 const HAVENS=['Kipar','Delaver','Kajmani','Panama','Malta','Luksemburg','Monako','Bahami','Džersi','Sejšeli','Lihtenštajn','Gibraltar'];
 
 function plane(s,cx=0,cy=0){
@@ -137,6 +145,35 @@ function arrow(x1,y1,x2,y2,c,w=3){const a=Math.atan2(y2-y1,x2-x1),h=12;
   return ln(x1,y1,x2,y2,c,w)+`<path d="M${x2},${y2}L${x2-h*Math.cos(a-.4)},${y2-h*Math.sin(a-.4)}L${x2-h*Math.cos(a+.4)},${y2-h*Math.sin(a+.4)}Z" fill="${c}"/>`;}
 function setKV(rows){$('kv').innerHTML=rows.map(([k,v,c])=>`<dt>${k}</dt><dd${c?` style="color:${c}"`:''}>${v}</dd>`).join('');}
 function state(t,c,d){$('st').textContent=t;$('st').style.color=c;$('ds').textContent=d;}
+
+/* 0 · kompleksan broj: z = a + bi = r·e^{iφ}; a,b i r,φ su povezani */
+function syncPolar(){const a=+$('ca').value,b=+$('cbb').value;$('cr').value=Math.hypot(a,b);$('cf').value=Math.round(Math.atan2(b,a)*180/Math.PI);}
+function syncAlg(){const r=+$('cr').value,p=+$('cf').value*Math.PI/180;$('ca').value=(r*Math.cos(p)).toFixed(1);$('cbb').value=(r*Math.sin(p)).toFixed(1);}
+function cb(){
+  const a=+$('ca').value,b=+$('cbb').value,r=Math.hypot(a,b),ph=Math.atan2(b,a),pd=Math.round(ph*180/Math.PI);
+  $('cao').textContent=f(a,1);$('cbo').textContent=f(b,1);$('cro').textContent=f(r);$('cfo').textContent=f(pd,0)+'°';
+  const P=plane(5.2);let g=P.g;const fs=P.narrow?15:19,o=P.narrow?22:28;
+  g+=`<circle cx="${P.X(0)}" cy="${P.Y(0)}" r="${r*P.k}" fill="none" stroke="${C.gold}" stroke-opacity=".3" stroke-dasharray="6 8"/>`;
+  g+=ln(P.X(a),P.Y(b),P.X(a),P.Y(0),C.im,2,'5 7')+ln(P.X(a),P.Y(b),P.X(0),P.Y(b),C.re,2,'5 7');
+  g+=ln(P.X(0),P.Y(0),P.X(a),P.Y(0),C.re,7)+ln(P.X(0),P.Y(0),P.X(0),P.Y(b),C.im,7);
+  if(r>0.05){const rr=Math.min(1.1,r*.45)*P.k,sw=ph<0?1:0;
+    g+=`<path d="M${P.X(0)+rr},${P.Y(0)} A${rr},${rr} 0 0 ${ph>=0?0:1} ${P.X(0)+rr*Math.cos(ph)},${P.Y(0)-rr*Math.sin(ph)}" fill="none" stroke="${C.ink}" stroke-width="2.5"/>`;
+    const la=Math.abs(ph)<1.75?ph/2:Math.sign(ph)*0.42;g+=tx(P.X(0)+(rr+18)*Math.cos(la),P.Y(0)-(rr+18)*Math.sin(la)+6,'φ',C.ink,fs,'middle');}
+  g+=ln(P.X(0),P.Y(0),P.X(a),P.Y(b),C.gold,4);
+  let nx=-Math.sin(ph),ny=Math.cos(ph);if(nx*a/2-ny*b/2>0){nx=-nx;ny=-ny;}
+  if(r>0.6)g+=tx(P.X(a/2)+nx*o,P.Y(b/2)-ny*o+6,'r',C.gold,fs+2);
+  if(Math.abs(a)>0.3)g+=tx(P.X(a/2),P.Y(0)+(b>=0?o+4:-o+10),'a',C.re,fs+2);
+  if(Math.abs(b)>0.3)g+=a>=0?tx(P.X(0)-o,P.Y(b/2)+6,'b',C.im,fs+2):tx(P.X(0)+o,P.Y(b*.92)+6,'b',C.im,fs+2,'start');
+  g+=dot(P.X(a),P.Y(b),18,C.gold,.22)+dot(P.X(a),P.Y(b),10,C.gold);
+  const lx=P.X(a)+(a>=0?16:-16),ly=P.Y(b)+(b>=0?-14:30);
+  g+=tx(lx,ly,'z',C.gold,fs+4,a>=0?'start':'end');
+  svg.setAttribute('viewBox',`0 0 ${P.W} ${P.H}`);svg.innerHTML=g;
+  $('eq').innerHTML=`z = <b style="color:${C.re}">${f(a,1)}</b> ${b<0?'−':'+'} <b style="color:${C.im}">${f(Math.abs(b),1)}</b>i = <b style="color:${C.gold}">${f(r)}</b>·e<sup>i·${f(pd,0)}°</sup>`;
+  setKV([['Re z = a, prijavljeno',f(a,1),C.re],['Im z = b, crna kasa',f(b,1),C.im],['|z| = r, stvarno ima',f(r),C.gold],['arg z = φ, stav',f(pd,0)+'°'],['trigonometrijski',`${f(r)}(cos ${f(pd,0)}° + i sin ${f(pd,0)}°)`]]);
+  if(Math.abs(b)<0.05)state('Pošten tajkun',C.re,'b = 0: tačka leži na realnoj osi, pa je |z| = |a|. Sve što ima, prijavio je.');
+  else if(a<0)state('Prijavljen gubitak',C.mute,`a < 0: u papirima je minus, a stvarno ima ${f(r)}. Ugao φ = ${f(pd,0)}° pokazuje da je tačka levo od imaginarne ose.`);
+  else state('Tajkun z = a + bi',C.gold,`Klizači a i b pomeraju tačku vodoravno i uspravno. Klizači r i φ pomeraju istu tačku po krugu i oko nule. Isti broj, dva zapisa: z = a + bi = r·e^(iφ).`);
+}
 
 /* 1 · kamatna spirala: z(t) = e^{(r+iω)t} */
 function spir(){
@@ -231,14 +268,17 @@ function zao(){
   else state('Prilagođavanje',C.gold,`Ugao se okrenuo za ${th}°, a modul je ostao ${f(m,1)}. Pri množenju kompleksnih brojeva uglovi se sabiraju, a moduli množe.`);
 }
 
-const R={spir,knj,ofs,zao};
+const R={cb,spir,knj,ofs,zao};
 function draw(){R[tab]();}
 document.querySelectorAll('[role=tab]').forEach(b=>b.addEventListener('click',()=>{
   tab=b.dataset.t;stop();
   document.querySelectorAll('[role=tab]').forEach(o=>o.setAttribute('aria-selected',o===b));
   document.querySelectorAll('[data-p]').forEach(p=>p.hidden=p.dataset.p!==tab);
   draw();}));
-document.querySelectorAll('input[type=range]').forEach(i=>i.addEventListener('input',()=>{if(i.id==='t')stop();draw();}));
+document.querySelectorAll('input[type=range]').forEach(i=>i.addEventListener('input',()=>{if(i.id==='t')stop();if(i.id==='ca'||i.id==='cbb')syncPolar();if(i.id==='cr'||i.id==='cf')syncAlg();draw();}));
+$('c34').addEventListener('click',()=>{$('ca').value=3;$('cbb').value=4;syncPolar();draw();});
+$('cpos').addEventListener('click',()=>{$('cbb').value=0;syncPolar();draw();});
+$('crot').addEventListener('click',()=>{const a=+$('ca').value,b=+$('cbb').value;$('ca').value=-b;$('cbb').value=a;syncPolar();draw();});
 
 function stop(){if(anim){cancelAnimationFrame(anim);anim=null;$('play').textContent='Pusti novac da radi';}}
 $('play').addEventListener('click',()=>{
