@@ -5,7 +5,8 @@ Srednjoškolska matematika ispričana kroz priče koje se pamte, za nastavu, pri
 | Celina | Tema | Aplikacija | Materijal |
 |---|---|---|---|
 | **Brak kao kvadratna jednačina** | diskriminanta, dvostruki koren, Vijetove formule (II razred) | [otvori](https://kirkasss.github.io/fityourfuture/) | [PDF](Kvadratna_jednacina_diskriminanta_i_priroda_resenja.pdf) |
-| **Ojler za tajkune** (novo) | kompleksni brojevi, Ojlerova formula, Moavr, koreni jedinice (III i IV razred) | [otvori](https://kirkasss.github.io/fityourfuture/tajkuni/) | [PDF](tajkuni/Kompleksni_brojevi_i_Ojlerova_formula.pdf) · [opis, QR kodovi, Instagram](tajkuni/) |
+| **Ojler za tajkune** | kompleksni brojevi, Ojlerova formula, Moavr, koreni jedinice (III i IV razred) | [otvori](https://kirkasss.github.io/fityourfuture/tajkuni/) | [PDF](tajkuni/Kompleksni_brojevi_i_Ojlerova_formula.pdf) · [opis, QR kodovi, Instagram](tajkuni/) |
+| **Poštar i njiva** (novo) | integral: Rimanove sume, Njutn–Lajbnic, konstanta C, primena (IV razred) | [otvori](https://kirkasss.github.io/fityourfuture/postar/) | [PDF](postar/Integral_postar_i_njiva.pdf) · [opis, QR kodovi, Instagram](postar/) |
 
 Druga celina počinje tamo gde se prva završava: kod `D < 0` i kompleksnih korena („imaginarna veza”).
 

@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="sr"><head><meta charset="utf-8">
+<style>
+:root{--bg:#D0021B;--ink:#FFFFFF;--mute:#FFD9DC;--gold:#FFD23F;--re:#FFF3B0;--im:#FF8FD8;--river:#7FE3FF;--soil:#FFC2A8;--line:#F2556A}
+body{margin:0;background:#000}
+.s{width:1080px;height:1350px;background:var(--bg);color:var(--ink);font-family:Inter,sans-serif;position:relative;overflow:hidden;box-sizing:border-box;padding:96px 84px 80px;display:flex;flex-direction:column;justify-content:center}
+.s .no{position:absolute;top:44px;right:64px;font:500 26px Inter;color:var(--mute);letter-spacing:.04em}
+.s .sw{position:absolute;bottom:48px;right:64px;font:500 28px Inter;color:var(--gold)}
+.k{font:500 27px Inter;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin:0 0 16px}
+h1{font:500 124px/1.0 Lora,serif;color:var(--gold);margin:0 0 26px}
+h2{font:500 64px/1.1 Lora,serif;margin:0 0 18px}
+p{font:400 33px/1.45 Inter;color:var(--mute);margin:0 0 16px}
+p b{color:var(--ink);font-weight:500}
+p:last-child{margin-bottom:0}
+.lead{font-size:40px;line-height:1.4;color:var(--ink)}
+.f{font:italic 400 48px/1.25 Lora,serif;color:var(--ink);margin:6px 0 18px}
+.f.c{text-align:center}
+svg{display:block;margin:0 auto 10px}
+.g{color:var(--gold)}.r{color:var(--re)}.i{color:var(--im)}.b{color:var(--river)}
+ul{list-style:none;padding:0;margin:6px 0 22px}
+ul li{font:400 34px/1.4 Inter;color:var(--ink);padding:10px 0 10px 44px;position:relative;border-bottom:1px solid var(--line)}
+ul li::before{content:"";position:absolute;left:0;top:24px;width:22px;height:22px;border-radius:50%;background:var(--c)}
+table{border-collapse:collapse;font:400 34px Inter;margin:6px 0 20px;width:100%}
+td,th{padding:11px 0;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums;text-align:right}
+th{font:500 26px Inter;color:var(--mute);letter-spacing:.06em;text-transform:uppercase}
+td:first-child,th:first-child{text-align:left}
+.qr2{display:flex;justify-content:center;gap:72px}.qr2 figure{margin:0;text-align:center}
+.qr2 img{width:330px;height:330px;border-radius:20px;display:block}
+.qr2 figcaption{margin-top:18px;font:400 30px Inter;color:var(--mute)}
+.qr2 figcaption b{display:block;font:500 40px Inter;color:var(--ink);margin-bottom:4px}
+</style></head><body>
+
+<section class="s" id="s1">
+ <div class="k">Matematika sa sela</div>
+ <h1>Poštar<br>i njiva</h1>
+ <p class="lead">Integral, objašnjen jezikom sela: <span class="g">redovi kukuruza</span>, <span class="b">reka koja krivuda</span> i poštarev kilometar-sat.</p>
+ <svg id="g1" width="912" height="600"></svg>
+ <div class="sw">prevuci →</div>
+</section>
+
+<section class="s" id="s2"><div class="no">2/10</div>
+ <div class="k">Uvod</div>
+ <h2>Kako poštar meri njivu koja nije pravougaona?</h2>
+ <p>Iz katastra stiže pismo: <b>„Prijavite tačnu površinu njive.”</b> Pismo donosi poštar, a deda Mile ga pita: „Sine, kako se meri njiva između puta i reke koja krivuda?”</p>
+ <p>Poštar nema metar. Ali ima ideju: <b>njiva je već izdeljena na redove kukuruza.</b></p>
+ <ul>
+  <li style="--c:var(--gold)"><span class="g">Svaki red</span> je uska traka.</li>
+  <li style="--c:var(--re)"><span class="r">Zbir redova</span> je Rimanova suma.</li>
+  <li style="--c:var(--river)"><span class="b">Beskonačno tanki redovi</span> daju integral.</li>
+ </ul>
+ <p>Prevuci do kraja i saznaj zašto je poštar ceo dan vozio bicikl, a <b>pomeraj mu je nula</b>.</p>
+</section>
+
+<section class="s" id="s3"><div class="no">3/10</div>
+ <div class="k">Rimanova suma</div>
+ <h2>Redovi kukuruza</h2>
+ <svg id="g3" width="912" height="520"></svg>
+ <div class="f c">P ≈ Σ f(x<sub>i</sub>)·Δx</div>
+ <p>Njiva je duga 80 m, a reka joj određuje širinu f(x). Poštar izmeri dužinu svakog reda i pomnoži je razmakom Δx između redova. Zbir svih redova je <b>približna površina</b>.</p>
+ <p>Sa 8 redova greška je samo 0,25 %. Ne treba metar, treba strpljenje.</p>
+</section>
+
+<section class="s" id="s4"><div class="no">4/10</div>
+ <div class="k">Određeni integral</div>
+ <h2>Što gušće seješ, to tačnije meriš</h2>
+ <table>
+  <tr><th>Redova</th><th>Razmak</th><th>Zbir redova</th></tr>
+  <tr><td>4</td><td>20 m</td><td>2 886,0 m²</td></tr>
+  <tr><td>8</td><td>10 m</td><td>2 861,1 m²</td></tr>
+  <tr><td>80</td><td>1 m</td><td>2 854,0 m²</td></tr>
+  <tr><td class="b">beskonačno</td><td class="b">→ 0</td><td class="b">2 853,9 m²</td></tr>
+ </table>
+ <div class="f c">P = ∫<sub>0</sub><sup>80</sup> f(x) dx ≈ 28,5 ari</div>
+ <p>Kad razmak između redova teži nuli, zbir prestaje da bude približan. Postaje <b>integral</b>: setva sa beskonačno tankim redovima.</p>
+ <p>Deda Mile prijavljuje 28,5 ari. Katastar je zadovoljan.</p>
+</section>
+
+<section class="s" id="s5"><div class="no">5/10</div>
+ <div class="k">Gornja i donja suma</div>
+ <h2>Kad prodaje i kad plaća porez</h2>
+ <svg id="g5" width="912" height="500"></svg>
+ <div class="f c"><span class="i">L<sub>n</sub></span> ≤ ∫ f(x) dx ≤ <span class="g">U<sub>n</sub></span></div>
+ <p>Komšija meri istu njivu dvaput. <span class="g">Kad je prodaje</span>, svaku parcelu meri do najdalje tačke reke. <span class="i">Kad plaća porez</span>, do najbliže.</p>
+ <p>Sa 5 parcela razlika je 636 m². Integral postoji kad ta razlika teži nuli, odnosno kad se <b>kupac i poreska slože</b>.</p>
+</section>
+
+<section class="s" id="s6"><div class="no">6/10</div>
+ <div class="k">Njutn–Lajbnicova formula</div>
+ <h2>Kilometar-sat</h2>
+ <svg id="g6" width="912" height="480"></svg>
+ <div class="f c">∫<sub>a</sub><sup>b</sup> v(t) dt = s(b) − s(a)</div>
+ <p>Brzinomer pokazuje brzinu v(t), a kilometar-sat sabira. Poštar ne mora da sabira brzinu u svakoj sekundi: pogleda kilometar-sat <b>na početku i na kraju</b>.</p>
+ <p>Površina ispod krive brzine je pređeni put. Prvobitna funkcija je, dakle, kilometar-sat.</p>
+</section>
+
+<section class="s" id="s7"><div class="no">7/10</div>
+ <div class="k">Pomeraj i pređeni put</div>
+ <h2>Zaboravio paket</h2>
+ <svg id="g7" width="912" height="480"></svg>
+ <div class="f c">∫<sub>0</sub><sup>8</sup> v dt = 0, &nbsp; ∫<sub>0</sub><sup>8</sup> |v| dt ≈ 50,9 km</div>
+ <p>Četiri sata vozi <span class="r">ka Miletu</span>, a onda shvati da je zaboravio paket i <span class="i">vraća se</span>. Kad je v &lt; 0, površina se oduzima.</p>
+ <p>Na kraju dana je u pošti: <b>pomeraj je nula</b>. Ali guma se troši i unazad, pa je pređeno 50,9 km.</p>
+</section>
+
+<section class="s" id="s8"><div class="no">8/10</div>
+ <div class="k">Neodređeni integral</div>
+ <h2>Poštar bez adrese</h2>
+ <svg id="g8" width="912" height="480"></svg>
+ <div class="f c">∫ v(t) dt = s(t) + <span class="i">C</span></div>
+ <p>Neodređeni integral zna kako poštar vozi, ali ne zna odakle je krenuo. Zato je odgovor <b>cela porodica krivih</b>: svi voze istom brzinom, razlikuju se samo po polazištu.</p>
+ <p>Tek kad kažeš „polazi iz pošte”, konstanta C dobija vrednost. Tako poštar dobija adresu.</p>
+</section>
+
+<section class="s" id="s9"><div class="no">9/10</div>
+ <div class="k">Primena</div>
+ <h2>Kiša na hektar</h2>
+ <svg id="g9" width="912" height="440"></svg>
+ <div class="f c">h = ∫<sub>0</sub><sup>24</sup> i(t) dt, &nbsp; 1 mm = 10 m³/ha</div>
+ <p>Ratar ne pita koliko je jako padalo, nego <b>koliko je ukupno palo</b>. Intenzitet kiše meri se u mm/h, a ukupna količina je površina ispod te krive.</p>
+ <p>Kratak pljusak i dugo rominjanje mogu dati isti integral. Računa se površina, a ne vrh.</p>
+</section>
+
+<section class="s" id="s10"><div class="no">10/10</div>
+ <div class="k" style="text-align:center">Osnovna teorema</div>
+ <div class="f c" style="font-size:80px;margin:0 0 12px">∫<sub>a</sub><sup>b</sup> f dx = F(b) − F(a)</div>
+ <p style="text-align:center;margin-bottom:50px">Od redova kukuruza do kilometar-sata. <b>Jedna formula.</b></p>
+ <h2 style="text-align:center;color:var(--gold);margin-bottom:34px">Preuzmi sadržaj</h2>
+ <div class="qr2">
+  <figure><img src="../qr_postar_aplikacija.png" alt="QR kod za aplikaciju"><figcaption><b>Aplikacija</b>posej, izmeri, vozi</figcaption></figure>
+  <figure><img src="../qr_postar_materijal_pdf.png" alt="QR kod za materijal"><figcaption><b>Materijal (PDF)</b>teorija i zadaci za prijemni</figcaption></figure>
+ </div>
+</section>
+
+<script>
+const C={gold:'#FFD23F',re:'#FFF3B0',im:'#FF8FD8',mute:'#FFD9DC',ink:'#FFFFFF',line:'#F2556A',river:'#7FE3FF',soil:'#FFC2A8'};
+const g=x=>30+8*Math.sin(x/9)+0.1*x, v=t=>10*Math.sin(Math.PI*t/4), S=t=>40/Math.PI*(1-Math.cos(Math.PI*t/4));
+function fr(W,H,x0,x1,y0,y1,o={}){const L=o.L??70,R=24,T=o.T??30,B=50;const X=x=>L+(x-x0)/(x1-x0)*(W-L-R),Y=y=>T+(y1-y)/(y1-y0)*(H-T-B);
+ let s='';for(const t of (o.yt||[]))s+=`<line x1="${L}" y1="${Y(t)}" x2="${W-R}" y2="${Y(t)}" stroke="${C.line}"/><text x="${L-12}" y="${Y(t)+8}" fill="${C.mute}" font-size="22" text-anchor="end" font-family="Inter">${t}</text>`;
+ for(const t of (o.xt||[]))s+=`<text x="${X(t)}" y="${H-12}" fill="${C.mute}" font-size="22" text-anchor="middle" font-family="Inter">${t}</text>`;
+ const yz=Y(Math.max(y0,Math.min(0,y1)));s+=`<line x1="${L}" y1="${yz}" x2="${W-R}" y2="${yz}" stroke="${C.mute}" stroke-opacity=".7" stroke-width="2"/><line x1="${L}" y1="${T-8}" x2="${L}" y2="${H-B}" stroke="${C.mute}" stroke-opacity=".7" stroke-width="2"/>`;
+ return {X,Y,s,L,R,T,B,W,H};}
+const T=(x,y,s,c,fs,a='middle')=>`<text x="${x}" y="${y}" fill="${c}" font-family="Lora" font-style="italic" font-size="${fs}" text-anchor="${a}">${s}</text>`;
+const D=(x,y,r,c,o=1)=>`<circle cx="${x}" cy="${y}" r="${r}" fill="${c}" fill-opacity="${o}"/>`;
+const RC=(x,y,w,h,f,fo,st,sw=1.5)=>`<rect x="${Math.min(x,x+w)}" y="${Math.min(y,y+h)}" width="${Math.abs(w)}" height="${Math.abs(h)}" fill="${f}" fill-opacity="${fo}" ${st?`stroke="${st}" stroke-width="${sw}"`:''}/>`;
+function cv(P,fn,a,b,c,w=6){let p='';for(let i=0;i<=300;i++){const x=a+(b-a)*i/300;p+=(i?'L':'M')+P.X(x).toFixed(1)+','+P.Y(fn(x)).toFixed(1);}return `<path d="${p}" fill="none" stroke="${c}" stroke-width="${w}" stroke-linejoin="round"/>`;}
+function ar(P,fn,a,b){let p=`M${P.X(a)},${P.Y(0)}`;for(let i=0;i<=200;i++){const x=a+(b-a)*i/200;p+=`L${P.X(x).toFixed(1)},${P.Y(fn(x)).toFixed(1)}`;}return p+`L${P.X(b)},${P.Y(0)}Z`;}
+function rows(P,n,dots=true){let s='';const dx=80/n;for(let i=0;i<n;i++){const a=i*dx,m=a+dx/2,h=g(m);s+=RC(P.X(a),P.Y(0),P.X(a+dx)-P.X(a),P.Y(h)-P.Y(0),C.gold,.18,C.gold);
+ if(dots){const st=(P.Y(0)-P.Y(h))/9;for(let y=P.Y(0)-st/2;y>P.Y(h)+3;y-=st)s+=D(P.X(m),y,4,C.gold,.9);}}return s;}
+const put=(id,s)=>document.getElementById(id).innerHTML=s;
+// 1 naslovna
+{const P=fr(912,600,0,80,0,48,{L:20,T:20});let s=`<path d="${ar(P,g,0,80)}" fill="${C.soil}" fill-opacity=".16"/>`+rows(P,10)+cv(P,g,0,80,C.river,8);
+ s=s.replace(/<line[^>]*stroke-opacity=".7"[^>]*\/>/g,'');
+ s+=`<line x1="${P.X(0)}" y1="${P.Y(0)}" x2="${P.X(80)}" y2="${P.Y(0)}" stroke="${C.soil}" stroke-width="6"/>`+T(P.X(4),P.Y(0)+38,'put',C.soil,32,'start')+T(P.X(60),P.Y(47),'reka',C.river,34,'middle');put('g1',s);}
+// 3 redovi n=8
+{const P=fr(912,520,0,80,0,50,{xt:[0,20,40,60,80],yt:[10,20,30,40,50]});let s=P.s+`<path d="${ar(P,g,0,80)}" fill="${C.soil}" fill-opacity=".14"/>`+rows(P,8)+cv(P,g,0,80,C.river,6);
+ s+=T(P.X(80)-6,P.Y(48)+4,'reka f(x)',C.river,30,'end');put('g3',s);}
+// 5 darbu n=5
+{const P=fr(912,500,0,80,0,50,{xt:[0,20,40,60,80],yt:[10,20,30,40,50]});let s=P.s;const n=5,dx=16;
+ for(let i=0;i<n;i++){const a=i*dx;let mx=-1e9,mn=1e9;for(let k=0;k<=200;k++){const y=g(a+dx*k/200);mx=Math.max(mx,y);mn=Math.min(mn,y);}
+  s+=RC(P.X(a),P.Y(0),P.X(a+dx)-P.X(a),P.Y(mn)-P.Y(0),C.im,.38)+RC(P.X(a),P.Y(mx),P.X(a+dx)-P.X(a),P.Y(mn)-P.Y(mx),C.gold,.38)+RC(P.X(a),P.Y(0),P.X(a+dx)-P.X(a),P.Y(mx)-P.Y(0),'none',0,C.gold,1.5);}
+ s+=cv(P,g,0,80,C.river,6);put('g5',s);}
+// 6 kilometar-sat
+{const P=fr(912,480,0,8,-12,12,{xt:[0,2,4,6,8],yt:[-10,0,10]});const pos=x=>Math.max(0,v(x));let s=P.s+`<path d="${ar(P,pos,0,3)}" fill="${C.re}" fill-opacity=".35"/>`+cv(P,v,0,8,C.gold,6);
+ s+=`<line x1="${P.X(3)}" y1="${P.T}" x2="${P.X(3)}" y2="${P.H-P.B}" stroke="${C.ink}" stroke-dasharray="6 8" stroke-width="2"/>`+D(P.X(3),P.Y(v(3)),12,C.gold);
+ s+=T(P.X(1.5),P.Y(2.5),'put = površina',C.re,30)+T(P.X(0)+14,P.Y(12)+10,'v (km/h)',C.mute,24,'start');put('g6',s);}
+// 7 zaboravio paket
+{const P=fr(912,480,0,8,-12,12,{xt:[0,2,4,6,8],yt:[-10,0,10]});const pos=x=>Math.max(0,v(x)),neg=x=>Math.min(0,v(x));
+ let s=P.s+`<path d="${ar(P,pos,0,8)}" fill="${C.re}" fill-opacity=".35"/><path d="${ar(P,neg,0,8)}" fill="${C.im}" fill-opacity=".4"/>`+cv(P,v,0,8,C.gold,6);
+ s+=T(P.X(2),P.Y(3),'+25,5 km',C.re,32)+T(P.X(6),P.Y(-3)+10,'−25,5 km',C.im,32)+T(P.X(2),P.Y(-6),'ka Miletu',C.re,28)+T(P.X(6),P.Y(7),'nazad po paket',C.im,28);put('g7',s);}
+// 8 porodica F + C
+{const P=fr(912,480,0,8,-10,58,{xt:[0,2,4,6,8],yt:[0,20,40]});let s=P.s;for(let k=-10;k<=30;k+=5)s+=cv(P,x=>S(x)+k,0,8,C.mute,1.6);
+ s+=cv(P,x=>S(x),0,8,C.im,6);const t=2,m=v(t);for(let k=-10;k<=30;k+=5){const yy=S(t)+k;s+=`<line x1="${P.X(t-.6)}" y1="${P.Y(yy-m*.6)}" x2="${P.X(t+.6)}" y2="${P.Y(yy+m*.6)}" stroke="${C.gold}" stroke-width="2.5" stroke-dasharray="6 6"/>`;}
+ s+=D(P.X(0),P.Y(0),11,C.im);put('g8',s);}
+// 9 kisa
+{const P=fr(912,440,0,24,0,8,{xt:[0,6,12,18,24],yt:[2,4,6,8]});const r=t=>6*Math.exp(-(((t-12)/2)**2)),q=t=>1.5*Math.exp(-(((t-12)/6)**2));
+ let s=P.s+`<path d="${ar(P,r,0,24)}" fill="${C.river}" fill-opacity=".3"/>`+cv(P,r,0,24,C.river,6)+`<path d="${ar(P,q,0,24)}" fill="${C.gold}" fill-opacity=".14"/>`+cv(P,q,0,24,C.gold,4);
+ s+=T(P.X(15.2),P.Y(5),'pljusak: 21,3 mm',C.river,30,'start')+T(P.X(0.5),P.Y(3.2),'rominjanje: 15,9 mm',C.gold,26,'start');put('g9',s);}
+</script>
+</body></html>

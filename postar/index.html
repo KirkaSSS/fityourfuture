@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Poštar i njiva</title>
+<meta name="description" content="Integral kroz priču o poštaru i njivi: redovi kukuruza kao Rimanove trake, gornja i donja suma, kilometar-sat kao Njutn–Lajbnicova formula, konstanta C i kiša po hektaru.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Lora:ital,wght@0,500;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+/* VOICE: seoska priča za tablom: poštar, deda Mile, katastar
+   IDEA: njiva između puta i reke, izdeljena na redove kukuruza
+   COLOUR and TYPE: ista porodica kao „Ojler za tajkune”; zlato = kukuruz, plava = reka, zelena = pozitivno, ljubičasta = negativno/porez; Lora + Inter
+   LAYOUT: naslov, lekcije, grafik, jednačina, klizači i stanje */
+:root{color-scheme:dark;--bg:#D0021B;--card:#A30016;--ink:#FFFFFF;--mute:#FFD9DC;--gold:#FFD23F;--re:#FFF3B0;--im:#FF8FD8;--river:#7FE3FF;--soil:#FFC2A8;--line:#F2556A}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Inter,system-ui,sans-serif;overflow-x:clip}
+.wrap{max-width:1080px;margin:0 auto;padding:clamp(24px,4vw,56px) max(5vw,16px)}
+h1{font:500 clamp(32px,5vw,50px)/1.08 Lora,Georgia,serif;margin:0 0 8px;color:var(--gold);text-wrap:balance}
+.sub{color:var(--mute);margin:0 0 20px;max-width:64ch}
+.sub i{font-family:Lora,serif;color:var(--ink)}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}
+.tabs button{background:none;color:var(--ink);border:1.5px solid var(--line);font-weight:400}
+.tabs button[aria-selected=true]{background:var(--gold);border-color:var(--gold);color:var(--bg);font-weight:500}
+.fig{position:relative;height:clamp(320px,48vw,460px);background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden}
+.fig svg{position:absolute;inset:0;width:100%;height:100%}
+.eq{font:italic 400 clamp(21px,3vw,30px)/1.35 Lora,serif;text-align:center;margin:20px 0 4px;text-wrap:balance}
+.eq b{font-weight:500}
+.grid{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:20px;margin-top:16px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px 24px}
+.row{display:grid;grid-template-columns:130px minmax(0,1fr) 72px;align-items:center;gap:12px;min-height:48px}
+.row label{font-size:15px;color:var(--mute)}
+.row label b{font:italic 500 22px Lora,serif;margin-right:6px}
+.row output{text-align:right;font-variant-numeric:tabular-nums;font-weight:500}
+input[type=range]{width:100%;height:44px;background:none;-webkit-appearance:none;appearance:none}
+input[type=range]::-webkit-slider-runnable-track{height:4px;border-radius:4px;background:var(--line)}
+input[type=range]::-moz-range-track{height:4px;border-radius:4px;background:var(--line)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--c);margin-top:-9px;border:3px solid var(--bg)}
+input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--c);border:3px solid var(--bg)}
+input:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+button{font:500 15px Inter,sans-serif;min-height:44px;padding:0 18px;border-radius:999px;border:1.5px solid var(--gold);background:var(--gold);color:var(--bg);cursor:pointer}
+button.ghost{background:none;color:var(--ink);border-color:var(--line)}
+.kv{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 14px;margin:0 0 12px;font-variant-numeric:tabular-nums}
+.kv dt{font:italic 400 17px Lora,serif;color:var(--mute)}
+.kv dd{margin:0;font-weight:500;text-align:right}
+.state{font:500 italic 26px/1.2 Lora,serif;margin:0 0 6px}
+.desc{color:var(--mute);margin:0}
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:14px;color:var(--mute);margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
+.legend span{display:inline-flex;align-items:center;gap:8px}
+.legend i{display:inline-block;width:22px;height:0;border-top:3px solid}
+.qm{margin-top:22px;text-align:center;color:var(--mute);font-size:15px}
+.qm div{font:italic 400 clamp(19px,2.6vw,24px)/1.5 Lora,serif;color:var(--ink)}
+.foot{margin-top:26px;text-align:center;font-size:14px;color:var(--mute)}
+.foot a{color:var(--gold)}
+[hidden]{display:none!important}
+@media(max-width:720px){.fig{height:min(92vw,440px)}.grid{grid-template-columns:minmax(0,1fr)}.row{grid-template-columns:104px minmax(0,1fr) 64px}
+ .tabs{display:grid;grid-template-columns:1fr 1fr;gap:6px}.tabs button{font-size:13.5px;padding:0 8px;min-height:42px}.tabs button:first-child{grid-column:1/-1}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Poštar i njiva</h1>
+<p class="sub">Iz katastra stiže pismo: „Prijavite tačnu površinu njive.” Njiva deda Mileta leži između puta i reke koja krivuda. Poštar nema metar, ali ima ideju: njiva je već izdeljena na <i>redove kukuruza</i>.</p>
+
+<div class="tabs" role="tablist" aria-label="Lekcije">
+<button role="tab" aria-selected="true" data-t="red" type="button">0 · Redovi kukuruza</button>
+<button role="tab" aria-selected="false" data-t="dar" type="button">1 · Prodaja i porez</button>
+<button role="tab" aria-selected="false" data-t="km" type="button">2 · Kilometar-sat</button>
+<button role="tab" aria-selected="false" data-t="cc" type="button">3 · Poštar bez adrese</button>
+<button role="tab" aria-selected="false" data-t="kisa" type="button">4 · Kiša na hektar</button>
+</div>
+
+<div class="fig" id="fig"><svg id="svg" role="img" aria-label="Grafik"></svg></div>
+<div class="eq" id="eq"></div>
+
+<div class="grid">
+<div class="panel">
+ <div data-p="red">
+  <div class="row"><label for="n"><b style="color:var(--gold)">n</b>redova</label><input id="n" type="range" min="2" max="80" step="1" value="4" style="--c:var(--gold)"><output id="no"></output></div>
+  <div class="btns"><button id="nsow" type="button">Posej gušće</button><button id="n4" class="ghost" type="button">4 reda</button><button id="n80" class="ghost" type="button">80 redova</button></div>
+ </div>
+ <div data-p="dar" hidden>
+  <div class="row"><label for="m"><b style="color:var(--gold)">n</b>parcela</label><input id="m" type="range" min="2" max="80" step="1" value="5" style="--c:var(--gold)"><output id="mo"></output></div>
+  <div class="btns"><button id="msow" type="button">Deli sitnije</button><button id="m5" class="ghost" type="button">5 parcela</button></div>
+ </div>
+ <div data-p="km" hidden>
+  <div class="row"><label for="t"><b style="color:var(--gold)">t</b>sati</label><input id="t" type="range" min="0" max="8" step="0.02" value="3" style="--c:var(--gold)"><output id="to"></output></div>
+  <div class="btns"><button id="play" type="button">Pusti radni dan</button><button id="tend" class="ghost" type="button">Kraj dana</button></div>
+ </div>
+ <div data-p="cc" hidden>
+  <div class="row"><label for="c"><b style="color:var(--im)">C</b>polazište</label><input id="c" type="range" min="-10" max="30" step="0.5" value="8" style="--c:var(--im)"><output id="co"></output></div>
+  <div class="row"><label for="tc"><b style="color:var(--gold)">t</b>sati</label><input id="tc" type="range" min="0" max="8" step="0.02" value="2" style="--c:var(--gold)"><output id="tco"></output></div>
+  <div class="btns"><button id="cpost" type="button">Iz pošte (C = 0)</button><button id="cmile" class="ghost" type="button">Od Mileta</button></div>
+ </div>
+ <div data-p="kisa" hidden>
+  <div class="row"><label for="A"><b style="color:var(--river)">A</b>mm/h</label><input id="A" type="range" min="0.5" max="20" step="0.5" value="6" style="--c:var(--river)"><output id="Ao"></output></div>
+  <div class="row"><label for="w"><b style="color:var(--gold)">w</b>sati</label><input id="w" type="range" min="0.5" max="6" step="0.1" value="2" style="--c:var(--gold)"><output id="wo"></output></div>
+  <div class="btns"><button id="pljusak" type="button">Letnji pljusak</button><button id="rominja" class="ghost" type="button">Jesenje rominjanje</button></div>
+ </div>
+</div>
+<div class="panel" aria-live="polite">
+ <dl class="kv" id="kv"></dl>
+ <p class="state" id="st"></p>
+ <p class="desc" id="ds"></p>
+ <div class="legend" id="lg"></div>
+</div>
+</div>
+
+<div class="qm">Osnovna teorema, za one koji čitaju i fusnote
+<div>∫<sub>a</sub><sup>b</sup> f(x) dx = F(b) − F(a), &nbsp; gde je F′ = f</div></div>
+<p class="foot">Iz iste serije: <a href="../">Brak kao kvadratna jednačina</a> · <a href="../tajkuni/">Ojler za tajkune</a></p>
+</div>
+
+<script>
+{
+const $=id=>document.getElementById(id);
+const svg=$('svg'),fig=$('fig');
+const C={gold:'#FFD23F',re:'#FFF3B0',im:'#FF8FD8',mute:'#FFD9DC',ink:'#FFFFFF',line:'#F2556A',river:'#7FE3FF',soil:'#FFC2A8'};
+const f=(n,d=2)=>{const s=(Math.abs(n)<5e-10?0:n).toFixed(d).replace('.',',').replace('-','−');return s.replace(/\B(?=(\d{3})+(?!\d))/g,' ');};
+let tab='red',anim=null;
+
+/* njiva: reka y = g(x), x u metrima 0..80 */
+const g=x=>30+8*Math.sin(x/9)+0.1*x;
+const G=x=>30*x-72*Math.cos(x/9)+0.05*x*x;
+const AREA=G(80)-G(0);
+/* poštar: v(t) = 10 sin(πt/4) km/h, s(t) = (40/π)(1 − cos(πt/4)) */
+const v=t=>10*Math.sin(Math.PI*t/4);
+const S=t=>40/Math.PI*(1-Math.cos(Math.PI*t/4));
+const PATH=t=>{const h=Math.min(t,4);let p=S(h);if(t>4)p+=S(4)-S(t);return p;}; // pređeni put
+/* kiša: i(t) = A·exp(−((t−12)/w)²) mm/h, t ∈ [0, 24] */
+const rain=(t,A,w)=>A*Math.exp(-(((t-12)/w)**2));
+const integ=(fn,a,b,N=2000)=>{const h=(b-a)/N;let s=fn(a)+fn(b);for(let i=1;i<N;i++)s+=fn(a+i*h)*(i%2?4:2);return s*h/3;};
+
+function frame(x0,x1,y0,y1,o={}){
+  const W=fig.clientWidth,H=fig.clientHeight,nar=W<520;
+  const L=nar?44:58,R=nar?14:24,T=nar?26:30,B=nar?36:44;
+  const X=x=>L+(x-x0)/(x1-x0)*(W-L-R),Y=y=>T+(y1-y)/(y1-y0)*(H-T-B);
+  const fs=nar?11:13;let g0='';
+  for(const t of (o.xt||[])) g0+=`<line x1="${X(t)}" y1="${Y(Math.max(y0,0))}" x2="${X(t)}" y2="${Y(Math.max(y0,0))+5}" stroke="${C.mute}" stroke-opacity=".6"/><text x="${X(t)}" y="${H-B+20}" fill="${C.mute}" font-size="${fs}" text-anchor="middle" font-family="Inter">${o.xf?o.xf(t):t}</text>`;
+  for(const t of (o.yt||[])) g0+=`<line x1="${L}" y1="${Y(t)}" x2="${W-R}" y2="${Y(t)}" stroke="${C.line}" stroke-width="1"/><text x="${L-8}" y="${Y(t)+4}" fill="${C.mute}" font-size="${fs}" text-anchor="end" font-family="Inter">${t}</text>`;
+  g0+=`<line x1="${L}" y1="${Y(Math.max(y0,Math.min(0,y1)))}" x2="${W-R}" y2="${Y(Math.max(y0,Math.min(0,y1)))}" stroke="${C.mute}" stroke-opacity=".7" stroke-width="1.5"/>`;
+  g0+=`<line x1="${L}" y1="${T-6}" x2="${L}" y2="${H-B}" stroke="${C.mute}" stroke-opacity=".7" stroke-width="1.5"/>`;
+  if(o.xl)g0+=`<text x="${W-R}" y="${H-6}" fill="${C.mute}" font-size="${fs}" text-anchor="end" font-family="Inter">${o.xl}</text>`;
+  if(o.yl)g0+=`<text x="${L+8}" y="${T-12}" fill="${C.mute}" font-size="${fs}" text-anchor="start" font-family="Inter">${o.yl}</text>`;
+  return {W,H,X,Y,g:g0,nar,L,R,T,B};
+}
+const ln=(x1,y1,x2,y2,c,w=3,dash='')=>`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${c}" stroke-width="${w}" stroke-linecap="round" ${dash?`stroke-dasharray="${dash}"`:''}/>`;
+const dot=(x,y,r,c,o=1)=>`<circle cx="${x}" cy="${y}" r="${r}" fill="${c}" fill-opacity="${o}"/>`;
+const tx=(x,y,s,c,fs,a='middle')=>`<text x="${x}" y="${y}" fill="${c}" font-family="Lora" font-style="italic" font-size="${fs}" text-anchor="${a}">${s}</text>`;
+const rect=(x,y,w,h,fill,fo,stroke,sw=1)=>`<rect x="${Math.min(x,x+w)}" y="${Math.min(y,y+h)}" width="${Math.abs(w)}" height="${Math.abs(h)}" fill="${fill}" fill-opacity="${fo}" ${stroke?`stroke="${stroke}" stroke-width="${sw}"`:''}/>`;
+function curve(P,fn,a,b,col,w=4,N=240){let p='';for(let i=0;i<=N;i++){const x=a+(b-a)*i/N;p+=(i?'L':'M')+P.X(x).toFixed(1)+','+P.Y(fn(x)).toFixed(1);}return `<path d="${p}" fill="none" stroke="${col}" stroke-width="${w}" stroke-linejoin="round"/>`;}
+function areaPath(P,fn,a,b,N=200){let p=`M${P.X(a)},${P.Y(0)}`;for(let i=0;i<=N;i++){const x=a+(b-a)*i/N;p+=`L${P.X(x).toFixed(1)},${P.Y(fn(x)).toFixed(1)}`;}return p+`L${P.X(b)},${P.Y(0)}Z`;}
+function setKV(rows){$('kv').innerHTML=rows.map(([k,v,c])=>`<dt>${k}</dt><dd${c?` style="color:${c}"`:''}>${v}</dd>`).join('');}
+function state(t,c,d){$('st').textContent=t;$('st').style.color=c;$('ds').textContent=d;}
+function legend(items){$('lg').innerHTML=items.map(([c,t])=>`<span><i style="border-color:${c}"></i>${t}</span>`).join('');}
+function show(P,g){svg.setAttribute('viewBox',`0 0 ${P.W} ${P.H}`);svg.innerHTML=g;}
+
+/* 0 · redovi kukuruza: srednja Rimanova suma */
+function red(){
+  const n=+$('n').value,dx=80/n;$('no').textContent=n;
+  const P=frame(0,80,0,50,{xt:[0,20,40,60,80],yt:[10,20,30,40,50],xl:'x (m), duž puta',yl:'širina njive (m)'});let s=P.g;
+  s+=`<path d="${areaPath(P,g,0,80)}" fill="${C.soil}" fill-opacity=".14"/>`;
+  let sum=0;
+  for(let i=0;i<n;i++){const a=i*dx,m=a+dx/2,h=g(m);sum+=h*dx;
+    s+=rect(P.X(a),P.Y(0),P.X(a+dx)-P.X(a),P.Y(h)-P.Y(0),C.gold,.18,C.gold,n>40?.5:1.2);
+    if(n<=40){const st=Math.max(10,(P.Y(0)-P.Y(h))/9);for(let y=P.Y(0)-st/2;y>P.Y(h)+2;y-=st)s+=dot(P.X(m),y,n>20?1.6:2.6,C.gold,.9);}}
+  s+=curve(P,g,0,80,C.river,4);
+  s+=tx(P.X(76),P.Y(g(76))-14,'reka',C.river,P.nar?14:17,'end');
+  show(P,s);
+  const err=(sum-AREA)/AREA*100;
+  $('eq').innerHTML=`P ≈ Σ f(x<sub>i</sub>)·Δx = <b style="color:${C.gold}">${f(sum,1)}</b> m², &nbsp; Δx = ${f(dx,2)} m`;
+  setKV([['broj redova n',n],['razmak Δx',f(dx,2)+' m'],['zbir redova',f(sum,1)+' m²',C.gold],['tačna površina',f(AREA,1)+' m²',C.river],['greška',f(err,3)+' %'],['u arima',f(sum/100,2)+' a']]);
+  legend([[C.gold,'redovi kukuruza (trake)'],[C.river,'reka f(x)'],[C.soil,'njiva']]);
+  if(n<=6)state('Poštar koracima',C.gold,`Samo ${n} redova: svaki red je široka traka, pa se rub uz reku slabo prati. Greška je ${f(Math.abs(err),2)} %.`);
+  else if(n<40)state('Gušća setva',C.gold,`Sa ${n} redova trake prate reku sve bolje. Zbir se približava tačnoj površini od ${f(AREA,1)} m².`);
+  else state('Integral',C.river,`Kad razmak između redova teži nuli, zbir postaje integral: P = ∫₀⁸⁰ f(x) dx = ${f(AREA,1)} m², oko ${f(AREA/100,1)} ari.`);
+}
+
+/* 1 · gornja i donja (Darbuova) suma */
+function dar(){
+  const n=+$('m').value,dx=80/n;$('mo').textContent=n;
+  const P=frame(0,80,0,50,{xt:[0,20,40,60,80],yt:[10,20,30,40,50],xl:'x (m)',yl:'širina njive (m)'});let s=P.g;
+  let U=0,Lo=0;
+  for(let i=0;i<n;i++){const a=i*dx;let mx=-1e9,mn=1e9;for(let k=0;k<=24;k++){const y=g(a+dx*k/24);mx=Math.max(mx,y);mn=Math.min(mn,y);}
+    U+=mx*dx;Lo+=mn*dx;
+    s+=rect(P.X(a),P.Y(0),P.X(a+dx)-P.X(a),P.Y(mx)-P.Y(0),C.gold,.10,C.gold,n>40?.4:1);
+    s+=rect(P.X(a),P.Y(0),P.X(a+dx)-P.X(a),P.Y(mn)-P.Y(0),C.im,.35,null);
+    s+=rect(P.X(a),P.Y(mx),P.X(a+dx)-P.X(a),P.Y(mn)-P.Y(mx),C.gold,.35,null);}
+  s+=curve(P,g,0,80,C.river,4);
+  show(P,s);
+  $('eq').innerHTML=`<b style="color:${C.im}">${f(Lo,0)}</b> ≤ ∫<sub>0</sub><sup>80</sup> f(x) dx ≤ <b style="color:${C.gold}">${f(U,0)}</b> m²`;
+  const gap=U-Lo;
+  setKV([['parcela n',n],['kad prodaje (gornja)',f(U,1)+' m²',C.gold],['kad plaća porez (donja)',f(Lo,1)+' m²',C.im],['razlika',f(gap,1)+' m²'],['tačno',f(AREA,1)+' m²',C.river]]);
+  legend([[C.gold,'gornja suma: do najdalje tačke'],[C.im,'donja suma: do najbliže tačke'],[C.river,'reka']]);
+  if(gap/AREA>0.02)state('Komšija se cenjka',C.gold,`Kad prodaje, meri do najdalje tačke reke (${f(U,0)} m²). Kad plaća porez, do najbliže (${f(Lo,0)} m²). Razlika: ${f(gap,0)} m².`);
+  else state('Kupac i poreska se slažu',C.river,`Na sitnim parcelama gornja i donja suma se skoro poklapaju. Integral postoji upravo kad im razlika teži nuli.`);
+}
+
+/* 2 · kilometar-sat: ∫ v dt = s(b) − s(a) */
+function km(){
+  const t=+$('t').value;$('to').textContent=f(t,2);
+  const P=frame(0,8,-12,19,{xt:[0,2,4,6,8],yt:[-10,-5,0,5,10],xl:'t (h)',yl:'brzina v (km/h)'});let s=P.g;
+  const pos=x=>Math.max(0,v(x)),neg=x=>Math.min(0,v(x));
+  if(t>0){s+=`<path d="${areaPath(P,pos,0,t)}" fill="${C.re}" fill-opacity=".35"/>`;if(t>4)s+=`<path d="${areaPath(P,neg,4,t)}" fill="${C.im}" fill-opacity=".4"/>`;}
+  s+=curve(P,v,0,8,C.gold,4);
+  s+=ln(P.X(t),P.T,P.X(t),P.H-P.B,C.ink,1.5,'4 6')+dot(P.X(t),P.Y(v(t)),8,C.gold);
+  s+=tx(P.X(2),P.Y(-3),'ka Miletu',C.re,P.nar?13:16)+tx(P.X(6.9),P.Y(4),'nazad po paket',C.im,P.nar?13:16);
+  /* traka puta sa poštarom */
+  const y=P.Y(16)-14,x0=P.X(0)+30,x1=P.W-P.R-30,sx=x0+(x1-x0)*S(t)/S(4);
+  s+=ln(x0,y+14,x1,y+14,C.soil,3)+tx(x0,y+40,'pošta',C.mute,P.nar?12:14,'middle')+tx(x1,y+40,'Mile',C.mute,P.nar?12:14,'middle')+dot(sx,y+14,9,C.gold);
+  show(P,s);
+  $('eq').innerHTML=`∫<sub>0</sub><sup>${f(t,1)}</sup> v(t) dt = s(${f(t,1)}) − s(0) = <b style="color:${C.gold}">${f(S(t),2)}</b> km`;
+  setKV([['brzina v(t)',f(v(t),2)+' km/h'],['udaljenost od pošte s(t)',f(S(t),2)+' km',C.gold],['pređeni put ∫|v| dt',f(PATH(t),2)+' km',C.re],['kilometar-sat',f(PATH(t),1)+' km']]);
+  legend([[C.gold,'brzina v(t)'],[C.re,'put ka Miletu'],[C.im,'povratak (v < 0)']]);
+  if(t<=4)state('Ka Miletu',C.re,'Brzinomer pokazuje v(t), a kilometar-sat sabira. Površina ispod krive je pređeni put: ne mora da se sabira sekund po sekund, dovoljno je pročitati s na početku i na kraju.');
+  else if(t<7.98)state('Zaboravio paket',C.im,`Vraća se, pa je v < 0 i ljubičasta površina se oduzima: udaljenost od pošte opada na ${f(S(t),1)} km. Guma se ipak troši: pređeno je ${f(PATH(t),1)} km.`);
+  else state('Kraj dana',C.gold,`Vratio se u poštu: ∫₀⁸ v dt = 0. Ali kilometar-sat pokazuje ${f(PATH(8),1)} km. Pomeraj i pređeni put nisu isto.`);
+}
+
+/* 3 · konstanta C: F(t) + C */
+function cc(){
+  const c=+$('c').value,t=+$('tc').value;$('co').textContent=f(c,1);$('tco').textContent=f(t,2);
+  const P=frame(0,8,-12,58,{xt:[0,2,4,6,8],yt:[0,10,20,30,40,50],xl:'t (h)',yl:'položaj (km od pošte)'});let s=P.g;
+  for(let k=-10;k<=30;k+=5)s+=curve(P,x=>S(x)+k,0,8,C.mute,1.2,120);
+  s+=curve(P,x=>S(x)+c,0,8,C.im,4.5);
+  const m=v(t),X0=P.X(t),Y0=P.Y(S(t)+c),dt=1;
+  for(let k=-10;k<=30;k+=5){const yy=S(t)+k;s+=ln(P.X(t-dt*.6),P.Y(yy-m*dt*.6),P.X(t+dt*.6),P.Y(yy+m*dt*.6),C.gold,1.2,'4 5');}
+  s+=ln(P.X(t-dt),P.Y(S(t)+c-m*dt),P.X(t+dt),P.Y(S(t)+c+m*dt),C.gold,3)+dot(X0,Y0,9,C.im);
+  s+=tx(P.X(0.15),P.Y(c)-12,'C',C.im,P.nar?16:19,'start');
+  show(P,s);
+  $('eq').innerHTML=`∫ v(t) dt = <span style="color:${C.ink}">(40/π)(1 − cos πt/4)</span> + <b style="color:${C.im}">C</b>, &nbsp; C = ${f(c,1)}`;
+  setKV([['C, polazište',f(c,1)+' km',C.im],['položaj u t',f(S(t)+c,2)+' km'],['brzina (nagib)',f(m,2)+' km/h',C.gold],['nagib svih krivih','isti']]);
+  legend([[C.im,'izabrani poštar F(t) + C'],[C.mute,'svi mogući poštari'],[C.gold,'tangente: ista brzina']]);
+  if(Math.abs(c)<0.01)state('Polazi iz pošte',C.im,'Početni uslov s(0) = 0 bira jednu krivu iz cele porodice. Sad je poštar dobio adresu.');
+  else state('Poštar bez adrese',C.im,`Svi poštari voze istom brzinom (tangente su paralelne), razlikuju se samo po tome odakle su krenuli. Zato neodređeni integral uvek nosi „+ C”.`);
+}
+
+/* 4 · kiša na hektar */
+function kisa(){
+  const A=+$('A').value,w=+$('w').value;$('Ao').textContent=f(A,1);$('wo').textContent=f(w,1);
+  const tot=integ(t=>rain(t,A,w),0,24);
+  const P=frame(0,24,0,21,{xt:[0,6,12,18,24],yt:[5,10,15,20],xl:'t (h), od ponoći',yl:'intenzitet kiše (mm/h)'});let s=P.g;
+  s+=`<path d="${areaPath(P,t=>rain(t,A,w),0,24,300)}" fill="${C.river}" fill-opacity=".3"/>`;
+  s+=curve(P,t=>rain(t,A,w),0,24,C.river,4,300);
+  s+=tx(P.X(12),P.Y(Math.min(A,20))-14,f(A,1)+' mm/h',C.river,P.nar?14:17);
+  show(P,s);
+  $('eq').innerHTML=`∫<sub>0</sub><sup>24</sup> i(t) dt = <b style="color:${C.river}">${f(tot,1)}</b> mm = ${f(tot,1)} L/m²`;
+  setKV([['ukupno kiše',f(tot,1)+' mm',C.river],['na kvadrat',f(tot,1)+' L/m²'],['na hektar',f(tot*10,0)+' m³'],['cisterni od 10 m³ / ha',f(tot,1)]]);
+  legend([[C.river,'intenzitet kiše i(t)'],[C.river,'površina = ukupno mm']]);
+  if(tot<5)state('Samo prašinu oprala',C.mute,`Ukupno ${f(tot,1)} mm. Za kukuruz u julu je to kap u moru.`);
+  else if(tot<25)state('Dobra kiša',C.river,`Ukupno ${f(tot,1)} mm, odnosno ${f(tot*10,0)} m³ vode po hektaru. Ratar ne gleda koliko je jako padalo, nego površinu ispod krive.`);
+  else state('Provala oblaka',C.gold,`Ukupno ${f(tot,1)} mm. Isti integral može da da i kratak pljusak i dugo rominjanje: računa se površina, a ne vrh.`);
+}
+
+const R={red,dar,km,cc,kisa};
+function draw(){R[tab]();}
+document.querySelectorAll('[role=tab]').forEach(b=>b.addEventListener('click',()=>{
+  tab=b.dataset.t;stop();
+  document.querySelectorAll('[role=tab]').forEach(o=>o.setAttribute('aria-selected',o===b));
+  document.querySelectorAll('[data-p]').forEach(p=>p.hidden=p.dataset.p!==tab);
+  draw();}));
+document.querySelectorAll('input[type=range]').forEach(i=>i.addEventListener('input',()=>{if(i.id==='t')stop();draw();}));
+function stop(){if(anim){cancelAnimationFrame(anim);anim=null;$('play').textContent='Pusti radni dan';}}
+function sow(id,to){let k=+$(id).value;const iv=setInterval(()=>{k=Math.min(to,Math.ceil(k*1.35)+1);$(id).value=k;draw();if(k>=to)clearInterval(iv);},matchMedia('(prefers-reduced-motion:reduce)').matches?0:160);}
+$('nsow').addEventListener('click',()=>sow('n',80));
+$('n4').addEventListener('click',()=>{$('n').value=4;draw();});
+$('n80').addEventListener('click',()=>{$('n').value=80;draw();});
+$('msow').addEventListener('click',()=>sow('m',80));
+$('m5').addEventListener('click',()=>{$('m').value=5;draw();});
+$('play').addEventListener('click',()=>{if(anim){stop();return;}let t0=null;if(+$('t').value>=7.99)$('t').value=0;const st=+$('t').value;$('play').textContent='Zaustavi';
+  const step=ts=>{if(t0===null)t0=ts;const t=Math.min(8,st+(ts-t0)/1000*0.8);$('t').value=t;draw();if(t<8)anim=requestAnimationFrame(step);else stop();};anim=requestAnimationFrame(step);});
+$('tend').addEventListener('click',()=>{stop();$('t').value=8;draw();});
+$('cpost').addEventListener('click',()=>{$('c').value=0;draw();});
+$('cmile').addEventListener('click',()=>{$('c').value=25.5;draw();});
+$('pljusak').addEventListener('click',()=>{$('A').value=18;$('w').value=0.8;draw();});
+$('rominja').addEventListener('click',()=>{$('A').value=1.5;$('w').value=6;draw();});
+new ResizeObserver(draw).observe(fig);
+draw();
+}
+</script>
+</body>
+</html>
