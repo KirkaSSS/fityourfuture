@@ -34,14 +34,14 @@ const HAV=['Kipar','Kajmani','Panama','Delaver','Malta'];
 const g=x=>30+8*Math.sin(x/9)+0.1*x;
 const S=[
  {d:6,k:1,f(u){ // udica
-   wrap('Kako poštar meri njivu koja nije pravougaona?',W/2,560,88,C.ink,920,106,{serif:true,w:500,a:seg(u,.2,1.2)});
+   wrap('Kako izmeriti njivu koja nije pravougaona?',W/2,560,92,C.ink,920,110,{serif:true,w:500,a:seg(u,.2,1.2)});
    text('Redovima kukuruza.',W/2,1020,104,C.gold,{serif:true,w:500,a:seg(u,2.6,3.4)});
    text('🌽',W/2,1200,100,C.gold,{a:seg(u,3.2,3.8)});
  }},
  {d:13,k:1,f(u){ // pismo iz katastra i njiva
-   kicker('Pismo iz katastra');
-   wrap('„Prijavite tačnu površinu njive.”',W/2,420,64,C.ink,920,80,{serif:true,w:500,a:seg(u,0,.8)});
-   wrap('Njiva deda Mileta leži između puta i reke koja krivuda. Poštar nema metar.',W/2,560,44,C.mute,900,60,{a:seg(u,1.2,2)});
+   kicker('Pismo iz katastra');text('Deda Mile dobio je pismo:',W/2,370,44,C.ink,{a:seg(u,0,.6)});
+   wrap('„Prijavite tačnu površinu njive.”',W/2,470,66,C.gold,920,82,{serif:true,w:500,a:seg(u,.3,1.1)});
+   wrap('Njiva mu je između puta i reke koja vijuga. Poštar nema metar.',W/2,640,48,C.ink,900,64,{a:seg(u,1.2,2)});
    const x0=110,x1=970,yb=1340,ys=7.2,X=x=>x0+(x1-x0)*x/80,Y=y=>yb-y*ys;
    const ap=seg(u,2,3);
    x.save();x.globalAlpha*=ap;x.strokeStyle='#FFC2A8';x.lineWidth=8;x.beginPath();x.moveTo(x0,yb);x.lineTo(x1,yb);x.stroke();
@@ -51,17 +51,17 @@ const S=[
    const n=u<7.5?0:(u<9.5?6:12),rp=seg(u,7.4,8.4);
    if(n){x.save();x.globalAlpha*=rp;const dx=80/n;for(let i=0;i<n;i++){const a=i*dx,m=a+dx/2,h=g(m);x.fillStyle='rgba(255,210,63,.18)';x.strokeStyle=C.gold;x.lineWidth=2;x.fillRect(X(a),Y(h),X(a+dx)-X(a),Y(0)-Y(h));x.strokeRect(X(a),Y(h),X(a+dx)-X(a),Y(0)-Y(h));
      for(let yy=Y(0)-18;yy>Y(h)+8;yy-=34)dot(X(m),yy,5,C.gold,.9);}x.restore();}
-   wrap('Ali ima ideju: njiva je već izdeljena na redove kukuruza.',W/2,1530,50,C.gold,900,66,{serif:true,w:500,a:seg(u,6.6,7.4)});
+   wrap('Ali se seti: njiva je već podeljena na redove kukuruza.',W/2,1530,52,C.gold,900,68,{serif:true,w:500,a:seg(u,6.6,7.4)});
  }},
  {d:9,k:1,f(u){ // tri tacke
-   wrap('Zato je integral zapravo seljačka matematika:',W/2,460,64,C.ink,900,84,{serif:true,w:500,a:seg(u,0,.8)});
-   const B=[[C.gold,'Svaki red','je uska traka.'],[C.re,'Zbir redova','je Rimanova suma.'],['#7FE3FF','Beskonačno tanki redovi','daju integral.']];
-   B.forEach(([c,h,t],j)=>{const a=seg(u,1.4+j*1.6,2.1+j*1.6),y=780+j*230;dot(140,y-18,20,c,a);text(h,190,y,56,c,{w:500,al:'left',a});text(t,190,y+70,46,C.ink,{al:'left',a});});
+   wrap('Integral je, u stvari, seoska matematika:',W/2,460,64,C.ink,900,84,{serif:true,w:500,a:seg(u,0,.8)});
+   const B=[[C.gold,'Svaki red','je jedna uska traka.'],[C.re,'Zbir svih redova','je Rimanova suma.'],['#7FE3FF','Infinitezimalne trake','daju integral.']];
+   B.forEach(([c,h,t],j)=>{const a=seg(u,1.4+j*1.6,2.1+j*1.6),y=780+j*230;x.font=font(56,{w:500});const hw=x.measureText(h).width;dot(W/2-hw/2-36,y-18,18,c,a);text(h,W/2,y,56,c,{w:500,a});text(t,W/2,y+70,46,C.ink,{a});});
  }},
  {d:9,k:1,f(u){ // kraj: dve QR
    text('OSNOVNA TEOREMA',W/2,330,34,C.gold,{w:500,a:seg(u,0,.6)});
    rich([['∫ₐᵇ f dx = F(b) − F(a)']],W/2,520,100,{a:seg(u,0,.8)});
-   wrap('Od redova kukuruza do kilometar-sata. Jedna formula.',W/2,640,46,C.ink,900,60,{a:seg(u,.6,1.4)});
+   wrap('Red po red, kilometar po kilometar, kap po kap.',W/2,640,40,C.ink,1000,54,{a:seg(u,.6,1.4)});wrap('Integral je strpljenje pretvoreno u broj.',W/2,722,46,C.gold,900,60,{w:600,a:seg(u,1,1.8)});
    const q=seg(u,1.6,2.6);
    text('Preuzmi sadržaj',W/2,840,88,C.gold,{serif:true,w:500,a:q});
    const sz=380,gap=60,y0=920,xs=[W/2-gap/2-sz,W/2+gap/2];

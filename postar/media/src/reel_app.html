@@ -4,10 +4,10 @@
 :root{--bg:#D0021B;--ink:#FFFFFF;--mute:#FFD9DC;--gold:#FFD23F;--re:#FFF3B0;--im:#FF8FD8}
 html,body{margin:0;width:540px;height:960px;background:var(--bg);overflow:hidden}
 #cap{position:absolute;left:0;top:0;width:540px;height:205px;box-sizing:border-box;padding:34px 28px 0;text-align:center;color:var(--ink)}
-#k{font:500 15px Inter,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
-#m{font:500 31px/1.18 Lora,serif;margin-bottom:12px}
-#s{font:400 19px/1.42 Inter,sans-serif;color:var(--mute)}
-#s b{color:var(--ink);font-weight:500}
+#k{font:600 15px Inter,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+#m{font:600 33px/1.18 Lora,serif;margin-bottom:12px}
+#s{font:400 21px/1.42 Inter,sans-serif;color:#FFFFFF}
+#s b{color:var(--gold);font-weight:600}
 .g{color:var(--gold)}.r{color:var(--re)}.i{color:var(--im)}
 #app{position:absolute;left:0;top:200px;width:540px;height:760px;border:0}
 #fade{position:absolute;inset:0;background:var(--bg);pointer-events:none;opacity:0}
@@ -32,14 +32,14 @@ const SC=[
  {d:17,cap:[
    [0,'Lekcija 0 · Redovi kukuruza','Svaki red je jedna traka','Poštar meri dužinu svakog reda i množi je razmakom <b>Δx</b>.'],
    [4.5,'Gušća setva','Više redova, <span class="g">manja greška</span>','4 reda: greška 1,1 %. 8 redova: <b>0,25 %</b>.'],
-   [11,'Određeni integral','P = ∫ f(x) dx ≈ <span class="g">28,5 ari</span>','Kad razmak između redova teži nuli, <b>zbir postaje integral</b>.']],
+   [11,'Određeni integral','P = ∫ f(x) dx ≈ <span class="g">28,5 ari</span>','Kad razmak postane <b>infinitezimalan</b>, zbir postaje integral.']],
   f(u){tab('red');let n;if(u<2)n=2;else if(u<4.5)n=4;else if(u<7.5)n=8;else n=Math.round(8+72*seg(u,7.6,11));setv('n',n);}},
  {d:12,cap:[
    [0,'Lekcija 1 · Gornja i donja suma','Kad prodaje i kad plaća porez','<span class="g">Kad prodaje</span>, meri do najdalje tačke reke. <span class="i">Kad plaća porez</span>, do najbliže.'],
-   [7,'Integral postoji','Kupac i poreska se <span class="g">slažu</span>','Na sitnim parcelama gornja i donja suma se poklope.']],
+   [7,'Integral postoji','Kupac i poreska se <span class="g">slažu</span>','Na infinitezimalnim parcelama gornja i donja suma se poklope.']],
   f(u){tab('dar');setv('m',Math.round(lerp(3,80,seg(u,2.5,9.5))));}},
  {d:14,cap:[
-   [0,'Lekcija 2 · Kilometar-sat','∫ v dt = s(b) − s(a)','Brzinomer pokazuje brzinu, kilometar-sat <b>sabira</b>. Površina ispod krive je put.'],
+   [0,'Lekcija 2 · Kilometar-sat','∫ v dt = s(b) − s(a)','Za vreme dt poštar pređe v·dt. Kilometar-sat <b>sabira</b> te delove: površina ispod krive je put.'],
    [6.6,'Zaboravio paket','v &lt; 0: površina se <span class="i">oduzima</span>','Vraća se po paket, pa se udaljenost od pošte smanjuje.'],
    [11.4,'Kraj dana','Pomeraj <span class="g">0</span>, pređeno <span class="g">50,9 km</span>','Vratio se u poštu. <b>Pomeraj i pređeni put nisu isto.</b>']],
   f(u){tab('km');setv('t',(8*seg(u,1,11.2)).toFixed(2));}},
@@ -48,7 +48,7 @@ const SC=[
    [6,'Početni uslov','Polazi iz pošte: <span class="i">C = 0</span>','Tangente ostaju paralelne. Tek sad poštar ima <b>adresu</b>.']],
   f(u){tab('cc');setv('c',(lerp(22,0,seg(u,1,5.6))*2|0)/2);setv('tc',lerp(0.5,6,seg(u,6.4,11)).toFixed(2));}},
  {d:11,cap:[
-   [0,'Lekcija 4 · Primena','Kiša na hektar','Ukupna kiša je površina ispod intenziteta: <b>1 mm = 10 m³ po hektaru</b>.'],
+   [0,'Lekcija 4 · Primena','Koliko je kiše palo?','Za infinitezimalno vreme dt padne i(t)·dt mm. Zbir je <b>površina ispod krive</b>.'],
    [5.6,'Računa se površina','Pljusak ili rominjanje?','Kratak jak pljusak i dugo rominjanje mogu dati <b>isti integral</b>.']],
   f(u){tab('kisa');if(u<5.6){setv('A',(lerp(6,18,seg(u,1,4.6))*2|0)/2);setv('w',lerp(2,0.8,seg(u,1,4.6)).toFixed(1));}else{setv('A',(lerp(18,1.5,seg(u,6,10))*2|0)/2);setv('w',lerp(0.8,6,seg(u,6,10)).toFixed(1));}}},
 ];

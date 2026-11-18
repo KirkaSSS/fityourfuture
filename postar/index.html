@@ -69,7 +69,7 @@ button.ghost{background:none;color:var(--ink);border-color:var(--line)}
 <button role="tab" aria-selected="false" data-t="dar" type="button">1 · Prodaja i porez</button>
 <button role="tab" aria-selected="false" data-t="km" type="button">2 · Kilometar-sat</button>
 <button role="tab" aria-selected="false" data-t="cc" type="button">3 · Poštar bez adrese</button>
-<button role="tab" aria-selected="false" data-t="kisa" type="button">4 · Kiša na hektar</button>
+<button role="tab" aria-selected="false" data-t="kisa" type="button">4 · Koliko je kiše palo</button>
 </div>
 
 <div class="fig" id="fig"><svg id="svg" role="img" aria-label="Grafik"></svg></div>
@@ -237,7 +237,7 @@ function cc(){
   else state('Poštar bez adrese',C.im,`Svi poštari voze istom brzinom (tangente su paralelne), razlikuju se samo po tome odakle su krenuli. Zato neodređeni integral uvek nosi „+ C”.`);
 }
 
-/* 4 · kiša na hektar */
+/* 4 · koliko je kiše palo */
 function kisa(){
   const A=+$('A').value,w=+$('w').value;$('Ao').textContent=f(A,1);$('wo').textContent=f(w,1);
   const tot=integ(t=>rain(t,A,w),0,24);

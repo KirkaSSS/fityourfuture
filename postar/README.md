@@ -16,7 +16,7 @@ Integral kroz priču o poštaru i njivi deda Mileta. Iz katastra stiže pismo: �
 | 1 · Prodaja i porez | `Lₙ ≤ ∫ f(x) dx ≤ Uₙ` | do najdalje tačke kad prodaje, do najbliže kad plaća porez |
 | 2 · Kilometar-sat | `∫ₐᵇ v(t) dt = s(b) − s(a)` | brzinomer i kilometar-sat; povratak po paket, pomeraj i pređeni put |
 | 3 · Poštar bez adrese | `∫ v dt = s(t) + C` | svi voze istom brzinom, razlikuju se po polazištu |
-| 4 · Kiša na hektar | `h = ∫ i(t) dt`, `1 mm = 10 m³/ha` | ratar gleda površinu, a ne vrh |
+| 4 · Koliko je kiše palo | `h = ∫ i(t) dt`, `1 mm = 10 m³/ha` | ratar gleda površinu, a ne vrh |
 
 ## Instagram
 

@@ -7,13 +7,13 @@ Fajlovi: `karusel/postar_i_njiva_01.png` … `10.png` (1080 × 1350, redom). Kar
 **Opis:**
 
 ```
-Kako poštar meri njivu koja nije pravougaona? Redovima kukuruza. 🌽
+Kako izmeriti njivu koja nije pravougaona? Redovima kukuruza. 🌽
 
-Iz katastra stiže pismo: „Prijavite tačnu površinu njive.” Njiva deda Mileta leži između puta i reke koja krivuda, a poštar nema metar. Ali ima ideju: njiva je već izdeljena na redove kukuruza.
+Deda Miletu stiglo pismo iz katastra: „Prijavite tačnu površinu njive.” Njiva mu je između puta i reke koja vijuga, a poštar nema metar. Ali se seti: njiva je već podeljena na redove kukuruza.
 
 🌽 svaki red je uska traka
 🟢 zbir redova je Rimanova suma
-🔵 beskonačno tanki redovi daju integral
+🔵 infinitezimalne trake dx daju integral
 
 Pa onda: komšija meri do najdalje tačke kad prodaje, a do najbliže kad plaća porez. Poštar ceo dan vozi bicikl, a pomeraj mu je nula. I zašto neodređeni integral uvek nosi „+ C”? Zato što je poštar bez adrese. 📬
 
@@ -26,14 +26,14 @@ Pa onda: komšija meri do najdalje tačke kad prodaje, a do najbliže kad plaća
 
 ## Objava 2: rils (oko 1,5 min, 1080 × 1920)
 
-Fajl: `postar_i_njiva_reel.mp4`. Tok: uvodno pitanje „Kako poštar meri njivu koja nije pravougaona? Redovima kukuruza.”, pismo iz katastra i njiva između puta i reke, tri tačke, pa snimak aplikacije (klizač koji se pomera je istaknut): redovi kukuruza, prodaja i porez, kilometar-sat, poštar bez adrese, kiša na hektar. Na kraju stoje dva QR koda. Video je bez zvuka, muziku dodaj u Instagramu.
+Fajl: `postar_i_njiva_reel.mp4`. Tok: uvodno pitanje „Kako izmeriti njivu koja nije pravougaona? Redovima kukuruza.”, pismo iz katastra i njiva između puta i reke, tri tačke, pa snimak aplikacije (klizač koji se pomera je istaknut): redovi kukuruza, prodaja i porez, kilometar-sat, poštar bez adrese, koliko je kiše palo. Na kraju stoje dva QR koda. Video je bez zvuka, muziku dodaj u Instagramu.
 
 **Opis:**
 
 ```
-Kako poštar meri njivu koja nije pravougaona? Redovima kukuruza. 🌽
+Kako izmeriti njivu koja nije pravougaona? Redovima kukuruza. 🌽
 
-Svaki red je traka, zbir redova je Rimanova suma, a beskonačno tanki redovi daju integral. U videu vidiš aplikaciju u radu: seješ gušće i greška nestaje, kupac i poreska se slože, a poštar ceo dan vozi i vrati se u poštu sa pomerajem nula. 🚲
+Svaki red je traka, zbir redova je Rimanova suma, a infinitezimalne trake dx daju integral. U videu vidiš aplikaciju u radu: seješ gušće i greška nestaje, kupac i poreska se slože, a poštar ceo dan vozi i vrati se u poštu sa pomerajem nula. 🚲
 
 📲 Zaustavi video na kraju i skeniraj QR kod: aplikacija ili materijal sa zadacima za prijemni.
 
