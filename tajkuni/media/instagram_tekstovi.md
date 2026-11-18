@@ -2,7 +2,7 @@
 
 ## Objava 1: karusel (9 slajdova)
 
-Fajlovi: `karusel/ojler_za_tajkune_01.png` … `09.png` (1080 × 1350, redom).
+Fajlovi: `karusel/ojler_za_tajkune_01.png` … `09.png` (1080 × 1350, redom). Na poslednjem slajdu su dva QR koda: aplikacija i materijal (PDF).
 
 **Opis:**
 
@@ -19,19 +19,17 @@ A Ojlerova formula e^(iφ) = cos φ + i sin φ? To je pranje novca: novac se vrt
 
 Prevuci do kraja i saznaj zašto je zbir svih ofšor firmi uvek nula. To je teorema, ne šala.
 
-👉 Aplikacija za isprobavanje: link u bio (kirkasss.github.io/fityourfuture/tajkuni)
+📲 Na poslednjem slajdu preuzmi sadržaj: skeniraj QR kod za interaktivnu aplikaciju ili za materijal sa zadacima za prijemni.
 
 Satira je uopštena: svaka sličnost sa stvarnim tajkunima je čisto imaginarna. 😉
 
-#BalkanskiBiznisSaSnežanom #matematika #kompleksnibrojevi #Ojler #MINT #STEM #prijemni #fizika #edukacija #nauka #biznisSrbija #kamata
+#matematika #kompleksnibrojevi #Ojler #MINT #STEM #prijemni #fizika #edukacija #nauka #kamata
 
 ---
 
-## Objava 2: rils (35 s, 1080 × 1920)
+## Objava 2: rils (oko 65 s, 1080 × 1920)
 
-Fajl: `ojler_za_tajkune_reel.mp4`. Video je bez zvuka: u Instagramu dodaj muziku po izboru (nešto ritmično, „biznis” atmosfera). Za naslovnu sliku rilsa izaberi prvi kadar ili ubaci slajd 1 iz karusela.
-
-**Tekst na početku (ako želiš i natpis preko videa):** Ojler za tajkune 🧮💶
+Fajl: `ojler_za_tajkune_reel.mp4`. Video je bez zvuka: u Instagramu dodaj muziku po izboru (nešto mirno i ritmično). Za naslovnu sliku rilsa izaberi prvi kadar ili slajd 1 iz karusela. Poslednjih 9 sekundi stoje dva QR koda.
 
 **Opis:**
 
@@ -45,16 +43,17 @@ Matematika koju svaki tajkun razume bez objašnjenja. 😏
 
 I na kraju, najlepša jednačina na svetu: e^(iπ) + 1 = 0. Pet konstanti u jednoj vezi, bez ostatka.
 
-Za đake, maturante i sve koji se spremaju za prijemni: ceo materijal i interaktivna aplikacija su na linku u bio. 📲
+📲 Za đake, maturante i sve koji se spremaju za prijemni: zaustavi video na kraju i skeniraj QR kod za aplikaciju ili za materijal (PDF).
 
 Koju jednačinu da sledeću objasnim jezikom biznisa? Napiši u komentarima. 👇
 
-#BalkanskiBiznisSaSnežanom #matematika #Ojler #kompleksnibrojevi #reels #MINT #STEM #prijemni #edukacija #nauka #tajkuni
+#matematika #Ojler #kompleksnibrojevi #reels #MINT #STEM #prijemni #edukacija #nauka #tajkuni
 
 ---
 
 ## Saveti za objavu
 
-- Objavi karusel i rils u razmaku od dan-dva; u rilsu pomeni „ceo karusel je na profilu”.
-- Link u bio: `https://kirkasss.github.io/fityourfuture/tajkuni/`
-- QR kod (za štampu, prezentaciju, tablu): `qr_ojler_za_tajkune.png` ili `.svg`
+- Objavi karusel i rils u razmaku od dan-dva.
+- QR kodovi za štampu, prezentaciju ili tablu:
+  - aplikacija: `qr_ojler_za_tajkune.png` / `.svg` → kirkasss.github.io/fityourfuture/tajkuni/
+  - materijal (PDF): `qr_materijal_pdf.png` / `.svg` → kirkasss.github.io/fityourfuture/tajkuni/Kompleksni_brojevi_i_Ojlerova_formula.pdf

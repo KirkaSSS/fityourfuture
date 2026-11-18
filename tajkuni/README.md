@@ -6,7 +6,7 @@ Kompleksni brojevi i Ojlerova formula kroz satiričnu priču o tajkunu: realni d
 
 **Nastavna jedinica (PDF):** [Kompleksni brojevi i Ojlerova formula kroz priču o tajkunima](Kompleksni_brojevi_i_Ojlerova_formula.pdf), materijal za III i IV razred srednje škole i pripremu za prijemni ispit
 
-**QR kod:** [PNG](media/qr_ojler_za_tajkune.png) · [SVG](media/qr_ojler_za_tajkune.svg)
+**QR kodovi:** aplikacija ([PNG](media/qr_ojler_za_tajkune.png) · [SVG](media/qr_ojler_za_tajkune.svg)) · materijal PDF ([PNG](media/qr_materijal_pdf.png) · [SVG](media/qr_materijal_pdf.svg))
 
 ## Četiri lekcije u aplikaciji
 
@@ -28,7 +28,7 @@ z₁,₂ = √(c/a) · e^(±iφ),   cos φ = L / (2√(ac))
 ## Instagram
 
 - Karusel, 9 slajdova: [media/karusel](media/karusel)
-- Rils, 35 s: [media/ojler_za_tajkune_reel.mp4](media/ojler_za_tajkune_reel.mp4)
+- Rils, oko 65 s: [media/ojler_za_tajkune_reel.mp4](media/ojler_za_tajkune_reel.mp4)
 - Tekstovi objava: [media/instagram_tekstovi.md](media/instagram_tekstovi.md)
 - Izvorni fajlovi (HTML za ponovno renderovanje): [media/src](media/src)
 
