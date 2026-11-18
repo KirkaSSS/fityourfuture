@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ojler za tajkune</title>
+<meta name="description" content="Kompleksni brojevi i Ojlerova formula kroz priču o tajkunima: kamatna spirala, dvojno knjigovodstvo, ofšor koreni jedinice i zaokret posle izbora.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Lora:ital,wght@0,500;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+/* VOICE: satira za tablom, kao predavanje u kafani pored berze
+   IDEA: kompleksna ravan kao glavna knjiga jednog tajkuna
+   PICTURE: novac koji se vrti u spirali, krug koji se vraća na isti iznos
+   COLOUR and TYPE: noćna zelena kao novčanice, zlato za bogatstvo, zelena za prijavljeno, ljubičasta za crnu kasu; Lora + Inter
+   LAYOUT: isti raspored kao „Brak kao kvadratna jednačina”: naslov, ravan, jednačina, klizači i stanje */
+:root{color-scheme:dark;--bg:#08160F;--card:#10261B;--ink:#F4F1E4;--mute:#A9BCA9;--gold:#E9C25B;--re:#58D68D;--im:#C79BFF;--line:#24452F}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Inter,system-ui,sans-serif;overflow-x:clip}
+.wrap{max-width:1080px;margin:0 auto;padding:clamp(24px,4vw,56px) max(5vw,16px)}
+h1{font:500 clamp(32px,5vw,50px)/1.08 Lora,Georgia,serif;margin:0 0 8px;color:var(--gold);text-wrap:balance}
+.sub{color:var(--mute);margin:0 0 20px;max-width:64ch}
+.sub i{font-family:Lora,serif;color:var(--ink)}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}
+.tabs button{background:none;color:var(--ink);border:1.5px solid var(--line);font-weight:400}
+.tabs button[aria-selected=true]{background:var(--gold);border-color:var(--gold);color:var(--bg);font-weight:500}
+.fig{position:relative;height:clamp(320px,50vw,470px);background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden}
+.fig svg{position:absolute;inset:0;width:100%;height:100%}
+.eq{font:italic 400 clamp(22px,3.2vw,32px)/1.35 Lora,serif;text-align:center;margin:20px 0 4px;text-wrap:balance}
+.eq b{font-weight:500}
+.grid{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:20px;margin-top:16px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px 24px}
+.row{display:grid;grid-template-columns:130px minmax(0,1fr) 64px;align-items:center;gap:12px;min-height:48px}
+.row label{font-size:15px;color:var(--mute)}
+.row label b{font:italic 500 22px Lora,serif;margin-right:6px}
+.row output{text-align:right;font-variant-numeric:tabular-nums;font-weight:500}
+input[type=range]{width:100%;height:44px;background:none;-webkit-appearance:none;appearance:none}
+input[type=range]::-webkit-slider-runnable-track{height:4px;border-radius:4px;background:var(--line)}
+input[type=range]::-moz-range-track{height:4px;border-radius:4px;background:var(--line)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--c);margin-top:-9px;border:3px solid var(--bg)}
+input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--c);border:3px solid var(--bg)}
+input:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+button{font:500 15px Inter,sans-serif;min-height:44px;padding:0 18px;border-radius:999px;border:1.5px solid var(--gold);background:var(--gold);color:var(--bg);cursor:pointer}
+button.ghost{background:none;color:var(--ink);border-color:var(--line)}
+.kv{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 14px;margin:0 0 12px;font-variant-numeric:tabular-nums}
+.kv dt{font:italic 400 17px Lora,serif;color:var(--mute)}
+.kv dd{margin:0;font-weight:500;text-align:right}
+.state{font:500 italic 26px/1.2 Lora,serif;margin:0 0 6px}
+.desc{color:var(--mute);margin:0}
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:14px;color:var(--mute);margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
+.legend span{display:inline-flex;align-items:center;gap:8px}
+.legend i{display:inline-block;width:22px;height:0;border-top:3px solid}
+.qm{margin-top:22px;text-align:center;color:var(--mute);font-size:15px}
+.qm div{font:italic 400 clamp(19px,2.6vw,24px)/1.5 Lora,serif;color:var(--ink)}
+.foot{margin-top:26px;text-align:center;font-size:14px;color:var(--mute)}
+.foot a{color:var(--gold)}
+[hidden]{display:none!important}
+@media(max-width:720px){.grid{grid-template-columns:minmax(0,1fr)}.row{grid-template-columns:104px minmax(0,1fr) 56px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>O<span style="margin-left:-.07em">jler</span> za tajkune</h1>
+<p class="sub">Broj <i>e</i> je otkriven u kamatnom računu, pa je red da ga konačno shvate i oni koji od kamate žive. Realni deo ide poreskoj, imaginarni u crnu kasu, a <i>e<sup>iφ</sup></i> vrti novac u krug.</p>
+
+<div class="tabs" role="tablist" aria-label="Lekcije">
+<button role="tab" aria-selected="true" data-t="spir" type="button">1 · Kamatna spirala</button>
+<button role="tab" aria-selected="false" data-t="knj" type="button">2 · Dvojno knjigovodstvo</button>
+<button role="tab" aria-selected="false" data-t="ofs" type="button">3 · Ofšor koreni</button>
+<button role="tab" aria-selected="false" data-t="zao" type="button">4 · Zaokret posle izbora</button>
+</div>
+
+<div class="fig" id="fig"><svg id="svg" role="img" aria-label="Kompleksna ravan"></svg></div>
+<div class="eq" id="eq"></div>
+
+<div class="grid">
+<div class="panel">
+ <div data-p="spir">
+  <div class="row"><label for="r"><b style="color:var(--re)">r</b>realna stopa</label><input id="r" type="range" min="-0.25" max="0.25" step="0.01" value="0.08" style="--c:var(--re)"><output id="ro"></output></div>
+  <div class="row"><label for="w"><b style="color:var(--im)">ω</b>imaginarna</label><input id="w" type="range" min="0" max="2" step="0.01" value="1" style="--c:var(--im)"><output id="wo"></output></div>
+  <div class="row"><label for="t"><b style="color:var(--gold)">t</b>vreme</label><input id="t" type="range" min="0" max="12.57" step="0.01" value="6.28" style="--c:var(--gold)"><output id="to"></output></div>
+  <div class="btns"><button id="play" type="button">Pusti novac da radi</button><button id="wash" class="ghost" type="button">Operi (r = 0)</button><button id="save" class="ghost" type="button">Štednja (ω = 0)</button><button id="full" class="ghost" type="button">Pun krug</button></div>
+ </div>
+ <div data-p="knj" hidden>
+  <div class="row"><label for="x"><b style="color:var(--re)">a</b>prijavljeno</label><input id="x" type="range" min="0" max="4" step="0.1" value="3" style="--c:var(--re)"><output id="xo"></output></div>
+  <div class="row"><label for="y"><b style="color:var(--im)">b</b>crna kasa</label><input id="y" type="range" min="-4" max="4" step="0.1" value="4" style="--c:var(--im)"><output id="yo"></output></div>
+  <div class="btns"><button id="b34" type="button">Tajkun 3 + 4i</button><button id="bclean" class="ghost" type="button">Pošten (b = 0)</button></div>
+ </div>
+ <div data-p="ofs" hidden>
+  <div class="row"><label for="n"><b style="color:var(--gold)">n</b>firmi</label><input id="n" type="range" min="2" max="12" step="1" value="5" style="--c:var(--gold)"><output id="no"></output></div>
+  <div class="row"><label for="k"><b style="color:var(--im)">k</b>sabrano</label><input id="k" type="range" min="0" max="12" step="1" value="0" style="--c:var(--im)"><output id="ko"></output></div>
+  <div class="btns"><button id="sumall" type="button">Konsoliduj sve</button><button id="sumreset" class="ghost" type="button">Ispočetka</button></div>
+ </div>
+ <div data-p="zao" hidden>
+  <div class="row"><label for="th"><b style="color:var(--im)">θ</b>zaokret</label><input id="th" type="range" min="0" max="360" step="1" value="0" style="--c:var(--im)"><output id="tho"></output></div>
+  <div class="row"><label for="m"><b style="color:var(--gold)">r</b>bogatstvo</label><input id="m" type="range" min="0.5" max="3" step="0.1" value="2.5" style="--c:var(--gold)"><output id="mo"></output></div>
+  <div class="btns"><button id="elect" type="button">Posle izbora (θ = 180°)</button><button id="ii" class="ghost" type="button">Dva puta „i” (90° + 90°)</button><button id="zreset" class="ghost" type="button">Pre izbora</button></div>
+ </div>
+</div>
+<div class="panel" aria-live="polite">
+ <dl class="kv" id="kv"></dl>
+ <p class="state" id="st"></p>
+ <p class="desc" id="ds"></p>
+ <div class="legend"><span><i style="border-color:var(--re)"></i>realno, prijavljeno</span><span><i style="border-color:var(--im)"></i>imaginarno, crna kasa</span><span><i style="border-color:var(--gold)"></i>|z|, stvarno bogatstvo</span></div>
+</div>
+</div>
+
+<div class="qm">Ojlerova formula, za one koji čitaju i fusnote
+<div>e<sup>iφ</sup> = cos φ + i sin φ &nbsp;⟹&nbsp; e<sup>iπ</sup> + 1 = 0</div></div>
+<p class="foot">Nastavak priče <a href="../">Brak kao kvadratna jednačina</a>. Satira je uopštena: svaka sličnost sa stvarnim tajkunima je čisto imaginarna.</p>
+</div>
+
+<script>
+{
+const $=id=>document.getElementById(id);
+const svg=$('svg'),fig=$('fig');
+const C={gold:'#E9C25B',re:'#58D68D',im:'#C79BFF',mute:'#A9BCA9',ink:'#F4F1E4',line:'#24452F'};
+const f=(n,d=2)=>(Math.abs(n)<5e-10?0:n).toFixed(d).replace('.',',').replace('-','−');
+const deg=a=>{let d=a*180/Math.PI%360;if(d<0)d+=360;return d;};
+let tab='spir',anim=null;
+const HAVENS=['Kipar','Delaver','Kajmani','Panama','Malta','Luksemburg','Monako','Bahami','Džersi','Sejšeli','Lihtenštajn','Gibraltar'];
+
+function plane(s,cx=0,cy=0){
+  const W=fig.clientWidth,H=fig.clientHeight,k=Math.min(W,H)/(2*s);
+  const X=x=>W/2+(x-cx)*k,Y=y=>H/2-(y-cy)*k;
+  let g=`<line x1="0" y1="${Y(0)}" x2="${W}" y2="${Y(0)}" stroke="${C.re}" stroke-opacity=".45" stroke-width="1.5"/>`;
+  g+=`<line x1="${X(0)}" y1="0" x2="${X(0)}" y2="${H}" stroke="${C.im}" stroke-opacity=".45" stroke-width="1.5"/>`;
+  g+=`<text x="${W-14}" y="${Y(0)-10}" fill="${C.re}" font-family="Lora" font-style="italic" font-size="16" text-anchor="end">Re</text>`;
+  g+=`<text x="${X(0)+10}" y="22" fill="${C.im}" font-family="Lora" font-style="italic" font-size="16">Im</text>`;
+  return {W,H,k,X,Y,g,narrow:W<520};
+}
+const dot=(x,y,r,c,o=1)=>`<circle cx="${x}" cy="${y}" r="${r}" fill="${c}" fill-opacity="${o}"/>`;
+const ln=(x1,y1,x2,y2,c,w=3,dash='')=>`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${c}" stroke-width="${w}" stroke-linecap="round" ${dash?`stroke-dasharray="${dash}"`:''}/>`;
+const tx=(x,y,s,c,fs,a='middle')=>`<text x="${x}" y="${y}" fill="${c}" font-family="Lora" font-style="italic" font-size="${fs}" text-anchor="${a}">${s}</text>`;
+function arrow(x1,y1,x2,y2,c,w=3){const a=Math.atan2(y2-y1,x2-x1),h=12;
+  return ln(x1,y1,x2,y2,c,w)+`<path d="M${x2},${y2}L${x2-h*Math.cos(a-.4)},${y2-h*Math.sin(a-.4)}L${x2-h*Math.cos(a+.4)},${y2-h*Math.sin(a+.4)}Z" fill="${c}"/>`;}
+function setKV(rows){$('kv').innerHTML=rows.map(([k,v,c])=>`<dt>${k}</dt><dd${c?` style="color:${c}"`:''}>${v}</dd>`).join('');}
+function state(t,c,d){$('st').textContent=t;$('st').style.color=c;$('ds').textContent=d;}
+
+/* 1 · kamatna spirala: z(t) = e^{(r+iω)t} */
+function spir(){
+  const r=+$('r').value,w=+$('w').value,t=+$('t').value;
+  $('ro').textContent=f(r);$('wo').textContent=f(w);$('to').textContent=f(t,1);
+  const mod=Math.exp(r*t),ph=w*t;
+  let peak=1;for(let i=0;i<=60;i++)peak=Math.max(peak,Math.exp(r*t*i/60));
+  const P=plane(Math.max(1.4,peak*1.22));let g=P.g;
+  g+=`<circle cx="${P.X(0)}" cy="${P.Y(0)}" r="${P.k}" fill="none" stroke="${C.mute}" stroke-opacity=".35" stroke-dasharray="6 8"/>`;
+  let p='';const N=Math.max(2,Math.ceil(t*40));
+  for(let i=0;i<=N;i++){const s=t*i/N,m=Math.exp(r*s);p+=(i?'L':'M')+P.X(m*Math.cos(w*s)).toFixed(1)+','+P.Y(m*Math.sin(w*s)).toFixed(1);}
+  g+=`<path d="${p}" fill="none" stroke="${C.gold}" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>`;
+  const zx=mod*Math.cos(ph),zy=mod*Math.sin(ph);
+  g+=ln(P.X(0),P.Y(0),P.X(zx),P.Y(zy),C.gold,2,'4 6');
+  g+=dot(P.X(1),P.Y(0),7,C.re)+tx(P.X(1),P.Y(0)+30,'1 €',C.re,P.narrow?16:20);
+  g+=dot(P.X(zx),P.Y(zy),18,C.gold,.22)+dot(P.X(zx),P.Y(zy),10,C.gold);
+  svg.setAttribute('viewBox',`0 0 ${P.W} ${P.H}`);svg.innerHTML=g;
+  $('eq').innerHTML=`z(t) = e<sup>(<b style="color:${C.re}">${f(r)}</b> + <b style="color:${C.im}">${f(w)}</b>i)·<b style="color:${C.gold}">${f(t,1)}</b></sup>`;
+  const turns=ph/(2*Math.PI);
+  setKV([['iznos |z| = e<sup>rt</sup>',f(mod)+' €',C.gold],['faza φ = ωt',f(deg(ph),0)+'°'],['krugova kroz ofšor',f(turns,2)]]);
+  if(Math.abs(r)<0.005&&w>0)state('Pranje novca',C.im,`Imaginarna stopa ne pravi novac, samo ga vrti: |e^(iωt)| = 1. Posle ${f(turns,2)} krugova iznos je i dalje 1 €, samo mu se promenila faza.`);
+  else if(w<0.005&&r>0)state('Poštena štednja',C.re,'Čisto realna stopa: novac raste po e^(rt) i ide pravo duž realne ose. Dosadno, ali prijavljeno.');
+  else if(w<0.005&&r<0)state('Inflacija',C.mute,'Realna stopa ispod nule: novac se topi po e^(rt), bez ikakve rotacije.');
+  else if(r>0)state('Tajkunska spirala',C.gold,'Kompleksna stopa r + iω: realni deo pravi rast, imaginarni pravi kruženje. Novac raste dok obilazi svet.');
+  else if(r<0)state('Spirala u stečaj',C.mute,'Novac i dalje kruži, ali se svakim krugom smanjuje. Kraj je u koordinatnom početku.');
+  else state('Novac miruje',C.mute,'Ni kamate ni kruženja: z(t) = 1 za svako t.');
+}
+
+/* 2 · dvojno knjigovodstvo: z = a + bi i z̄ = a − bi */
+function knj(){
+  const a=+$('x').value,b=+$('y').value;
+  $('xo').textContent=f(a,1);$('yo').textContent=f(b,1);
+  const m=Math.hypot(a,b);
+  const P=plane(Math.max(3.2,m*1.15),Math.min(a/2,1.4),0);let g=P.g;
+  g+=`<circle cx="${P.X(0)}" cy="${P.Y(0)}" r="${m*P.k}" fill="none" stroke="${C.gold}" stroke-opacity=".35" stroke-dasharray="6 8"/>`;
+  g+=ln(P.X(0),P.Y(0),P.X(a),P.Y(0),C.re,6);
+  g+=ln(P.X(a),P.Y(0),P.X(a),P.Y(b),C.im,4);
+  g+=ln(P.X(a),P.Y(0),P.X(a),P.Y(-b),C.im,3,'6 7');
+  g+=ln(P.X(0),P.Y(0),P.X(a),P.Y(b),C.gold,4);
+  g+=ln(P.X(0),P.Y(0),P.X(a),P.Y(-b),C.gold,2,'6 7');
+  const fs=P.narrow?15:19;
+  g+=dot(P.X(a),P.Y(b),10,C.gold)+tx(P.X(a)+16,P.Y(b)+(b>=0?-8:20),'z = a + bi',C.gold,fs,'start');
+  if(Math.abs(b)>0.05)g+=dot(P.X(a),P.Y(-b),8,C.mute)+tx(P.X(a)+16,P.Y(-b)+(b>=0?20:-8),'z̄ za poresku',C.mute,fs,'start');
+  g+=tx(P.X(a/2),P.Y(0)+(b>=0?28:-14),'prijavljeno',C.re,fs);
+  svg.setAttribute('viewBox',`0 0 ${P.W} ${P.H}`);svg.innerHTML=g;
+  $('eq').innerHTML=`|z| = √(<b style="color:${C.re}">${f(a,1)}</b>² + <b style="color:${C.im}">${f(b,1)}</b>²) = <b style="color:${C.gold}">${f(m)}</b>`;
+  setKV([['inspektor vidi Re z',f(a,1),C.re],['stvarno |z|',f(m),C.gold],['z + z̄ = 2a',f(2*a,1)],['z · z̄ = |z|²',f(m*m)]]);
+  if(Math.abs(b)<0.05)state('Pošten tajkun',C.re,'b = 0: z i z̄ se poklapaju, |z| = Re z. Retka, ali matematički dozvoljena pojava.');
+  else state('Dvojno knjigovodstvo',C.gold,`Dve konjugovane firme, z i z̄, svaka „nerealna”. Ipak je zbir 2a i proizvod |z|² čisto realan: imaginarno se poništi u konsolidovanom bilansu. Po Pitagori |z| > Re z za ${f(m-a)}.`);
+}
+
+/* 3 · ofšor koreni: z^n = 1, zbir je 0 */
+function ofs(){
+  const n=+$('n').value;$('k').max=n;let k=Math.min(+$('k').value,n);$('k').value=k;
+  $('no').textContent=n;$('ko').textContent=k+'/'+n;
+  const P=plane(1.7);let g=P.g;const fs=P.narrow?13:16;
+  g+=`<circle cx="${P.X(0)}" cy="${P.Y(0)}" r="${P.k}" fill="none" stroke="${C.mute}" stroke-opacity=".35" stroke-dasharray="6 8"/>`;
+  let poly='';for(let j=0;j<n;j++){const a=2*Math.PI*j/n;poly+=(j?'L':'M')+P.X(Math.cos(a)).toFixed(1)+','+P.Y(Math.sin(a)).toFixed(1);}
+  g+=`<path d="${poly}Z" fill="${C.gold}" fill-opacity=".07" stroke="${C.gold}" stroke-opacity=".5" stroke-width="2"/>`;
+  for(let j=0;j<n;j++){const a=2*Math.PI*j/n,x=Math.cos(a),y=Math.sin(a);
+    g+=dot(P.X(x),P.Y(y),8,j<k?C.mute:C.gold)+tx(P.X(1.28*x),P.Y(1.28*y)+5,HAVENS[j],j<k?C.mute:C.ink,fs);}
+  let sx=0,sy=0;
+  for(let j=0;j<k;j++){const a=2*Math.PI*j/n,nx=sx+Math.cos(a)*.42,ny=sy+Math.sin(a)*.42;g+=arrow(P.X(sx),P.Y(sy),P.X(nx),P.Y(ny),C.im,3);sx=nx;sy=ny;}
+  const sumx=sx/.42,sumy=sy/.42,sm=Math.hypot(sumx,sumy);
+  g+=dot(P.X(0),P.Y(0),6,C.re);
+  svg.setAttribute('viewBox',`0 0 ${P.W} ${P.H}`);svg.innerHTML=g;
+  $('eq').innerHTML=`z<sup>${n}</sup> = 1 &nbsp;⟹&nbsp; z<sub>j</sub> = e<sup>2πij/${n}</sup>, &nbsp;Σ z<sub>j</sub> = <b style="color:${C.gold}">0</b>`;
+  setKV([['firmi',n],['ugao između firmi',f(360/n,1)+'°'],['sabrano u bilans',k+' od '+n],['|zbir|',f(sm),k===n?C.re:C.im]]);
+  if(k===n)state('Konsolidovano: 0',C.re,`Svih ${n} strelica sabranih redom zatvara pravilan ${n}-tougao i vraća se u nulu. Svaka firma ima nešto, a zbirni izveštaj nema ništa.`);
+  else if(k===0)state(`${n} ofšor firmi`,C.gold,`Jedan evro podeljen na ${n} firmi ravnomerno oko sveta: to su rešenja jednačine zⁿ = 1. Povećavaj k i sabiraj ih redom.`);
+  else state('Konsolidacija u toku',C.im,`Posle ${k} firmi zbir je još ${f(sm)}. Svaka sledeća strelica se okreće za ${f(360/n,1)}°, pa se poligon na kraju mora zatvoriti.`);
+}
+
+/* 4 · zaokret: z' = z · e^(iθ) */
+const Z0=Math.PI/6;
+function zao(){
+  const th=+$('th').value,m=+$('m').value,t=th*Math.PI/180;
+  $('tho').textContent=th+'°';$('mo').textContent=f(m,1);
+  const P=plane(3.4);let g=P.g;const fs=P.narrow?15:19;
+  g+=`<circle cx="${P.X(0)}" cy="${P.Y(0)}" r="${m*P.k}" fill="none" stroke="${C.gold}" stroke-opacity=".35" stroke-dasharray="6 8"/>`;
+  const x0=m*Math.cos(Z0),y0=m*Math.sin(Z0),x1=m*Math.cos(Z0+t),y1=m*Math.sin(Z0+t);
+  if(th>0){const r=.7*P.k*Math.min(1,m/1.2);const large=th>180?1:0;
+    g+=`<path d="M${P.X(0)+r*Math.cos(Z0)},${P.Y(0)-r*Math.sin(Z0)} A${r},${r} 0 ${large} 0 ${P.X(0)+r*Math.cos(Z0+t)},${P.Y(0)-r*Math.sin(Z0+t)}" fill="none" stroke="${C.im}" stroke-width="3"/>`;}
+  g+=arrow(P.X(0),P.Y(0),P.X(x0),P.Y(y0),C.mute,3)+tx(P.X(x0)+12,P.Y(y0)-10,'pre izbora',C.mute,fs,'start');
+  g+=arrow(P.X(0),P.Y(0),P.X(x1),P.Y(y1),C.gold,5)+tx(P.X(x1)+(x1<0?-12:12),P.Y(y1)+(y1<0?26:-12),'posle',C.gold,fs,x1<0?'end':'start');
+  svg.setAttribute('viewBox',`0 0 ${P.W} ${P.H}`);svg.innerHTML=g;
+  $('eq').innerHTML=`z′ = z · e<sup>i·<b style="color:${C.im}">${th}°</b></sup>, &nbsp; |z′| = |z| = <b style="color:${C.gold}">${f(m,1)}</b>`;
+  setKV([['bogatstvo |z′|',f(m,1),C.gold],['stari stav',f(deg(Z0),0)+'°'],['novi stav',f(deg(Z0+t),0)+'°']]);
+  if(th===180)state('Potpuni zaokret',C.im,'e^(iπ) = −1: isti modul, suprotan smer. Bogatstvo netaknuto, stav okrenut naopako.');
+  else if(th===90)state('Množenje sa i',C.im,'Jedno „i” okreće za 90°. Još jedno „i” i dobija se −1: i² = −1, preletanje u dva koraka.');
+  else if(th===360||th===0)state(th?'Pun krug':'Pre izbora',C.gold,th?'e^(2πi) = 1: posle punog kruga stav je tamo gde je i bio. Kao da se ništa nije desilo.':'Bogatstvo r i stav φ. Pomeraj θ: množenje sa e^(iθ) menja samo ugao, nikad modul.');
+  else state('Prilagođavanje',C.gold,`Ugao se okrenuo za ${th}°, a modul je ostao ${f(m,1)}. Pri množenju kompleksnih brojeva uglovi se sabiraju, a moduli množe.`);
+}
+
+const R={spir,knj,ofs,zao};
+function draw(){R[tab]();}
+document.querySelectorAll('[role=tab]').forEach(b=>b.addEventListener('click',()=>{
+  tab=b.dataset.t;stop();
+  document.querySelectorAll('[role=tab]').forEach(o=>o.setAttribute('aria-selected',o===b));
+  document.querySelectorAll('[data-p]').forEach(p=>p.hidden=p.dataset.p!==tab);
+  draw();}));
+document.querySelectorAll('input[type=range]').forEach(i=>i.addEventListener('input',()=>{if(i.id==='t')stop();draw();}));
+
+function stop(){if(anim){cancelAnimationFrame(anim);anim=null;$('play').textContent='Pusti novac da radi';}}
+$('play').addEventListener('click',()=>{
+  if(anim){stop();return;}
+  const T=+$('t').max;let t0=null;if(+$('t').value>=T-0.01)$('t').value=0;const start=+$('t').value;
+  $('play').textContent='Zaustavi';
+  const step=ts=>{if(t0===null)t0=ts;const t=Math.min(T,start+(ts-t0)/1000*1.6);$('t').value=t;draw();if(t<T)anim=requestAnimationFrame(step);else stop();};
+  anim=requestAnimationFrame(step);});
+$('wash').addEventListener('click',()=>{stop();$('r').value=0;if(+$('w').value<0.05)$('w').value=1;draw();});
+$('save').addEventListener('click',()=>{stop();$('w').value=0;if(+$('r').value<=0)$('r').value=0.08;draw();});
+$('full').addEventListener('click',()=>{stop();let w=+$('w').value;if(w<0.05){w=1;$('w').value=1;}$('t').value=Math.min(+$('t').max,2*Math.PI/w);draw();});
+$('b34').addEventListener('click',()=>{$('x').value=3;$('y').value=4;draw();});
+$('bclean').addEventListener('click',()=>{$('y').value=0;draw();});
+$('sumall').addEventListener('click',()=>{const n=+$('n').value;let k=+$('k').value>=n?0:+$('k').value;
+  const iv=setInterval(()=>{k++;$('k').value=k;draw();if(k>=n)clearInterval(iv);},matchMedia('(prefers-reduced-motion:reduce)').matches?0:260);});
+$('sumreset').addEventListener('click',()=>{$('k').value=0;draw();});
+$('elect').addEventListener('click',()=>{$('th').value=180;draw();});
+$('ii').addEventListener('click',()=>{$('th').value=90;draw();setTimeout(()=>{$('th').value=180;draw();},900);});
+$('zreset').addEventListener('click',()=>{$('th').value=0;draw();});
+new ResizeObserver(draw).observe(fig);
+draw();
+}
+</script>
+</body>
+</html>

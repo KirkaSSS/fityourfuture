@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="sr"><head><meta charset="utf-8">
+<style>body{margin:0;background:#000}canvas{display:block}
+</style></head><body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script>
+const cv=document.getElementById('c'),x=cv.getContext('2d');
+const W=1080,H=1920;
+const C={bg:'#08160F',gold:'#E9C25B',re:'#58D68D',im:'#C79BFF',mute:'#A9BCA9',ink:'#F4F1E4',line:'#24452F'};
+const cl=(v,a=0,b=1)=>Math.max(a,Math.min(b,v));
+const ease=t=>{t=cl(t);return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;};
+const seg=(u,a,b)=>ease((u-a)/(b-a));
+const fmt=(n,d=2)=>n.toFixed(d).replace('.',',');
+
+function font(sz,{serif=false,it=false,w=400}={}){return `${it?'italic ':''}${w} ${sz}px ${serif?'Lora':'Inter'}`;}
+function text(s,X,Y,sz,col,o={}){x.save();x.globalAlpha*=o.a??1;x.font=font(sz,o);x.fillStyle=col;x.textAlign=o.al||'center';x.textBaseline='alphabetic';x.fillText(s,X,Y);x.restore();}
+// rich line: [[str,{col,sup,it,serif}],...] centered at X
+function rich(parts,X,Y,sz,o={}){
+  x.save();x.globalAlpha*=o.a??1;let total=0;const m=parts.map(([s,p={}])=>{const z=p.sup?sz*.62:sz;x.font=font(z,{serif:p.serif??true,it:p.it??true,w:p.w||400});const w=x.measureText(s).width;total+=w;return {s,p,z,w};});
+  let cx=o.al==='left'?X:X-total/2;
+  for(const q of m){x.font=font(q.z,{serif:q.p.serif??true,it:q.p.it??true,w:q.p.w||400});x.fillStyle=q.p.col||C.ink;x.textAlign='left';x.fillText(q.s,cx,Y-(q.p.sup?sz*.42:0));cx+=q.w;}
+  x.restore();}
+function wrap(s,X,Y,sz,col,maxW,lh,o={}){x.save();x.globalAlpha*=o.a??1;x.font=font(sz,o);x.fillStyle=col;x.textAlign='center';const words=s.split(' ');let line='',yy=Y;for(const w of words){const t=line?line+' '+w:w;if(x.measureText(t).width>maxW&&line){x.fillText(line,X,yy);line=w;yy+=lh;}else line=t;}x.fillText(line,X,yy);x.restore();return yy;}
+function line(a,b,c,d,col,w,dash){x.save();x.strokeStyle=col;x.lineWidth=w;x.lineCap='round';if(dash)x.setLineDash(dash);x.beginPath();x.moveTo(a,b);x.lineTo(c,d);x.stroke();x.restore();}
+function dot(X,Y,r,col,a=1){x.save();x.globalAlpha*=a;x.fillStyle=col;x.beginPath();x.arc(X,Y,r,0,7);x.fill();x.restore();}
+function axes(cx,cy,R,a=1,lab=true){x.save();x.globalAlpha*=a;line(cx-R,cy,cx+R,cy,'rgba(88,214,141,.45)',3);line(cx,cy-R,cx,cy+R,'rgba(199,155,255,.45)',3);if(lab)text('Re',cx+R-10,cy-18,38,C.re,{serif:true,it:true,al:'right'});if(lab)text('Im',cx+16,cy-R+40,38,C.im,{serif:true,it:true,al:'left'});x.restore();}
+function arrow(x1,y1,x2,y2,col,w=8){const a=Math.atan2(y2-y1,x2-x1),h=30;line(x1,y1,x2-h*.6*Math.cos(a),y2-h*.6*Math.sin(a),col,w);x.save();x.fillStyle=col;x.beginPath();x.moveTo(x2,y2);x.lineTo(x2-h*Math.cos(a-.4),y2-h*Math.sin(a-.4));x.lineTo(x2-h*Math.cos(a+.4),y2-h*Math.sin(a+.4));x.fill();x.restore();}
+function kicker(s,a=1){text(s.toUpperCase(),W/2,300,34,C.gold,{w:500,a});}
+function handle(){text('@balkanskibiznissasnezanom',W/2,1640,32,C.mute);}
+function spiralPath(cx,cy,k,r,w,t){x.beginPath();const N=Math.max(2,Math.ceil(t*60));for(let i=0;i<=N;i++){const s=t*i/N,m=Math.exp(r*s);const X=cx+k*m*Math.cos(w*s),Y=cy-k*m*Math.sin(w*s);i?x.lineTo(X,Y):x.moveTo(X,Y);}}
+
+const HAV=['Kipar','Kajmani','Panama','Delaver','Malta'];
+const S=[
+ {d:3.5,f(u){ // naslov
+   const a=seg(u,0,.8);
+   x.save();x.globalAlpha=.35*seg(u,0,3);x.strokeStyle=C.gold;x.lineWidth=6;spiralPath(W/2,1240,40,.15,1,ease(u/3.3)*12.5);x.stroke();x.restore();
+   text('MATEMATIKA ZA ODRASLE',W/2,470,34,C.gold,{w:500,a});
+   {const aa=seg(u,.2,1);x.font=font(190,{serif:true,w:500});const wO=x.measureText('O').width,wj=x.measureText('jler').width,k=-.07*190,X0=W/2-(wO+wj+k)/2;text('O',X0,660,190,C.gold,{serif:true,w:500,a:aa,al:'left'});text('jler',X0+wO+k,660,190,C.gold,{serif:true,w:500,a:aa,al:'left'});}
+   text('za tajkune',W/2,840,150,C.gold,{serif:true,w:500,a:seg(u,.5,1.3)});
+   wrap('Kompleksni brojevi koje razume svaki tajkun',W/2,980,48,C.ink,820,64,{a:seg(u,1.2,2)});
+ }},
+ {d:5,f(u){ // e iz kamate
+   kicker('Odakle broj e');
+   wrap('Broj e je izmislila kamata',W/2,430,78,C.ink,900,92,{serif:true,w:500});
+   text('1 € · 100 % kamate · 1 godina',W/2,620,44,C.mute);
+   const ns=[1,2,4,12,52,365,8760,525600];const idx=Math.min(ns.length-1,Math.floor(cl((u-.6)/3.2)*ns.length));const n=ns[idx];
+   const v=Math.pow(1+1/n,n);
+   const lab=['godišnje','polugodišnje','kvartalno','mesečno','nedeljno','dnevno','svakog sata','svakog minuta'][idx];
+   text('pripisuje se '+lab,W/2,780,44,C.ink,{a:seg(u,.5,.9)});
+   rich([['(1 + 1/n)'],['n',{sup:true}],[' = '],[fmt(v,4)+' €',{col:C.gold,it:false,serif:false,w:500}]],W/2,940,84,{a:seg(u,.5,.9)});
+   const e=seg(u,3.9,4.5);
+   rich([['e',{col:C.gold}],[' ≈ 2,71828 €',{col:C.gold,it:false,serif:false,w:500}]],W/2,1180,110,{a:e});
+   wrap('Više od e ne može ni najbolji bankar.',W/2,1340,44,C.mute,860,58,{a:e});
+   handle();
+ }},
+ {d:5,f(u){ // Re Im |z|
+   kicker('z = a + bi');
+   rich([['Realni deo',{col:C.re,it:false}],[' ide poreskoj.',{it:false}]],W/2,430,70);
+   rich([['Imaginarni',{col:C.im,it:false}],[' u crnu kasu.',{it:false}]],W/2,520,70);
+   const cx=320,cy=1260,k=130;axes(cx+190,cy-260,470,.0);
+   line(cx-60,cy,cx+3*k+150,cy,'rgba(88,214,141,.45)',3);line(cx,cy+60,cx,cy-4*k-80,'rgba(199,155,255,.45)',3);
+   const p1=seg(u,.3,1.3),p2=seg(u,1.3,2.3),p3=seg(u,2.3,3.2);
+   line(cx,cy,cx+3*k*p1,cy,C.re,16);
+   if(p2>0)line(cx+3*k,cy,cx+3*k,cy-4*k*p2,C.im,14);
+   if(p3>0)line(cx,cy,cx+3*k*p3,cy-4*k*p3,C.gold,14);
+   text('prijavljeno 3',cx+1.5*k,cy+70,50,C.re,{serif:true,it:true,a:p1});
+   text('crna kasa 4',cx+3*k+34,cy-2*k+16,50,C.im,{serif:true,it:true,al:'left',a:p2});
+   text('stvarno 5',cx+1.5*k-50,cy-2*k-30,54,C.gold,{serif:true,it:true,al:'right',a:p3});
+   if(p3>.98)dot(cx+3*k,cy-4*k,22,C.gold);
+   const e=seg(u,3.4,4);
+   rich([['|z| = √(3² + 4²) = '],['5',{col:C.gold}]],W/2,1450,72,{a:e});
+   wrap('Inspektor vidi 3. Tajkun ima 5. Pitagora ne laže.',W/2,1560,42,C.mute,900,56,{a:e});
+ }},
+ {d:6,f(u){ // pranje
+   kicker('Imaginarna kamata');
+   rich([['Pranje novca: e',{it:false}],['iωt',{sup:true,col:C.im}]],W/2,430,80);
+   const cx=W/2,cy=1000,R=330;axes(cx,cy,450,1,false);
+   x.save();x.strokeStyle='rgba(169,188,169,.35)';x.setLineDash([10,12]);x.lineWidth=3;x.beginPath();x.arc(cx,cy,R,0,7);x.stroke();x.restore();
+   const ph=2*Math.PI*seg(u,.6,4.6);
+   x.save();x.strokeStyle=C.gold;x.lineWidth=10;x.lineCap='round';x.beginPath();x.arc(cx,cy,R,0,-ph,true);x.stroke();x.restore();
+   HAV.forEach((n,j)=>{const a=2*Math.PI*j/5;const lit=ph>=a-0.01;const X=cx+R*Math.cos(a),Y=cy-R*Math.sin(a);dot(X,Y,13,lit?C.im:C.line);text(n,cx+(R+90)*Math.cos(a),cy-(R+90)*Math.sin(a)+16,44,lit?C.ink:C.mute,{serif:true,it:true,a:lit?1:.5});});
+   const X=cx+R*Math.cos(ph),Y=cy-R*Math.sin(ph);dot(X,Y,36,C.gold,.25);dot(X,Y,20,C.gold);
+   rich([['|z| = ',{}],['1,00 €',{col:C.gold,it:false,serif:false,w:500}]],cx,cy+20,64);
+   text('krug '+fmt(ph/(2*Math.PI),2),cx,cy+100,40,C.mute);
+   const e=seg(u,4.7,5.2);
+   rich([['e'],['2πi',{sup:true,col:C.im}],[' = 1']],W/2,1500,76,{a:e});
+   wrap('Pun krug. Isti evro, samo opran.',W/2,1590,46,C.ink,900,58,{a:e});
+ }},
+ {d:5,f(u){ // spirala
+   kicker('Kompleksna kamata');
+   wrap('Tajkunska spirala',W/2,430,84,C.ink,900,96,{serif:true,w:500});
+   const cx=W/2,cy=980,k=52;axes(cx,cy,450);
+   const t=12.4*seg(u,.3,4.2);
+   x.save();x.strokeStyle=C.gold;x.lineWidth=9;x.lineCap='round';spiralPath(cx,cy,k,.16,1,t);x.stroke();x.restore();
+   const m=Math.exp(.16*t);dot(cx+k*m*Math.cos(t),cy-k*m*Math.sin(t),34,C.gold,.25);dot(cx+k*m*Math.cos(t),cy-k*m*Math.sin(t),18,C.gold);
+   rich([['|z| = ',{}],[fmt(m,2)+' €',{col:C.gold,it:false,serif:false,w:500}]],W/2,600,60);
+   rich([['e'],['(r + iω)t',{sup:true,col:C.gold}],[' = '],['e',{col:C.re}],['rt',{sup:true,col:C.re}],[' · '],['e',{col:C.im}],['iωt',{sup:true,col:C.im}]],W/2,1500,76);
+   wrap('Raste dok obilazi svet.',W/2,1590,46,C.ink,900,58,{a:seg(u,2,2.6)});
+ }},
+ {d:5,f(u){ // koreni
+   kicker('z⁵ = 1');
+   wrap('Zbir svih ofšor firmi je nula',W/2,430,74,C.ink,900,90,{serif:true,w:500});
+   const cx=W/2,cy=1010,R=300;axes(cx,cy,440,.8,false);
+   const ap=seg(u,.2,1);
+   x.save();x.globalAlpha=ap;x.strokeStyle='rgba(233,194,91,.6)';x.fillStyle='rgba(233,194,91,.08)';x.lineWidth=4;x.beginPath();for(let j=0;j<5;j++){const a=2*Math.PI*j/5;j?x.lineTo(cx+R*Math.cos(a),cy-R*Math.sin(a)):x.moveTo(cx+R*Math.cos(a),cy-R*Math.sin(a));}x.closePath();x.fill();x.stroke();x.restore();
+   const N=['Kipar','Delaver','Kajmani','Panama','Malta'];
+   for(let j=0;j<5;j++){const a=2*Math.PI*j/5;dot(cx+R*Math.cos(a),cy-R*Math.sin(a),16,C.gold,ap);text(N[j],cx+(R+86)*Math.cos(a),cy-(R+86)*Math.sin(a)+16,44,C.ink,{serif:true,it:true,a:ap});}
+   let sx=cx,sy=cy;const s=.42*R;
+   for(let j=0;j<5;j++){const p=seg(u,1+j*.55,1.5+j*.55);if(p<=0)break;const a=2*Math.PI*j/5,nx=sx+s*Math.cos(a)*p,ny=sy-s*Math.sin(a)*p;arrow(sx,sy,nx,ny,C.im,8);sx+=s*Math.cos(a);sy-=s*Math.sin(a);if(p<1)break;}
+   dot(cx,cy,12,C.re);
+   const e=seg(u,3.9,4.4);
+   rich([['1 + ω + ω² + ω³ + ω⁴ = '],['0',{col:C.gold}]],W/2,1480,64,{a:e});
+   wrap('Svaka firma ima nešto. Zbirni izveštaj nema ništa.',W/2,1570,42,C.mute,900,56,{a:e});
+ }},
+ {d:5.5,f(u){ // zaokret + CTA
+   const out=1-seg(u,2.6,3.1),inn=seg(u,3.1,3.6);
+   if(out>0){x.save();x.globalAlpha=out;
+     kicker('Množenje je rotacija');
+     wrap('Zaokret posle izbora',W/2,430,80,C.ink,900,92,{serif:true,w:500});
+     const cx=W/2,cy=1000,R=330;axes(cx,cy,440);
+     const a0=.5,th=Math.PI*seg(u,.5,2);
+     arrow(cx,cy,cx+R*Math.cos(a0),cy-R*Math.sin(a0),C.mute,6);
+     x.save();x.strokeStyle=C.im;x.lineWidth=7;x.beginPath();x.arc(cx,cy,120,-a0,-a0-th,true);x.stroke();x.restore();
+     arrow(cx,cy,cx+R*Math.cos(a0+th),cy-R*Math.sin(a0+th),C.gold,11);
+     text(Math.round(th*180/Math.PI)+'°',cx-20,cy-150,48,C.im,{serif:true,it:true});
+     rich([['z · e'],['iπ',{sup:true,col:C.im}],[' = −z']],W/2,1490,76,{a:seg(u,1.9,2.3)});
+     wrap('Bogatstvo isto, stav suprotan.',W/2,1580,46,C.ink,900,58,{a:seg(u,1.9,2.3)});
+     x.restore();}
+   if(inn>0){x.save();x.globalAlpha=inn;
+     text('NAJLEPŠA JEDNAČINA',W/2,560,34,C.gold,{w:500});
+     rich([['e'],['iπ',{sup:true,col:C.im}],[' + 1 = 0']],W/2,800,150);
+     wrap('Pet konstanti u jednoj vezi. Bez ostatka.',W/2,940,48,C.ink,900,62);
+     wrap('Isprobaj aplikaciju: operi evro, zavrti spiralu, konsoliduj ofšor.',W/2,1150,46,C.mute,860,62);
+     text('link u bio',W/2,1340,56,C.gold,{w:500});
+     handle();
+     x.restore();}
+ }},
+];
+let ready=false;
+async function init(){try{await document.fonts.load('500 40px Lora');await document.fonts.load('italic 400 40px Lora');await document.fonts.load('400 40px Inter');await document.fonts.load('500 40px Inter');}catch(e){}ready=true;}
+function render(si,u){const s=S[si];x.globalAlpha=1;x.fillStyle=C.bg;x.fillRect(0,0,W,H);
+  const fade=Math.min(cl(u/.3),cl((s.d-u)/.3));x.save();x.globalAlpha=si===0?cl((s.d-u)/.3):(si===S.length-1?cl(u/.3):fade);s.f(u);x.restore();}
+window.S=S;window.render=render;window.init=init;
+</script></body></html>

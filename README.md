@@ -6,6 +6,8 @@ Interaktivna aplikacija koja prikazuje brak kao rešenje kvadratne jednačine: d
 
 **Nastavna jedinica (PDF):** [Kvadratna jednačina: diskriminanta, priroda rešenja i Vijetove formule](Kvadratna_jednacina_diskriminanta_i_priroda_resenja.pdf), materijal za II razred srednje škole i pripremu za prijemni ispit
 
+**Nastavak: Ojler za tajkune.** Kompleksni brojevi i Ojlerova formula kroz satiričnu priču o tajkunu: https://kirkasss.github.io/fityourfuture/tajkuni/ · [materijal i opis](tajkuni/)
+
 ## Ideja
 
 Jednačina zajedničkog života:
