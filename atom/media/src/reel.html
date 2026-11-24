@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="sr"><head><meta charset="utf-8">
+<style>body{margin:0;background:#000}canvas{display:block}
+</style></head><body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script>
+const cv=document.getElementById('c'),x=cv.getContext('2d');
+const W=1080,H=1920;
+const C={bg:'#0B1026',gold:'#FFD400',re:'#B6FF3B',im:'#FF6FB5',mute:'#C3CBEA',ink:'#FFFFFF',line:'#2E3A70',blue:'#46C8FF'};
+const cl=(v,a=0,b=1)=>Math.max(a,Math.min(b,v));
+const ease=t=>{t=cl(t);return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;};
+const seg=(u,a,b)=>ease((u-a)/(b-a));
+const fmt=(n,d=2)=>n.toFixed(d).replace('.',',');
+
+function font(sz,{serif=false,it=false,w=400}={}){return `${it?'italic ':''}${w} ${sz}px ${serif?'Lora':'Inter'}`;}
+function text(s,X,Y,sz,col,o={}){x.save();x.globalAlpha*=o.a??1;x.font=font(sz,o);x.fillStyle=col;x.textAlign=o.al||'center';x.textBaseline='alphabetic';x.fillText(s,X,Y);x.restore();}
+// rich line: [[str,{col,sup,it,serif}],...] centered at X
+function rich(parts,X,Y,sz,o={}){
+  x.save();x.globalAlpha*=o.a??1;let total=0;const m=parts.map(([s,p={}])=>{const z=p.sup?sz*.62:sz;x.font=font(z,{serif:p.serif??true,it:p.it??true,w:p.w||400});const w=x.measureText(s).width;total+=w;return {s,p,z,w};});
+  let cx=o.al==='left'?X:X-total/2;
+  for(const q of m){x.font=font(q.z,{serif:q.p.serif??true,it:q.p.it??true,w:q.p.w||400});x.fillStyle=q.p.col||C.ink;x.textAlign='left';x.fillText(q.s,cx,Y-(q.p.sup?sz*.42:0));cx+=q.w;}
+  x.restore();}
+function wrap(s,X,Y,sz,col,maxW,lh,o={}){x.save();x.globalAlpha*=o.a??1;x.font=font(sz,o);x.fillStyle=col;x.textAlign='center';const words=s.split(' ');let line='',yy=Y;for(const w of words){const t=line?line+' '+w:w;if(x.measureText(t).width>maxW&&line){x.fillText(line,X,yy);line=w;yy+=lh;}else line=t;}x.fillText(line,X,yy);x.restore();return yy;}
+function line(a,b,c,d,col,w,dash){x.save();x.strokeStyle=col;x.lineWidth=w;x.lineCap='round';if(dash)x.setLineDash(dash);x.beginPath();x.moveTo(a,b);x.lineTo(c,d);x.stroke();x.restore();}
+function dot(X,Y,r,col,a=1){x.save();x.globalAlpha*=a;x.fillStyle=col;x.beginPath();x.arc(X,Y,r,0,7);x.fill();x.restore();}
+function axes(cx,cy,R,a=1,lab=true){x.save();x.globalAlpha*=a;line(cx-R,cy,cx+R,cy,'rgba(255,243,176,.45)',3);line(cx,cy-R,cx,cy+R,'rgba(255,143,216,.45)',3);if(lab)text('Re',cx+R-10,cy-18,38,C.re,{serif:true,it:true,al:'right'});if(lab)text('Im',cx+16,cy-R+40,38,C.im,{serif:true,it:true,al:'left'});x.restore();}
+function arrow(x1,y1,x2,y2,col,w=8){const a=Math.atan2(y2-y1,x2-x1),h=30;line(x1,y1,x2-h*.6*Math.cos(a),y2-h*.6*Math.sin(a),col,w);x.save();x.fillStyle=col;x.beginPath();x.moveTo(x2,y2);x.lineTo(x2-h*Math.cos(a-.4),y2-h*Math.sin(a-.4));x.lineTo(x2-h*Math.cos(a+.4),y2-h*Math.sin(a+.4));x.fill();x.restore();}
+function kicker(s,a=1){text(s.toUpperCase(),W/2,300,34,C.gold,{w:500,a});}
+function handle(){}
+function spiralPath(cx,cy,k,r,w,t){x.beginPath();const N=Math.max(2,Math.ceil(t*60));for(let i=0;i<=N;i++){const s=t*i/N,m=Math.exp(r*s);const X=cx+k*m*Math.cos(w*s),Y=cy-k*m*Math.sin(w*s);i?x.lineTo(X,Y):x.moveTo(X,Y);}}
+
+const IMG={app:new Image(),pdf:new Image()};IMG.app.src='../qr_atom_aplikacija.png';IMG.pdf.src='../qr_atom_materijal_pdf.png';
+const HAV=['Kipar','Kajmani','Panama','Delaver','Malta'];
+let sd=7;const rn=()=>{sd=(sd*16807)%2147483647;return (sd-1)/2147483646;};
+const LIFE=Array.from({length:400},()=>-Math.log(1-rn())/Math.LN2);
+const S=[
+ {d:6,k:1.45,f(u){ // udica
+   wrap('Šta imaju zajedničko predizborno obećanje i radioaktivni atom?',W/2,520,84,C.ink,940,102,{serif:true,w:500,a:seg(u,.2,1.2)});
+   text('Oba imaju poluživot.',W/2,1060,96,C.gold,{serif:true,w:600,a:seg(u,2.6,3.4)});
+   text('☢',W/2,1260,130,C.gold,{a:seg(u,3.2,3.8)});
+ }},
+ {d:13,k:1.45,f(u){ // zakon velikih brojeva
+   kicker('Zakon velikih brojeva');
+   wrap('Niko ne zna koje će obećanje sledeće pasti.',W/2,420,56,C.ink,920,72,{serif:true,w:500,a:seg(u,0,.8)});
+   wrap('Ni atom ne zna kada će se raspasti.',W/2,580,46,C.mute,920,60,{a:seg(u,1,1.8)});
+   const t=4*seg(u,2.5,10.5),cols=20,cs=40,gx=(W-cols*cs)/2,gy=640;let alive=0;
+   for(let i=0;i<400;i++){const al=LIFE[i]>t;if(al)alive++;dot(gx+(i%cols+.5)*cs,gy+(Math.floor(i/cols)+.5)*cs,cs*.36,al?C.re:C.line,seg(u,1.6,2.4));}
+   text('preostalo: '+alive+' od 400',W/2,gy+20*cs+70,48,C.re,{w:600,a:seg(u,2,2.6)});
+   text('poluživota: '+t.toFixed(1).replace('.',','),W/2,gy+20*cs+130,40,C.mute,{a:seg(u,2,2.6)});
+   wrap('Ali posle svakog poluživota ostane tačno polovina.',W/2,1720,48,C.gold,940,62,{serif:true,w:600,a:seg(u,10.6,11.4)});
+ }},
+ {d:9,k:1.45,f(u){ // tri tacke
+   wrap('Ovako izgleda svet kroz atomsku fiziku:',W/2,460,64,C.ink,900,84,{serif:true,w:500,a:seg(u,0,.8)});
+   const B=[[C.gold,'Atom','je država sa strogom hijerarhijom.'],[C.blue,'Jezgro','je savez koji drži ogromna energija.'],[C.re,'Raspad','je obećanje sa rokom trajanja.']];
+   B.forEach(([c,h,t],j)=>{const a=seg(u,1.4+j*1.6,2.1+j*1.6),y=780+j*230;x.font=font(56,{w:500});const hw=x.measureText(h).width;dot(W/2-hw/2-36,y-18,18,c,a);text(h,W/2,y,56,c,{w:500,a});text(t,W/2,y+70,44,C.ink,{a});});
+ }},
+ {d:9,k:1.45,f(u){ // kraj: dve QR
+   text('AJNŠTAJNOVA FUSNOTA',W/2,330,34,C.gold,{w:500,a:seg(u,0,.6)});
+   rich([['E = Δm · c²']],W/2,520,120,{a:seg(u,0,.8)});
+   wrap('Obećanja se raspadaju.',W/2,650,48,C.ink,1000,60,{a:seg(u,.6,1.4)});wrap('Zakoni fizike ostaju.',W/2,722,52,C.gold,900,62,{w:600,a:seg(u,1,1.8)});
+   const q=seg(u,1.6,2.6);
+   text('Preuzmi sadržaj',W/2,850,88,C.gold,{serif:true,w:500,a:q});
+   const sz=380,gap=60,y0=920,xs=[W/2-gap/2-sz,W/2+gap/2];
+   [['Aplikacija','raspadni, rascepi, spoji',IMG.app],['Materijal (PDF)','teorija i zadaci',IMG.pdf]].forEach(([t,s2,im],j)=>{
+     x.save();x.globalAlpha*=q;x.fillStyle=C.ink;x.beginPath();x.roundRect(xs[j],y0,sz,sz,24);x.fill();if(im.complete)x.drawImage(im,xs[j]+10,y0+10,sz-20,sz-20);x.restore();
+     text(t,xs[j]+sz/2,y0+sz+70,46,C.ink,{w:500,a:q});text(s2,xs[j]+sz/2,y0+sz+124,36,C.mute,{a:q});});
+ }},
+];
+let ready=false;
+async function init(){try{await document.fonts.load('500 40px Lora');await document.fonts.load('italic 400 40px Lora');await document.fonts.load('400 40px Inter');await document.fonts.load('500 40px Inter');}catch(e){}await Promise.all([IMG.app.decode(),IMG.pdf.decode()]).catch(()=>{});ready=true;}
+function render(si,u){const s=S[si],k=s.k||1,D=s.d*k;x.globalAlpha=1;x.fillStyle=C.bg;x.fillRect(0,0,W,H);
+  const fade=Math.min(cl(u/.4),cl((D-u)/.4));x.save();x.globalAlpha=si===0?cl((D-u)/.4):(si===S.length-1?cl(u/.4):fade);s.f(u/k);x.restore();}
+window.S=S;window.render=render;window.init=init;
+</script></body></html>

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="sr"><head><meta charset="utf-8">
+<style>
+:root{--bg:#0B1026;--ink:#FFFFFF;--mute:#C3CBEA;--gold:#FFD400;--re:#B6FF3B;--im:#FF6FB5;--blue:#46C8FF}
+html,body{margin:0;width:540px;height:960px;background:var(--bg);overflow:hidden}
+#cap{position:absolute;left:0;top:0;width:540px;height:205px;box-sizing:border-box;padding:34px 28px 0;text-align:center;color:var(--ink)}
+#k{font:600 15px Inter,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+#m{font:600 33px/1.18 Lora,serif;margin-bottom:12px}
+#s{font:400 21px/1.42 Inter,sans-serif;color:#FFFFFF}
+#s b{color:var(--gold);font-weight:600}
+.g{color:var(--gold)}.r{color:var(--re)}.i{color:var(--im)}
+#app{position:absolute;left:0;top:200px;width:540px;height:760px;border:0}
+#fade{position:absolute;inset:0;background:var(--bg);pointer-events:none;opacity:0}
+</style></head><body>
+<div id="cap"><div id="k"></div><div id="m"></div><div id="s"></div></div>
+<iframe id="app" src="../../index.html"></iframe>
+<div id="fade"></div>
+<script>
+const cl=(v,a=0,b=1)=>Math.max(a,Math.min(b,v));
+const ease=t=>{t=cl(t);return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;};
+const seg=(u,a,b)=>ease((u-a)/(b-a));
+const lerp=(a,b,t)=>a+(b-a)*t;
+let D,W;
+const LAST={};let CUR=0,CURS=-1;
+function setv(id,v){const e=D.getElementById(id);const old=+e.value;e.value=v;if(Math.abs(+e.value-old)>1e-9)LAST[id]=CUR;e.dispatchEvent(new Event('input'));}
+function tab(t){const b=D.querySelector(`[data-t=${t}]`);if(b.getAttribute('aria-selected')!=='true')b.click();}
+function cap(list,u){let c=list[0];for(const q of list)if(u>=q[0])c=q;
+  const a=list.indexOf(c)===0?1:seg(u,c[0],c[0]+.5);
+  document.getElementById('k').innerHTML=c[1];document.getElementById('m').innerHTML=c[2];document.getElementById('s').innerHTML=c[3];
+  document.getElementById('cap').style.opacity=a;}
+const SC=[
+ {d:14,cap:[
+   [0,'Lekcija 0 · Diplomatska lestvica','Nema „pola ambasadora”','Dozvoljeni su samo određeni položaji: <b>E<sub>n</sub> = −13,6 eV / n²</b>.'],
+   [4.5,'Smena sa položaja','Pad 3 → 2: <span class="g">crvena linija</span>','Smena ide uz saopštenje: <b>foton tačne energije</b>.'],
+   [9.5,'Pad na dno','Pad 2 → 1: <span class="b">ultraljubičasto</span>','Veći pad, jače saopštenje. Oko ga ne vidi, detektor da.']],
+  f(u){tab('bor');let a,b;if(u<2.2){a=6;b=5;}else if(u<4.5){a=4;b=2;}else if(u<9.5){a=3;b=2;}else{a=2;b=1;}setv('nf',b);setv('ni',a);}},
+ {d:16,cap:[
+   [0,'Lekcija 1 · Poluživot','400 obećanja, nula garancija','Na početku mandata. Nijedno ne zna kada će pasti.'],
+   [5.4,'Posle jednog poluživota','Ostala je <span class="g">polovina</span>','Pojedinac je nepredvidiv, a <b>gomila je tačna</b>.'],
+   [10.5,'Posle četiri poluživota','Ostala je <span class="g">šesnaestina</span>','Zakon: <b>N = N₀ · 2<sup>−t/T½</sup></b>.']],
+  f(u){tab('raspad');setv('tt',(u<5.4?lerp(0,1,seg(u,1.5,5)):(u<10.5?lerp(1,1,0):lerp(1,4,seg(u,10.6,14)))).toFixed(2));}},
+ {d:14,cap:[
+   [0,'Lekcija 2 · Lančana reakcija','k &lt; 1: <span class="b">smirivanje</span>','Svaka fisija izazove manje od jedne nove.'],
+   [4.8,'Kontrolne šipke','k = 1: <span class="r">elektrana</span>','Šipke upijaju višak neutrona, <b>kao dobra diplomatija</b>.'],
+   [9.5,'Bez kontrole','k &gt; 1: <span class="i">eskalacija</span>','Eksponencijalni rast ne oprašta kašnjenje.']],
+  f(u){tab('lanac');setv('gen',15);let k;if(u<4.8)k=lerp(0.95,0.75,seg(u,1,4));else if(u<9.5)k=lerp(0.75,1,seg(u,5,6.5));else k=lerp(1,1.6,seg(u,9.6,12.5));setv('k',k.toFixed(2));}},
+ {d:15,cap:[
+   [0,'Lekcija 3 · Energija veze','Fuzija: <span class="b">mali se udružuju</span>','Laka jezgra se spajaju i postaju stabilnija. <b>Tako sija Sunce.</b>'],
+   [5.2,'Gvožđe','Gvožđe: <span class="r">srednja sila</span>','Najstabilniji savez nije ni najveći ni najmanji.'],
+   [9.8,'Uran','Fisija: <span class="i">veliki se cepaju</span>','Delovi su stabilniji od celine. <b>Tako rade elektrane.</b>']],
+  f(u){tab('veza');let A;if(u<5.2)A=lerp(2,30,seg(u,.8,4.6));else if(u<9.8)A=lerp(30,56,seg(u,5.4,7.6));else A=lerp(56,235,seg(u,10,13.4));setv('A',Math.round(A));}},
+ {d:13,cap:[
+   [0,'Lekcija 4 · Gram goriva','Gram lignita','Hemija pomera elektrone: <b>malo energije</b>.'],
+   [4.3,'Fisija','1 g urana ≈ <span class="g">10 t lignita</span>','Nuklearna fizika pomera jezgra: milion puta više.'],
+   [8.8,'Ajnštajnov plafon','E = m · c²','Ni fisija ni fuzija ne prelaze <b>ni jedan posto</b> tog plafona.']],
+  f(u){tab('gorivo');setv('mg',0);const want=u<4.3?0:(u<8.8?3:5);const bt=D.querySelector(`#fuels button[data-i="${want}"]`);if(bt.getAttribute('aria-pressed')!=='true')bt.click();}},
+];
+const SLOW=1.45;SC.forEach(q=>{q.d0=q.d;q.d=+(q.d*SLOW).toFixed(2);});window.SC=SC;
+window.ready=new Promise(r=>{document.getElementById('app').addEventListener('load',()=>{
+  D=document.getElementById('app').contentDocument;W=document.getElementById('app').contentWindow;
+  const st=D.createElement('style');st.textContent=`.wrap{padding:6px 14px 0!important}h1,.sub,.qm,.foot,.legend{display:none!important}
+  .tabs{margin:0 0 8px!important;display:flex!important;justify-content:center!important}.tabs button{min-width:260px}.tabs button[aria-selected=false]{display:none}
+  .fig{height:432px!important}.btns{display:none!important}.row{border-radius:12px;padding:0 8px;transition:none}.row.live{background:rgba(255,210,63,.16);box-shadow:inset 0 0 0 1.5px rgba(255,210,63,.6)}.eq{margin:12px 0 0!important;font-size:24px!important}.grid{margin-top:10px!important;gap:10px!important}
+  .grid>.panel:nth-child(2){display:none}.panel{padding:10px 16px!important}.row{min-height:46px!important}`;
+  D.head.appendChild(st);W.dispatchEvent(new Event('resize'));setTimeout(r,300);});});
+window.renderApp=(si,ur)=>{const s=SC[si];const u=ur/SLOW;const fh=[580,600,540,600,600][si];const fg=D.querySelector('.fig');if(fg.style.height!==fh+'px'){fg.style.setProperty('height',fh+'px','important');W.dispatchEvent(new Event('resize'));}if(si!==CURS){for(const k in LAST)delete LAST[k];CURS=si;}CUR=u;s.f(u);if(u<0.05)for(const k in LAST)delete LAST[k];D.querySelectorAll('.row').forEach(r=>{const i=r.querySelector('input');r.classList.toggle('live',!!i&&LAST[i.id]!==undefined&&u-LAST[i.id]<1.2);});cap(s.cap,u);document.getElementById('fade').style.opacity=Math.max(1-cl(ur/.4),1-cl((s.d-ur)/.4));};
+</script></body></html>

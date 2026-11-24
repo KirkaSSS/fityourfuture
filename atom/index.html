@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Atomska diplomatija</title>
+<meta name="description" content="Atomska i nuklearna fizika kroz analogije sa svetskom politikom i energetikom: Borov atom, poluživot obećanja, lančana reakcija, energija veze i gram goriva.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Lora:ital,wght@0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+/* VOICE: satira o svetskoj politici, fizika bez popusta
+   IDEA: atom kao mala država, jezgro kao savez, raspad kao obećanje
+   COLOUR: noćno plava, žuta znaka radijacije, zelena uranovog stakla, plava Čerenkovljevog sjaja; Lora + Inter */
+:root{color-scheme:dark;--bg:#0B1026;--card:#141B3A;--ink:#F2F5FF;--mute:#AEB8DD;--gold:#FFD400;--re:#B6FF3B;--im:#FF6FB5;--blue:#46C8FF;--line:#2A3566}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Inter,system-ui,sans-serif;overflow-x:clip}
+.wrap{max-width:1080px;margin:0 auto;padding:clamp(24px,4vw,56px) max(5vw,16px)}
+h1{font:600 clamp(32px,5vw,50px)/1.08 Lora,Georgia,serif;margin:0 0 8px;color:var(--gold);text-wrap:balance}
+.sub{color:var(--mute);margin:0 0 20px;max-width:66ch}
+.sub i{font-family:Lora,serif;color:var(--ink)}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}
+.tabs button{background:none;color:var(--ink);border:1.5px solid var(--line);font-weight:400}
+.tabs button[aria-selected=true]{background:var(--gold);border-color:var(--gold);color:var(--bg);font-weight:600}
+.fig{position:relative;height:clamp(320px,48vw,460px);background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden}
+.fig svg{position:absolute;inset:0;width:100%;height:100%}
+.eq{font:italic 400 clamp(21px,3vw,30px)/1.35 Lora,serif;text-align:center;margin:20px 0 4px;text-wrap:balance}
+.eq b{font-weight:600}
+.grid{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:20px;margin-top:16px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px 24px}
+.row{display:grid;grid-template-columns:130px minmax(0,1fr) 76px;align-items:center;gap:12px;min-height:48px}
+.row label{font-size:15px;color:var(--mute)}
+.row label b{font:italic 500 22px Lora,serif;margin-right:6px}
+.row output{text-align:right;font-variant-numeric:tabular-nums;font-weight:500}
+input[type=range]{width:100%;height:44px;background:none;-webkit-appearance:none;appearance:none}
+input[type=range]::-webkit-slider-runnable-track{height:4px;border-radius:4px;background:var(--line)}
+input[type=range]::-moz-range-track{height:4px;border-radius:4px;background:var(--line)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--c);margin-top:-9px;border:3px solid var(--bg)}
+input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--c);border:3px solid var(--bg)}
+input:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+button{font:500 15px Inter,sans-serif;min-height:44px;padding:0 18px;border-radius:999px;border:1.5px solid var(--gold);background:var(--gold);color:var(--bg);cursor:pointer}
+button.ghost{background:none;color:var(--ink);border-color:var(--line)}
+button.ghost[aria-pressed=true]{border-color:var(--gold);color:var(--gold)}
+.kv{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 14px;margin:0 0 12px;font-variant-numeric:tabular-nums}
+.kv dt{font:italic 400 17px Lora,serif;color:var(--mute)}
+.kv dd{margin:0;font-weight:500;text-align:right}
+.state{font:600 italic 26px/1.2 Lora,serif;margin:0 0 6px}
+.desc{color:var(--mute);margin:0}
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:14px;color:var(--mute);margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
+.legend span{display:inline-flex;align-items:center;gap:8px}
+.legend i{display:inline-block;width:22px;height:0;border-top:3px solid}
+.qm{margin-top:22px;text-align:center;color:var(--mute);font-size:15px}
+.qm div{font:italic 400 clamp(19px,2.6vw,24px)/1.5 Lora,serif;color:var(--ink)}
+.foot{margin-top:26px;text-align:center;font-size:14px;color:var(--mute)}
+.foot a{color:var(--gold)}
+[hidden]{display:none!important}
+@media(max-width:720px){.fig{height:min(96vw,460px)}.grid{grid-template-columns:minmax(0,1fr)}.row{grid-template-columns:104px minmax(0,1fr) 66px}
+ .tabs{display:grid;grid-template-columns:1fr 1fr;gap:6px}.tabs button{font-size:13.5px;padding:0 8px;min-height:42px}.tabs button:first-child{grid-column:1/-1}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Atomska diplomatija</h1>
+<p class="sub">Atom je mala država sa strogom hijerarhijom, jezgro je savez koji drži ogromna energija, a radioaktivni raspad radi kao predizborno obećanje: posle svakog <i>poluživota</i> ostane tačno polovina.</p>
+
+<div class="tabs" role="tablist" aria-label="Lekcije">
+<button role="tab" aria-selected="true" data-t="bor" type="button">0 · Diplomatska lestvica</button>
+<button role="tab" aria-selected="false" data-t="raspad" type="button">1 · Poluživot obećanja</button>
+<button role="tab" aria-selected="false" data-t="lanac" type="button">2 · Lančana reakcija</button>
+<button role="tab" aria-selected="false" data-t="veza" type="button">3 · Savezi i energija veze</button>
+<button role="tab" aria-selected="false" data-t="gorivo" type="button">4 · Gram goriva</button>
+</div>
+
+<div class="fig" id="fig"><svg id="svg" role="img" aria-label="Grafik"></svg></div>
+<div class="eq" id="eq"></div>
+
+<div class="grid">
+<div class="panel">
+ <div data-p="bor">
+  <div class="row"><label for="ni"><b style="color:var(--gold)">n</b>sa položaja</label><input id="ni" type="range" min="2" max="6" step="1" value="3" style="--c:var(--gold)"><output id="nio"></output></div>
+  <div class="row"><label for="nf"><b style="color:var(--blue)">m</b>na položaj</label><input id="nf" type="range" min="1" max="5" step="1" value="2" style="--c:var(--blue)"><output id="nfo"></output></div>
+  <div class="btns"><button id="balmer" type="button">Crvena linija 3 → 2</button><button id="lyman" class="ghost" type="button">Pad na dno 2 → 1</button></div>
+ </div>
+ <div data-p="raspad" hidden>
+  <div class="row"><label for="tt"><b style="color:var(--gold)">t</b>poluživota</label><input id="tt" type="range" min="0" max="6" step="0.02" value="1" style="--c:var(--gold)"><output id="tto"></output></div>
+  <div class="btns" id="iso"></div>
+ </div>
+ <div data-p="lanac" hidden>
+  <div class="row"><label for="k"><b style="color:var(--gold)">k</b>umnožavanje</label><input id="k" type="range" min="0.5" max="2" step="0.01" value="1.3" style="--c:var(--gold)"><output id="ko"></output></div>
+  <div class="row"><label for="gen"><b style="color:var(--blue)">g</b>generacija</label><input id="gen" type="range" min="0" max="20" step="1" value="12" style="--c:var(--blue)"><output id="geno"></output></div>
+  <div class="btns"><button id="rods" type="button">Kontrolne šipke (k = 1)</button><button id="calm" class="ghost" type="button">Smirivanje (k = 0,8)</button><button id="esc" class="ghost" type="button">Eskalacija (k = 2)</button></div>
+ </div>
+ <div data-p="veza" hidden>
+  <div class="row"><label for="A"><b style="color:var(--gold)">A</b>nukleona</label><input id="A" type="range" min="2" max="240" step="1" value="56" style="--c:var(--gold)"><output id="Ao"></output></div>
+  <div class="btns"><button id="fus" type="button">Fuzija: mali se udružuju</button><button id="fis" class="ghost" type="button">Fisija: veliki se cepa</button></div>
+ </div>
+ <div data-p="gorivo" hidden>
+  <div class="row"><label for="mg"><b style="color:var(--gold)">m</b>grama</label><input id="mg" type="range" min="-3" max="6" step="0.01" value="0" style="--c:var(--gold)"><output id="mgo"></output></div>
+  <div class="btns" id="fuels"></div>
+ </div>
+</div>
+<div class="panel" aria-live="polite">
+ <dl class="kv" id="kv"></dl>
+ <p class="state" id="st"></p>
+ <p class="desc" id="ds"></p>
+ <div class="legend" id="lg"></div>
+</div>
+</div>
+
+<div class="qm">Ajnštajnova fusnota, za one koji čitaju i sitna slova
+<div>E = Δm · c², &nbsp; N(t) = N₀ · 2<sup>−t/T½</sup></div></div>
+<p class="foot">Iz iste serije: <a href="../">Brak kao kvadratna jednačina</a> · <a href="../tajkuni/">Ojler za tajkune</a> · <a href="../postar/">Poštar i njiva</a>. Satira je uopštena: nijedna država ni političar nisu ciljani.</p>
+</div>
+
+<script>
+{
+const $=id=>document.getElementById(id);
+const svg=$('svg'),fig=$('fig');
+const C={gold:'#FFD400',re:'#B6FF3B',im:'#FF6FB5',mute:'#AEB8DD',ink:'#F2F5FF',line:'#2A3566',blue:'#46C8FF',card:'#141B3A'};
+const f=(n,d=2)=>{const s=(Math.abs(n)<5e-10?0:n).toFixed(d).replace('.',',').replace('-','−');return s.replace(/\B(?=(\d{3})+(?!\d))/g,' ');};
+const sci=(x,d=2)=>{if(x===0)return '0';const e=Math.floor(Math.log10(Math.abs(x)));if(e>=-2&&e<6)return f(x,e<0?d+1:Math.max(0,d-e));const m=x/10**e;return f(m,d)+'·10<sup>'+String(e).replace('-','−')+'</sup>';};
+const sciT=(x,d=2)=>sci(x,d).replace(/<sup>(.*?)<\/sup>/,(m,e)=>e.replace(/\d/g,c=>'⁰¹²³⁴⁵⁶⁷⁸⁹'[c]).replace('−','⁻'));
+let tab='bor';
+
+function frame(x0,x1,y0,y1,o={}){
+  const W=fig.clientWidth,H=fig.clientHeight,nar=W<520;
+  const L=o.L??(nar?46:60),R=o.R??(nar?14:24),T=o.T??(nar?28:32),B=o.B??(nar?36:44);
+  const lx=o.logx,ly=o.logy;
+  const tx_=v=>lx?Math.log10(v):v,ty_=v=>ly?Math.log10(v):v;
+  const X=x=>L+(tx_(x)-tx_(x0))/(tx_(x1)-tx_(x0))*(W-L-R),Y=y=>T+(ty_(y1)-ty_(y))/(ty_(y1)-ty_(y0))*(H-T-B);
+  const fs=nar?11:13;let g='';
+  for(const t of (o.yt||[]))g+=`<line x1="${L}" y1="${Y(t)}" x2="${W-R}" y2="${Y(t)}" stroke="${C.line}"/><text x="${L-8}" y="${Y(t)+4}" fill="${C.mute}" font-size="${fs}" text-anchor="end" font-family="Inter">${o.yf?o.yf(t):t}</text>`;
+  for(const t of (o.xt||[]))g+=`<text x="${X(t)}" y="${H-B+20}" fill="${C.mute}" font-size="${fs}" text-anchor="middle" font-family="Inter">${o.xf?o.xf(t):t}</text>`;
+  if(!o.noaxis){g+=`<line x1="${L}" y1="${H-B}" x2="${W-R}" y2="${H-B}" stroke="${C.mute}" stroke-opacity=".6" stroke-width="1.5"/><line x1="${L}" y1="${T-6}" x2="${L}" y2="${H-B}" stroke="${C.mute}" stroke-opacity=".6" stroke-width="1.5"/>`;}
+  if(o.xl)g+=`<text x="${W-R}" y="${H-6}" fill="${C.mute}" font-size="${fs}" text-anchor="end" font-family="Inter">${o.xl}</text>`;
+  if(o.yl)g+=`<text x="${L+8}" y="${T-12}" fill="${C.mute}" font-size="${fs}" font-family="Inter">${o.yl}</text>`;
+  return {W,H,X,Y,g,nar,L,R,T,B,fs};
+}
+const ln=(x1,y1,x2,y2,c,w=3,dash='')=>`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${c}" stroke-width="${w}" stroke-linecap="round" ${dash?`stroke-dasharray="${dash}"`:''}/>`;
+const dot=(x,y,r,c,o=1)=>`<circle cx="${x}" cy="${y}" r="${r}" fill="${c}" fill-opacity="${o}"/>`;
+const tx=(x,y,s,c,fs,a='middle',it=true)=>`<text x="${x}" y="${y}" fill="${c}" font-family="${it?'Lora':'Inter'}" ${it?'font-style="italic"':''} font-size="${fs}" text-anchor="${a}">${s}</text>`;
+function arrow(x1,y1,x2,y2,c,w=4){const a=Math.atan2(y2-y1,x2-x1),h=14;return ln(x1,y1,x2-h*.6*Math.cos(a),y2-h*.6*Math.sin(a),c,w)+`<path d="M${x2},${y2}L${x2-h*Math.cos(a-.42)},${y2-h*Math.sin(a-.42)}L${x2-h*Math.cos(a+.42)},${y2-h*Math.sin(a+.42)}Z" fill="${c}"/>`;}
+function setKV(rows){$('kv').innerHTML=rows.map(([k,v,c])=>`<dt>${k}</dt><dd${c?` style="color:${c}"`:''}>${v}</dd>`).join('');}
+function state(t,c,d){$('st').textContent=t;$('st').style.color=c;$('ds').textContent=d;}
+function legend(items){$('lg').innerHTML=items.map(([c,t])=>`<span><i style="border-color:${c}"></i>${t}</span>`).join('');}
+function show(P,g){svg.setAttribute('viewBox',`0 0 ${P.W} ${P.H}`);svg.innerHTML=g;}
+
+/* talasna dužina (nm) → boja */
+function wl2rgb(w){let r=0,g=0,b=0;if(w>=380&&w<440){r=-(w-440)/60;b=1}else if(w<490){g=(w-440)/50;b=1}else if(w<510){g=1;b=-(w-510)/20}else if(w<580){r=(w-510)/70;g=1}else if(w<645){r=1;g=-(w-645)/65}else if(w<=750){r=1}
+  return `rgb(${Math.round(255*r)},${Math.round(255*g)},${Math.round(255*b)})`;}
+
+/* 0 · Borov atom vodonika: E_n = −13,6 eV / n² */
+const En=n=>-13.6/n/n;
+const SERIES={1:'Lajmanova (UV)',2:'Balmerova (vidljiva)',3:'Pašenova (IC)',4:'Breketova (IC)',5:'Pfundova (IC)'};
+function bor(){
+  let n=+$('ni').value,m=+$('nf').value;if(m>=n){m=n-1;$('nf').value=m;}
+  $('nio').textContent=n;$('nfo').textContent=m;
+  const dE=En(n)-En(m),lam=1239.84/dE,vis=lam>=380&&lam<=750;
+  const W=fig.clientWidth,H=fig.clientHeight,nar=W<520;
+  const P={W,H,nar};let g='';
+  const L=nar?52:70,Rw=nar?W-16:W*0.58,T=26,Bt=H-(nar?96:40);
+  const Ye=e=>T+(e-0)/(-13.6-0)*(Bt-T);
+  for(let k=1;k<=6;k++){const y=Ye(En(k)),act=k===n||k===m;
+    g+=ln(L,y,Rw,y,act?C.ink:C.line,act?3:2);
+    if(k<=3||act)g+=`<text x="${L-10}" y="${y+5}" fill="${act?C.ink:C.mute}" font-size="${nar?12:14}" text-anchor="end" font-family="Inter">n = ${k}</text>`;
+    if((k<=3&&(!nar||k<=2))||act)g+=`<text x="${Rw+8}" y="${y+5}" fill="${act?C.ink:C.mute}" font-size="${nar?11:13}" font-family="Inter">${f(En(k),2)} eV</text>`;}
+  g+=`<line x1="${L}" y1="${Ye(0)}" x2="${Rw}" y2="${Ye(0)}" stroke="${C.mute}" stroke-dasharray="4 6"/>`+tx(L+8,Ye(0)-8,'jonizacija: E = 0',C.mute,nar?12:14,'start');
+  const xa=(L+Rw)/2;g+=arrow(xa,Ye(En(n)),xa,Ye(En(m)),C.gold,5)+dot(xa,Ye(En(n)),9,C.gold);
+  const col=vis?wl2rgb(lam):(lam<380?C.im:'#ff8a5c');
+  /* talasić fotona */
+  let p='';const x0=xa+14,y0=(Ye(En(n))+Ye(En(m)))/2,len=Math.min(Rw-x0-10,nar?90:180);for(let i=0;i<=60;i++){const xx=x0+len*i/60;p+=(i?'L':'M')+xx.toFixed(1)+','+(y0-8*Math.sin(i/60*Math.PI*6)).toFixed(1);}
+  g+=`<path d="${p}" fill="none" stroke="${col}" stroke-width="3"/>`+tx(x0+len/2,y0+30,'foton',col,nar?13:16,'middle');
+  /* spektar */
+  const sx=nar?L:W*0.66,sw=nar?W-L-16:W*0.30,sy=nar?H-70:T+20,sh=nar?30:H-T-80;
+  if(nar){for(let i=0;i<120;i++){const w=380+370*i/120;g+=`<rect x="${sx+sw*i/120}" y="${sy}" width="${sw/120+1}" height="${sh}" fill="${wl2rgb(w)}" fill-opacity=".18"/>`;}
+    if(vis){const xl=sx+sw*(lam-380)/370;g+=`<rect x="${xl-3}" y="${sy-4}" width="6" height="${sh+8}" fill="${wl2rgb(lam)}"/>`;}
+    g+=tx(sx,sy+sh+18,'380 nm',C.mute,11,'start',false)+tx(sx+sw,sy+sh+18,'750 nm',C.mute,11,'end',false);}
+  else{for(let i=0;i<120;i++){const w=380+370*i/120;g+=`<rect x="${sx}" y="${sy+sh*i/120}" width="${sw}" height="${sh/120+1}" fill="${wl2rgb(w)}" fill-opacity=".18"/>`;}
+    for(const [a,b] of [[3,2],[4,2],[5,2],[6,2]]){const l=1239.84/(En(a)-En(b));g+=`<rect x="${sx}" y="${sy+sh*(l-380)/370-1}" width="${sw}" height="2" fill="${wl2rgb(l)}" fill-opacity=".45"/>`;}
+    if(vis){const yl=sy+sh*(lam-380)/370;g+=`<rect x="${sx-4}" y="${yl-3}" width="${sw+8}" height="6" fill="${wl2rgb(lam)}"/>`;}
+    g+=tx(sx+sw/2,sy-8,'vidljivi spektar',C.mute,13,'middle',false)+tx(sx+sw/2,sy+sh+18,'380 → 750 nm',C.mute,12,'middle',false);}
+  show(P,g);
+  $('eq').innerHTML=`ΔE = 13,6 eV · (1/${m}² − 1/${n}²) = <b style="color:${C.gold}">${f(dE,3)} eV</b>, &nbsp; λ = <b style="color:${col}">${f(lam,1)} nm</b>`;
+  setKV([['energija na položaju n',f(En(n),3)+' eV'],['energija na položaju m',f(En(m),3)+' eV'],['saopštenje ΔE',f(dE,3)+' eV',C.gold],['talasna dužina λ',f(lam,1)+' nm',col],['serija',SERIES[m]]]);
+  legend([[C.gold,'pad sa položaja n na m'],[col,'foton: saopštenje za javnost']]);
+  if(vis)state('Saopštenje se vidi golim okom',col,`Pad sa ${n}. na ${m}. položaj oslobađa tačno ${f(dE,2)} eV, foton boje ${f(lam,0)} nm. Ne može pola saopštenja: energija je kvantovana.`);
+  else if(lam<380)state('Saopštenje za uži krug',C.im,`Pad na osnovni položaj oslobađa ${f(dE,2)} eV, ultraljubičasti foton od ${f(lam,0)} nm. Oko ga ne vidi, ali detektor da.`);
+  else state('Tiha diplomatija',C.mute,`Pad između visokih položaja oslobađa samo ${f(dE,2)} eV: infracrveni foton od ${f(lam,0)} nm. Oseća se kao toplota, ne vidi se.`);
+}
+
+/* 1 · radioaktivni raspad: N = N₀·2^(−t/T½); 400 atoma sa unapred izvučenim vremenom raspada */
+let seed=7;const rnd=()=>{seed=(seed*16807)%2147483647;return (seed-1)/2147483646;};
+const NA=400,LIFE=Array.from({length:NA},()=>-Math.log(1-rnd())/Math.LN2); // u poluživotima
+const ISO=[['Jod-131',8.02,'dana'],['Cezijum-137',30.1,'godina'],['Ugljenik-14',5730,'godina'],['Uran-238',4.47e9,'godina'],['Obećanje',100,'dana']];
+let iso=4;
+$('iso').innerHTML=ISO.map((q,i)=>`<button type="button" class="ghost" data-i="${i}" aria-pressed="${i===iso}">${q[0]}</button>`).join('');
+$('iso').querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{iso=+b.dataset.i;$('iso').querySelectorAll('button').forEach(o=>o.setAttribute('aria-pressed',o===b));draw();}));
+function raspad(){
+  const t=+$('tt').value;$('tto').textContent=f(t,2);
+  const W=fig.clientWidth,H=fig.clientHeight,nar=W<520;let g='';
+  /* mreža atoma */
+  const gw=nar?W-24:W*0.46,gh=nar?H*0.5:H-48,cols=20,rows=20,cs=Math.min(gw/cols,gh/rows),gx=nar?(W-cs*cols)/2:20,gy=nar?14:(H-cs*rows)/2;
+  let alive=0;
+  for(let i=0;i<NA;i++){const al=LIFE[i]>t;if(al)alive++;const cx=gx+(i%cols+.5)*cs,cy=gy+(Math.floor(i/cols)+.5)*cs;
+    g+=dot(cx,cy,cs*.36,al?C.re:C.line,al?1:.9);}
+  /* kriva */
+  const P=frame(0,6,0,NA,{L:nar?44:W*0.53+40,T:nar?H*0.55+18:32,yt:[0,100,200,300,400],xt:[0,1,2,3,4,5,6],xl:'t / T½',yl:'neraspadnutih'});
+  g+=P.g;let p='';for(let i=0;i<=200;i++){const x=6*i/200;p+=(i?'L':'M')+P.X(x).toFixed(1)+','+P.Y(NA*Math.pow(2,-x)).toFixed(1);}
+  g+=`<path d="${p}" fill="none" stroke="${C.gold}" stroke-width="3.5"/>`;
+  for(let h=1;h<=3;h++)g+=ln(P.X(h),P.Y(NA/2**h),P.X(h),P.Y(0),C.mute,1,'3 5');
+  g+=dot(P.X(t),P.Y(alive),8,C.re)+ln(P.X(t),P.T,P.X(t),P.H-P.B,C.ink,1.2,'4 6');
+  show({W,H},g);
+  const q=ISO[iso],real=t*q[1],exp=NA*Math.pow(2,-t);
+  $('eq').innerHTML=`N = N₀ · 2<sup>−t/T½</sup> = 400 · 2<sup>−${f(t,2)}</sup> ≈ <b style="color:${C.gold}">${f(exp,0)}</b>, &nbsp; izbrojano: <b style="color:${C.re}">${alive}</b>`;
+  setKV([['izotop',q[0]],['poluživot T½',sci(q[1],3)+' '+q[2]],['proteklo vreme',sci(real,3)+' '+q[2]],['očekivano N',f(exp,1)],['preostalo (izbrojano)',alive,C.re],['raspalo se',NA-alive]]);
+  legend([[C.re,'atom (obećanje) još stoji'],[C.line,'raspao se'],[C.gold,'N₀·2^(−t/T½)']]);
+  if(iso===4)state(t<1?'Medeni mesec':'Obećanja se raspadaju',C.gold,`Posle ${f(t,1)} poluživota (${f(real,0)} dana) od 400 predizbornih obećanja stoji još ${alive}. Ne zna se koje će sledeće pasti, ali se tačno zna koliko ih pada.`);
+  else state(q[0],C.re,`Nijedan atom ne zna kad će se raspasti, ali ih 400 zajedno poštuje zakon: posle svakog poluživota ostane polovina. Za ${q[0].toLowerCase()} je to ${sciT(q[1],3)} ${q[2]}.`);
+}
+
+/* 2 · lančana reakcija: N_g = k^g */
+function lanac(){
+  const k=+$('k').value,G=+$('gen').value;$('ko').textContent=f(k,2);$('geno').textContent=G;
+  const vals=[];for(let i=0;i<=20;i++)vals.push(Math.pow(k,i));
+  const P=frame(-0.5,20.5,1e-3,1e6,{logy:true,L:fig.clientWidth<520?66:86,yt:[1e-3,1e-2,1e-1,1,10,1e2,1e3,1e4,1e5,1e6],yf:t=>t>=1?f(t,0):String(t).replace('.',','),xt:[0,5,10,15,20],xl:'generacija',yl:'neutrona (incidenata)'});
+  let g=P.g;const bw=(P.X(1)-P.X(0))*.7;
+  for(let i=0;i<=20;i++){const v=Math.max(1e-3,Math.min(1e6,vals[i])),on=i<=G,c=k>1.005?C.im:(k<0.995?C.blue:C.re);
+    g+=`<rect x="${P.X(i)-bw/2}" y="${P.Y(v)}" width="${bw}" height="${P.Y(1e-3)-P.Y(v)}" fill="${c}" fill-opacity="${on?.85:.15}"/>`;}
+  g+=ln(P.L,P.Y(1),P.W-P.R,P.Y(1),C.gold,1.5,'6 6')+tx(P.W-P.R-4,P.Y(1)-8,'k = 1: kritično',C.gold,P.nar?12:15,'end');
+  show(P,g);
+  const N=Math.pow(k,G);
+  $('eq').innerHTML=`N<sub>g</sub> = N₀ · k<sup>g</sup> = ${f(k,2)}<sup>${G}</sup> = <b style="color:${C.gold}">${sci(N,3)}</b>`;
+  setKV([['faktor umnožavanja k',f(k,2)],['generacija g',G],['u generaciji g',sci(N,3),C.gold],['ukupno do g',sci(Math.abs(k-1)<1e-9?G+1:(Math.pow(k,G+1)-1)/(k-1),3)]]);
+  legend([[C.blue,'k < 1: gasi se'],[C.re,'k = 1: kontrolisano'],[C.im,'k > 1: eskalacija']]);
+  if(k<0.995)state('Smiruje se',C.blue,`Svaki incident izazove u proseku ${f(k,2)} novih. Posle ${G} generacija ostaje ${sciT(N,2)}: priča se gasi sama od sebe.`);
+  else if(k<=1.005)state('Kontrolne šipke',C.re,'k = 1: svaki incident izazove tačno jedan nov. Tako radi nuklearna elektrana: stalna, kontrolisana snaga. Kontrolne šipke upijaju višak, kao dobra diplomatija.');
+  else state('Eskalacija',C.im,`Svaki incident izazove ${f(k,2)} novih. Posle ${G} generacija ih je ${sciT(N,2)}. Eksponencijalni rast ne oprašta kašnjenje.`);
+}
+
+/* 3 · energija veze po nukleonu */
+function semf(A,pair=false){if(A<3)return 1.112;const Z=Math.round(A/(1.98+0.0155*Math.pow(A,2/3))),N=A-Z;let d=0;if(pair){if(Z%2===0&&N%2===0)d=11.18/Math.sqrt(A);else if(Z%2&&N%2)d=-11.18/Math.sqrt(A);}
+  return (15.75*A-17.8*Math.pow(A,2/3)-0.711*Z*(Z-1)/Math.cbrt(A)-23.7*(A-2*Z)**2/A+d)/A;}
+const NUC=[['²H',2,1.112],['⁴He',4,7.074],['⁷Li',7,5.606],['¹²C',12,7.680],['¹⁶O',16,7.976],['⁵⁶Fe',56,8.790],['⁶²Ni',62,8.795],['⁹²Kr',92,8.513],['¹⁴¹Ba',141,8.326],['²⁰⁸Pb',208,7.868],['²³⁵U',235,7.591],['²³⁸U',238,7.570]];
+const BA=A=>{const e=NUC.find(q=>q[1]===A);if(e)return e[2];return A<14?null:semf(A);};
+function veza(){
+  const A=+$('A').value;$('Ao').textContent=A;
+  const P=frame(0,245,0,9.4,{xt:[0,50,100,150,200,240],yt:[0,2,4,6,8],xl:'broj nukleona A',yl:'energija veze po nukleonu (MeV)'});let g=P.g;
+  let p='';for(let a=14;a<=240;a++){p+=(a===14?'M':'L')+P.X(a).toFixed(1)+','+P.Y(semf(a)).toFixed(1);}
+  g+=`<path d="${p}" fill="none" stroke="${C.gold}" stroke-width="3.5"/>`;
+  g+=`<rect x="${P.X(50)}" y="${P.T}" width="${P.X(66)-P.X(50)}" height="${P.H-P.B-P.T}" fill="${C.re}" fill-opacity=".10"/>`+tx(P.X(58),P.T+16,'gvožđe',C.re,P.nar?12:15);
+  for(const [nm,a,b] of NUC){g+=dot(P.X(a),P.Y(b),5,C.ink);if(['⁴He','⁵⁶Fe','²³⁵U','²H','¹⁴¹Ba','⁹²Kr'].includes(nm))g+=tx(P.X(a)+(a>200?-8:8),P.Y(b)+(a<10?-10:18),nm,C.ink,P.nar?12:14,a>200?'end':'start',false);}
+  g+=arrow(P.X(12),P.Y(3.2),P.X(44),P.Y(7.6),C.blue,3)+tx(P.X(22),P.Y(2.6),'fuzija',C.blue,P.nar?13:16,'start');
+  g+=arrow(P.X(225),P.Y(6.4),P.X(140),P.Y(7.5),C.im,3)+tx(P.X(200),P.Y(5.8),'fisija',C.im,P.nar?13:16,'middle');
+  const b=BA(A)??semf(A);g+=dot(P.X(A),P.Y(b),11,C.gold)+ln(P.X(A),P.Y(b),P.X(A),P.Y(0),C.gold,1.2,'4 5');
+  show(P,g);
+  const nm=(NUC.find(q=>q[1]===A)||[])[0];
+  $('eq').innerHTML=`B/A(${A}) ≈ <b style="color:${C.gold}">${f(b,2)} MeV</b> po nukleonu${nm?' ('+nm+')':''}`;
+  setKV([['nukleona A',A],['B/A',f(b,3)+' MeV',C.gold],['ukupna energija veze',f(b*A,0)+' MeV'],['najstabilnije','⁵⁶Fe, ⁶²Ni ≈ 8,8 MeV']]);
+  legend([[C.gold,'model kapi (Vajczeker)'],[C.ink,'izmerene vrednosti'],[C.blue,'fuzija'],[C.im,'fisija']]);
+  if(A<50)state('Mali se udružuju',C.blue,'Lakim jezgrima se isplati spajanje: novo jezgro je čvršće vezano, a razlika izlazi kao energija. Tako sija Sunce.');
+  else if(A<=66)state('Srednja sila',C.re,'Oko gvožđa je jezgro najstabilnije: ni spajanje ni cepanje ne oslobađaju energiju. Najčvršći savez nije ni najveći ni najmanji.');
+  else state('Veliki se cepaju',C.im,'Teškim jezgrima se isplati raspad na dva srednja: delovi su čvršće vezani od celine. Tako rade nuklearne elektrane.');
+}
+
+/* 4 · gram goriva */
+const FU=[['Lignit',8e6],['Kameni ugalj',2.6e7],['Prirodni gas',5e7],['Uran-235 (fisija)',8.21e13],['D–T (fuzija)',3.40e14],['E = mc²',8.988e16]];
+let fu=3;
+$('fuels').innerHTML=FU.map((q,i)=>`<button type="button" class="ghost" data-i="${i}" aria-pressed="${i===fu}">${q[0]}</button>`).join('');
+$('fuels').querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{fu=+b.dataset.i;$('fuels').querySelectorAll('button').forEach(o=>o.setAttribute('aria-pressed',o===b));draw();}));
+function gorivo(){
+  const m=Math.pow(10,+$('mg').value);$('mgo').textContent=sci(m,2);
+  const W=fig.clientWidth,H=fig.clientHeight,nar=W<520;
+  const L=nar?118:190,P=frame(1e6,1e17,0,FU.length,{logx:true,L,T:24,B:46,noaxis:true,xt:[1e6,1e9,1e12,1e15,1e17],xf:t=>'10'+String(Math.log10(t)).replace(/\d/g,c=>'⁰¹²³⁴⁵⁶⁷⁸⁹'[c]),xl:'J po kilogramu (log skala)'});
+  let g=P.g;const bh=(P.Y(0)-P.Y(1))*.6;
+  FU.forEach(([nm,e],i)=>{const y=P.Y(FU.length-i-.5),sel=i===fu,c=i<3?C.mute:(i===3?C.re:(i===4?C.blue:C.gold));
+    g+=`<rect x="${P.X(1e6)}" y="${y-bh/2}" width="${P.X(e)-P.X(1e6)}" height="${bh}" rx="4" fill="${c}" fill-opacity="${sel?.95:.35}"/>`;
+    g+=`<text x="${L-10}" y="${y+5}" fill="${sel?C.ink:C.mute}" font-size="${nar?12:15}" text-anchor="end" font-family="Inter" font-weight="${sel?600:400}">${nm}</text>`;});
+  show(P,g);
+  const e=FU[fu][1]*m/1000,kwh=e/3.6e6,lig=e/8e6/1000;
+  $('eq').innerHTML=`E = ${sci(m,2)} g · ${sci(FU[fu][1],2)} J/kg = <b style="color:${C.gold}">${sci(e,3)} J</b>`;
+  setKV([['gorivo',FU[fu][0]],['masa',sci(m,3)+' g'],['energija',sci(e,3)+' J',C.gold],['toplotnih kWh',sci(kwh,3)],['ekvivalent lignita',sci(lig,3)+' t',C.re]]);
+  legend([[C.mute,'hemijska goriva'],[C.re,'fisija'],[C.blue,'fuzija'],[C.gold,'potpuno pretvaranje mase']]);
+  if(fu<3)state('Hemija',C.mute,'Hemijsko gorivo oslobađa energiju preuređivanjem elektrona: nekoliko eV po molekulu. Za grejanje dovoljno, za geopolitiku malo.');
+  else if(fu===3)state('Gram urana, deset tona lignita',C.re,`Fisija oslobađa oko 200 MeV po jezgru, milione puta više od sagorevanja. ${sciT(m,2)} g urana-235 vredi koliko ${sciT(lig,2)} t lignita.`);
+  else if(fu===4)state('Energija zvezda',C.blue,'Fuzija deuterijuma i tricijuma daje oko četiri puta više energije po kilogramu od fisije. Na Zemlji je još u fazi eksperimenata.');
+  else state('Ajnštajnov plafon',C.gold,'E = mc²: kad bi se cela masa pretvorila u energiju. Ni fisija ni fuzija ne prelaze ni jedan posto tog plafona.');
+}
+
+const R={bor,raspad,lanac,veza,gorivo};
+function draw(){R[tab]();}
+document.querySelectorAll('[role=tab]').forEach(b=>b.addEventListener('click',()=>{
+  tab=b.dataset.t;
+  document.querySelectorAll('[role=tab]').forEach(o=>o.setAttribute('aria-selected',o===b));
+  document.querySelectorAll('[data-p]').forEach(p=>p.hidden=p.dataset.p!==tab);
+  draw();}));
+document.querySelectorAll('input[type=range]').forEach(i=>i.addEventListener('input',draw));
+$('balmer').addEventListener('click',()=>{$('ni').value=3;$('nf').value=2;draw();});
+$('lyman').addEventListener('click',()=>{$('ni').value=2;$('nf').value=1;draw();});
+$('rods').addEventListener('click',()=>{$('k').value=1;draw();});
+$('calm').addEventListener('click',()=>{$('k').value=0.8;draw();});
+$('esc').addEventListener('click',()=>{$('k').value=2;draw();});
+$('fus').addEventListener('click',()=>{$('A').value=4;draw();});
+$('fis').addEventListener('click',()=>{$('A').value=235;draw();});
+new ResizeObserver(draw).observe(fig);
+draw();
+}
+</script>
+</body>
+</html>
