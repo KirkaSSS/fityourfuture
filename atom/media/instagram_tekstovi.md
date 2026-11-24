@@ -9,21 +9,18 @@ Fajlovi: `karusel/atomska_diplomatija_01.png` … `10.png` (1080 × 1350, redom)
 ```
 Šta imaju zajedničko predizborno obećanje i radioaktivni atom? Oba imaju poluživot. ☢️
 
-Ne zna se koje će obećanje sledeće pasti, kao što se ne zna ni koji će se atom sledeći raspasti. Ali kad ih ima mnogo, račun je uvek isti: posle svakog poluživota ostane tačno polovina.
+Nikad ne znaš koje će obećanje prvo pasti. Isto je i sa atomom: ne može se predvideti kada će se raspasti. Ali kad ih je mnogo, pravilo je jednostavno: posle svakog poluživota ostane polovina.
 
-Šta još ima u karuselu:
+U karuselu saznaješ:
+⚛️ zašto elektron ne može da bude na pola puta između dva nivoa
+☢️ kako radi radioaktivni raspad
+💥 šta je lančana reakcija i kako se kontroliše
+🔗 zašto se laka jezgra spajaju, a teška cepaju
+⚡ kako jedan gram urana daje energije koliko deset tona lignita
 
-🟡 Elektron ne može da stoji između dva nivoa, kao što ne postoji „pola ambasadora”. Kad siđe niže, oglasi se fotonom.
-🔵 Jezgro drži na okupu ogromna energija. Takav savez je skupo razbiti.
-🟢 Mala jezgra dobijaju kad se udruže, velika kad se pocepaju. Najstabilnije je gvožđe, prava srednja sila.
-🔴 Kad svaki sukob izazove više od jednog novog, to je eskalacija. Kontrolne šipke su diplomatija.
-⚡ Jedan gram urana daje struje koliko deset tona lignita.
+Obećanja dolaze i prolaze. Zakoni fizike ostaju.
 
-Obećanja se raspadaju. Zakoni fizike ostaju.
-
-📲 Na poslednjoj kartici su dva QR koda: jedan vodi do interaktivne aplikacije, drugi do materijala sa zadacima za prijemni.
-
-Satira je uopštena, nijedna država ni političar nisu ciljani. 😉
+📲 Na poslednjoj kartici su dva QR koda: za interaktivnu aplikaciju i za materijal sa zadacima za prijemni.
 
 #fizika #nuklearnafizika #atom #radioaktivnost #energetika #prijemni #matura #MINT #STEM #edukacija
 ```
